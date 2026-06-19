@@ -22,11 +22,9 @@ import { sealFree } from "@/app/actions/seal-free";
 import { SealSuccessView } from "@/components/seal-success-view";
 import { isContractConfigured } from "@/lib/contract";
 import { FREE_MODE, SEAL_PRICE_USD } from "@/lib/config";
+import { isShareUrl } from "@/lib/share-providers";
 import type { SealInput, SealRegisterResult } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
-
-const SHARE_LINK_RE =
-  /^https:\/\/(?:chat\.openai\.com|chatgpt\.com|claude\.ai)\/share\/[A-Za-z0-9-]+\/?$/i;
 
 export default function MintPage() {
   return (
@@ -76,7 +74,7 @@ function MintForm() {
       toast.error(t("mint.error.sourceRef"));
       return false;
     }
-    if (tab === "link" && !SHARE_LINK_RE.test(shareUrl.trim())) {
+    if (tab === "link" && !isShareUrl(shareUrl.trim())) {
       toast.error(t("mint.error.badLink"));
       return false;
     }

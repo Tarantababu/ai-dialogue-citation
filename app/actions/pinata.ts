@@ -3,6 +3,10 @@
 import { PinataSDK } from "pinata-web3";
 import { decode } from "turbo-stream";
 import { cleanDialogueText } from "@/lib/dialogue-clean";
+import {
+  classifyShareUrl,
+  SUPPORTED_PROVIDERS_LABEL,
+} from "@/lib/share-providers";
 import type {
   DialogueMessage,
   OriginInputType,
@@ -23,25 +27,11 @@ import type {
  * ────────────────────────────────────────────────────────────────────────
  */
 
-const SHARE_URL_REGEX =
-  /^https:\/\/(?:chat\.openai\.com|chatgpt\.com|claude\.ai)\/share\/[A-Za-z0-9-]+\/?$/i;
 
 const MAX_HTML_BYTES = 8 * 1024 * 1024; // 8 MB safety cap on fetched payloads
 const MAX_MESSAGES = 2000;
 const MAX_TEXT_CHARS = 1_500_000;
 const FETCH_TIMEOUT_MS = 15_000;
-
-interface PlatformInfo {
-  platform: "ChatGPT" | "Claude";
-}
-
-/** Validate an incoming share URL and identify the platform. */
-function classifyShareUrl(url: string): PlatformInfo | null {
-  const trimmed = url.trim();
-  if (!SHARE_URL_REGEX.test(trimmed)) return null;
-  if (/claude\.ai/i.test(trimmed)) return { platform: "Claude" };
-  return { platform: "ChatGPT" };
-}
 
 /** Decode the small set of HTML entities that survive JSON extraction. */
 function decodeEntities(text: string): string {
@@ -64,6 +54,52 @@ interface RankedMessage extends DialogueMessage {
  * (sender + text / role + content) embedded payloads. Far more robust than
  * regex against minified, evolving share-page markup.
  */
+/** Normalize a role/sender/type/from value to user | assistant | null. */
+function mapRole(value: unknown): "user" | "assistant" | null {
+  if (typeof value !== "string") return null;
+  const s = value.toLowerCase();
+  if (["user", "human", "you", "prompter", "questioner"].includes(s)) return "user";
+  if (["assistant", "ai", "bot", "model", "gpt", "chatbot", "completion"].includes(s))
+    return "assistant";
+  return null;
+}
+
+/** Extract plain text from a string | block array | {parts}/{text}/{content}. */
+function extractText(value: unknown, depth = 0): string {
+  if (depth > 6) return "";
+  if (typeof value === "string") return value.trim();
+  if (Array.isArray(value)) {
+    return value
+      .map((b) => {
+        if (typeof b === "string") return b;
+        if (b && typeof b === "object") {
+          const o = b as Record<string, unknown>;
+          if (typeof o.text === "string") return o.text;
+          if (typeof o.content === "string") return o.content;
+          if (typeof o.value === "string") return o.value;
+        }
+        return "";
+      })
+      .join("\n")
+      .trim();
+  }
+  if (value && typeof value === "object") {
+    const o = value as Record<string, unknown>;
+    if (Array.isArray(o.parts))
+      return o.parts.filter((p): p is string => typeof p === "string").join("\n").trim();
+    if (typeof o.text === "string") return o.text.trim();
+    if (Array.isArray(o.content) || typeof o.content === "string")
+      return extractText(o.content, depth + 1);
+  }
+  return "";
+}
+
+/**
+ * Deeply walk any parsed JSON tree for known conversation message shapes —
+ * generalized across ChatGPT, Claude, Gemini, Grok, Copilot, Perplexity,
+ * DeepSeek, Poe and others: author.role+content, role/sender/type/from + text,
+ * and question/answer pairs. Each node contributes at most one turn.
+ */
 function collectMessages(node: unknown, sink: RankedMessage[], depth = 0): void {
   if (depth > 40 || sink.length > MAX_MESSAGES) return;
 
@@ -74,58 +110,54 @@ function collectMessages(node: unknown, sink: RankedMessage[], depth = 0): void 
   if (node === null || typeof node !== "object") return;
 
   const obj = node as Record<string, unknown>;
+  const order =
+    typeof obj.create_time === "number"
+      ? obj.create_time
+      : typeof obj.createTime === "number"
+        ? obj.createTime
+        : typeof obj.index === "number"
+          ? obj.index
+          : sink.length;
 
-  // ── ChatGPT shape ──────────────────────────────────────────────
+  let pushed = false;
+  const push = (role: "user" | "assistant" | null, text: string, ord = order) => {
+    if (!pushed && role && text) {
+      sink.push({ role, text, order: ord });
+      pushed = true;
+    }
+  };
+
+  // 1 · author.role + content  (ChatGPT)
   const author = obj.author as Record<string, unknown> | undefined;
-  const content = obj.content as Record<string, unknown> | undefined;
-  if (author && typeof author.role === "string" && content) {
-    const role = author.role;
-    const parts = content.parts;
-    if ((role === "user" || role === "assistant") && Array.isArray(parts)) {
-      const text = parts
-        .filter((p): p is string => typeof p === "string")
-        .join("\n")
-        .trim();
-      if (text) {
-        const order =
-          typeof obj.create_time === "number"
-            ? obj.create_time
-            : sink.length;
-        sink.push({ role, text, order });
-      }
-    }
+  if (author && typeof author.role === "string" && "content" in obj) {
+    push(mapRole(author.role), extractText(obj.content));
   }
-
-  // ── Claude shape (sender/text) ─────────────────────────────────
-  if (typeof obj.sender === "string" && typeof obj.text === "string") {
-    const role: DialogueMessage["role"] =
-      obj.sender === "human" || obj.sender === "user" ? "user" : "assistant";
-    const text = obj.text.trim();
-    if (text) {
-      const order = typeof obj.index === "number" ? obj.index : sink.length;
-      sink.push({ role, text, order });
-    }
+  // 2 · role + content/text/parts  (Claude, Gemini, OpenAI-style)
+  if (!pushed && "role" in obj) {
+    const body =
+      "content" in obj ? obj.content : "text" in obj ? obj.text : obj.parts;
+    push(mapRole(obj.role), extractText(body));
   }
-
-  // ── Claude shape (role + content blocks) ───────────────────────
-  if (
-    (obj.role === "human" || obj.role === "user" || obj.role === "assistant") &&
-    Array.isArray(obj.content)
-  ) {
-    const role: DialogueMessage["role"] =
-      obj.role === "assistant" ? "assistant" : "user";
-    const text = (obj.content as unknown[])
-      .map((block) => {
-        if (block && typeof block === "object") {
-          const b = block as Record<string, unknown>;
-          if (typeof b.text === "string") return b.text;
-        }
-        return "";
-      })
-      .join("\n")
-      .trim();
-    if (text) {
-      sink.push({ role, text, order: sink.length });
+  // 3 · sender + text/content/message  (Claude legacy, others)
+  if (!pushed && "sender" in obj) {
+    push(mapRole(obj.sender), extractText(obj.text ?? obj.content ?? obj.message));
+  }
+  // 4 · type + text/content/message
+  if (!pushed && "type" in obj) {
+    push(mapRole(obj.type), extractText(obj.text ?? obj.content ?? obj.message));
+  }
+  // 5 · from + text/content/message
+  if (!pushed && "from" in obj) {
+    push(mapRole(obj.from), extractText(obj.text ?? obj.content ?? obj.message));
+  }
+  // 6 · question/answer pair  (Perplexity-style)
+  if (!pushed) {
+    const q = obj.question ?? obj.query ?? obj.prompt;
+    const a = obj.answer ?? obj.response ?? obj.completion;
+    if (typeof q === "string" && q.trim() && typeof a === "string" && a.trim()) {
+      sink.push({ role: "user", text: q.trim(), order });
+      sink.push({ role: "assistant", text: a.trim(), order: order + 0.5 });
+      pushed = true;
     }
   }
 
@@ -186,8 +218,29 @@ async function decodeReactRouterStream(html: string): Promise<unknown | null> {
   }
 }
 
-/** Walk a decoded tree for the AI model slug; prefer a concrete per-message
- *  `model_slug` over a `default_model_slug` of "auto". */
+// Keys various providers use for the model id, in priority order.
+const STRONG_MODEL_KEYS = ["model_slug", "modelslug", "model_id", "modelid"];
+const WEAK_MODEL_KEYS = [
+  "default_model_slug",
+  "modelname",
+  "model_name",
+  "modelversion",
+  "model",
+];
+
+/** True for plausible model identifiers (e.g. "gpt-5-3-mini", "gemini-2.0-flash"). */
+function looksLikeModelId(v: unknown): v is string {
+  return (
+    typeof v === "string" &&
+    v.length > 1 &&
+    v.length <= 64 &&
+    !/\s/.test(v) &&
+    v !== "auto" &&
+    /[a-z]/i.test(v)
+  );
+}
+
+/** Walk a decoded tree for an AI model id; prefer concrete per-message keys. */
 function scanForModel(node: unknown, depth = 0): string | null {
   if (depth > 50 || node === null || typeof node !== "object") return null;
   if (Array.isArray(node)) {
@@ -198,18 +251,15 @@ function scanForModel(node: unknown, depth = 0): string | null {
     return null;
   }
   const obj = node as Record<string, unknown>;
-  if (typeof obj.model_slug === "string" && obj.model_slug) return obj.model_slug;
   let fallback: string | null = null;
   for (const key of Object.keys(obj)) {
-    if (
-      key === "default_model_slug" &&
-      typeof obj[key] === "string" &&
-      obj[key] &&
-      obj[key] !== "auto"
-    ) {
-      fallback = obj[key] as string;
+    const lower = key.toLowerCase();
+    const val = obj[key];
+    if (STRONG_MODEL_KEYS.includes(lower) && looksLikeModelId(val)) return val;
+    if (WEAK_MODEL_KEYS.includes(lower) && looksLikeModelId(val) && !fallback) {
+      fallback = val;
     }
-    const found = scanForModel(obj[key], depth + 1);
+    const found = scanForModel(val, depth + 1);
     if (found) return found;
   }
   return fallback;
@@ -400,7 +450,7 @@ export async function sealFromShareLink(
       return {
         ok: false,
         error:
-          "Invalid share URL. Provide an official chatgpt.com/share/… or claude.ai/share/… link.",
+          `Unsupported share URL. Provide an official public share link from a supported provider (${SUPPORTED_PROVIDERS_LABEL}).`,
       };
     }
 
