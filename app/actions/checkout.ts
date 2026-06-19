@@ -94,6 +94,7 @@ export async function createSealCheckout(
       [META.authorName]: cap(authorName ?? "", 200),
       [META.origin]: pin.origin,
       [META.platform]: pin.platform,
+      [META.model]: cap(pin.model ?? "", 80),
       [META.sourceUrl]: cap(pin.sourceUrl ?? "", 480),
       [META.email]: cap(email ?? "", 200),
     };

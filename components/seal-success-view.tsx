@@ -57,6 +57,8 @@ export function SealSuccessView({ result }: { result: SealRegisterResult }) {
     citation,
     authorName: result.authorName ?? undefined,
     baseUrl,
+    platform: result.platform,
+    model: result.model,
   });
 
   return (

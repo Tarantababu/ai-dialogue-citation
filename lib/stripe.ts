@@ -37,6 +37,7 @@ export const META = {
   authorName: "decite_author_name",
   origin: "decite_origin",
   platform: "decite_platform",
+  model: "decite_model",
   sourceUrl: "decite_source_url",
   email: "decite_email",
   // Written after a successful seal — presence means "already finalized".

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -11,6 +12,10 @@ import {
   AlertTriangle,
   Settings2,
   ArrowLeft,
+  Bot,
+  Quote,
+  Copy,
+  Check,
 } from "lucide-react";
 import {
   Table,
@@ -24,8 +29,10 @@ import {
   shortenAddress,
   originLabel,
   explorerAddressUrl,
+  formatApaCitation,
 } from "@/lib/citation";
-import type { DialogueMessage, OriginInputType } from "@/lib/types";
+import { cleanDialogueText, aiModelLabel } from "@/lib/dialogue-clean";
+import type { DialogueMessage, OnChainCitation, OriginInputType } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
 
 export type VerificationViewModel =
@@ -42,6 +49,7 @@ export type VerificationViewModel =
       chainId: number;
       origin: OriginInputType | null;
       platform: string | null;
+      aiModel: string | null;
       sourceUrl: string | null;
       messages: DialogueMessage[] | null;
     }
@@ -95,6 +103,9 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
         </div>
       </div>
 
+      {/* ── Ready-to-cite ────────────────────────────────────── */}
+      <CitationCard model={model} />
+
       {/* ── Metadata table ───────────────────────────────────── */}
       <section className="mt-10">
         <h2 className="mb-4 font-serif text-xl font-semibold text-foreground">
@@ -109,6 +120,14 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
               {model.authorName && (
                 <MetaRow label={t("verify.meta.authorName")}>
                   {model.authorName}
+                </MetaRow>
+              )}
+              {(model.platform || model.aiModel) && (
+                <MetaRow label={t("verify.meta.ai")}>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Bot className="h-3.5 w-3.5 text-bronze" />
+                    {aiModelLabel(model.platform, model.aiModel)}
+                  </span>
                 </MetaRow>
               )}
               <MetaRow label={t("verify.meta.timestamp")}>
@@ -249,9 +268,71 @@ function DialogueTurn({ message }: { message: DialogueMessage }) {
             : "border-seal/20 bg-seal-soft/40"
         }`}
       >
-        <p className="whitespace-pre-wrap text-foreground">{message.text}</p>
+        <p className="whitespace-pre-wrap text-foreground">
+          {cleanDialogueText(message.text)}
+        </p>
       </div>
     </div>
+  );
+}
+
+/** Ready-to-paste citation for papers/books, with copy. */
+function CitationCard({
+  model,
+}: {
+  model: Extract<VerificationViewModel, { status: "ok" }>;
+}) {
+  const { t } = useI18n();
+  const [copied, setCopied] = useState(false);
+
+  const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+  const citation: OnChainCitation = {
+    sourceRef: model.sourceRef,
+    ipfsCID: model.ipfsCID,
+    timestamp: BigInt(model.timestamp),
+    author: model.custodian,
+    isRegistered: true,
+  };
+  const apa = formatApaCitation({
+    code: model.code,
+    citation,
+    authorName: model.authorName ?? undefined,
+    baseUrl,
+    platform: model.platform,
+    model: model.aiModel,
+  });
+
+  return (
+    <section className="mt-8 rounded-lg border border-bronze/30 bg-accent/40 p-6">
+      <div className="mb-3 flex items-center gap-2">
+        <Quote className="h-4 w-4 text-bronze" />
+        <h2 className="font-serif text-lg font-semibold text-foreground">
+          {t("verify.cite.title")}
+        </h2>
+      </div>
+      <div className="relative rounded-md border border-border bg-card p-4">
+        <p className="pr-10 font-serif text-sm italic leading-relaxed text-foreground">
+          {apa}
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            navigator.clipboard.writeText(apa);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1600);
+          }}
+          className="absolute right-2 top-2 rounded-sm p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"
+          aria-label={t("mint.copy")}
+        >
+          {copied ? (
+            <Check className="h-4 w-4 text-seal" />
+          ) : (
+            <Copy className="h-4 w-4" />
+          )}
+        </button>
+      </div>
+      <p className="mt-2 text-xs text-muted-foreground">{t("verify.cite.help")}</p>
+    </section>
   );
 }
 

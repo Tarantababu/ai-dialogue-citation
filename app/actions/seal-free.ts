@@ -70,6 +70,7 @@ export async function sealFree(input: SealInput): Promise<SealRegisterResult> {
       custodian: seal.custodian,
       authorName,
       platform: pin.platform,
+      model: pin.model,
       origin: pin.origin,
       sourceUrl: pin.sourceUrl,
       chainId: seal.chainId,

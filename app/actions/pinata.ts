@@ -2,6 +2,7 @@
 
 import { PinataSDK } from "pinata-web3";
 import { decode } from "turbo-stream";
+import { cleanDialogueText } from "@/lib/dialogue-clean";
 import type {
   DialogueMessage,
   OriginInputType,
@@ -185,25 +186,59 @@ async function decodeReactRouterStream(html: string): Promise<unknown | null> {
   }
 }
 
+/** Walk a decoded tree for the AI model slug; prefer a concrete per-message
+ *  `model_slug` over a `default_model_slug` of "auto". */
+function scanForModel(node: unknown, depth = 0): string | null {
+  if (depth > 50 || node === null || typeof node !== "object") return null;
+  if (Array.isArray(node)) {
+    for (const item of node) {
+      const found = scanForModel(item, depth + 1);
+      if (found) return found;
+    }
+    return null;
+  }
+  const obj = node as Record<string, unknown>;
+  if (typeof obj.model_slug === "string" && obj.model_slug) return obj.model_slug;
+  let fallback: string | null = null;
+  for (const key of Object.keys(obj)) {
+    if (
+      key === "default_model_slug" &&
+      typeof obj[key] === "string" &&
+      obj[key] &&
+      obj[key] !== "auto"
+    ) {
+      fallback = obj[key] as string;
+    }
+    const found = scanForModel(obj[key], depth + 1);
+    if (found) return found;
+  }
+  return fallback;
+}
+
 /**
- * Extract an ordered dialogue stream from a fetched share page.
- * Returns [] when no recognizable structure is present.
+ * Extract an ordered dialogue stream (and AI model, if detectable) from a
+ * fetched share page. Returns empty messages when nothing is recognized.
  */
 async function extractDialogueFromHtml(
   html: string,
-): Promise<DialogueMessage[]> {
+): Promise<{ messages: DialogueMessage[]; model: string | null }> {
   const collected: RankedMessage[] = [];
+  let model: string | null = null;
 
   // Strategy 1 — legacy inline <script> JSON blobs.
   for (const json of iterateScriptJson(html)) {
     collectMessages(json, collected);
+    if (!model) model = scanForModel(json);
     if (collected.length > MAX_MESSAGES) break;
   }
 
   // Strategy 2 — current React Router turbo-stream payload.
   if (collected.length === 0) {
     const root = await decodeReactRouterStream(html);
-    if (root) collectMessages(root, collected);
+    if (root) {
+      collectMessages(root, collected);
+      model = scanForModel(root);
+    }
   }
 
   // De-duplicate (mappings can repeat nodes) while preserving first order.
@@ -216,7 +251,10 @@ async function extractDialogueFromHtml(
   });
 
   unique.sort((a, b) => a.order - b.order);
-  return unique.map(({ role, text }) => ({ role, text }));
+  return {
+    messages: unique.map(({ role, text }) => ({ role, text })),
+    model,
+  };
 }
 
 /**
@@ -326,7 +364,12 @@ function buildPayload(
   sourceUrl: string | null,
   sourceRef: string,
   authorName: string | null,
+  model: string | null = null,
 ): SealedPayload {
+  // Strip ChatGPT inline tool markers so the archived transcript is clean.
+  const cleaned = messages
+    .map((m) => ({ role: m.role, text: cleanDialogueText(m.text) }))
+    .filter((m) => m.text.length > 0);
   return {
     schema: "decite/dialogue@1",
     origin,
@@ -334,7 +377,8 @@ function buildPayload(
     sourceRef: sourceRef.trim(),
     sourceUrl,
     platform,
-    messages,
+    model,
+    messages: cleaned,
     capturedAt: new Date().toISOString(),
   };
 }
@@ -361,7 +405,7 @@ export async function sealFromShareLink(
     }
 
     const html = await fetchShareHtml(rawUrl.trim());
-    const messages = await extractDialogueFromHtml(html);
+    const { messages, model } = await extractDialogueFromHtml(html);
 
     if (messages.length === 0) {
       return {
@@ -378,6 +422,7 @@ export async function sealFromShareLink(
       rawUrl.trim(),
       sourceRef,
       authorName,
+      model,
     );
     const { cid, size } = await pinPayload(
       payload,
@@ -389,9 +434,10 @@ export async function sealFromShareLink(
       ipfsCID: cid,
       size,
       platform: info.platform,
+      model,
       origin: "share-link",
       sourceUrl: rawUrl.trim(),
-      messageCount: messages.length,
+      messageCount: payload.messages.length,
     };
   } catch (err) {
     return {
@@ -441,6 +487,7 @@ export async function sealFromDirectText(
       ipfsCID: cid,
       size,
       platform: "Manual",
+      model: null,
       origin: "direct-paste",
       sourceUrl: null,
       messageCount: messages.length,

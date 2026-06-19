@@ -24,6 +24,8 @@ export interface SealedPayload {
   sourceUrl: string | null;
   /** Detected platform label, e.g. "ChatGPT" | "Claude" | "Manual". */
   platform: string;
+  /** AI model slug when detectable, e.g. "gpt-5-3-mini". */
+  model: string | null;
   messages: DialogueMessage[];
   /** ISO-8601 capture time (informational; the seal of record is on-chain). */
   capturedAt: string;
@@ -35,6 +37,7 @@ export interface PinSuccess {
   ipfsCID: string;
   size: number;
   platform: string;
+  model: string | null;
   origin: OriginInputType;
   sourceUrl: string | null;
   messageCount: number;
@@ -80,6 +83,7 @@ export interface SealRegisterSuccess {
   custodian: `0x${string}`;
   authorName: string | null;
   platform: string;
+  model: string | null;
   origin: OriginInputType;
   sourceUrl: string | null;
   chainId: number;

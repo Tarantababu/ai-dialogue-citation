@@ -81,8 +81,10 @@ export function formatApaCitation(params: {
   citation: OnChainCitation;
   authorName?: string;
   baseUrl: string;
+  platform?: string | null;
+  model?: string | null;
 }): string {
-  const { code, citation, authorName, baseUrl } = params;
+  const { code, citation, authorName, baseUrl, platform, model } = params;
   const date = new Date(Number(citation.timestamp) * 1000);
   const year = date.getUTCFullYear();
   const month = MONTHS[date.getUTCMonth()];
@@ -95,7 +97,12 @@ export function formatApaCitation(params: {
   const title = citation.sourceRef?.trim() || "Untitled sealed dialogue";
   const url = `${baseUrl.replace(/\/$/, "")}/dogrulama/${code}`;
 
-  return `${author}. (${year}, ${month} ${day}). ${title} [Sealed human–AI dialogue, ${code}]. DeCite. ${url}`;
+  const ai =
+    platform && platform !== "Manual"
+      ? ` with ${platform}${model ? ` (${model})` : ""}`
+      : "";
+
+  return `${author}. (${year}, ${month} ${day}). ${title} [Sealed human–AI dialogue${ai}, ${code}]. DeCite. ${url}`;
 }
 
 /** Block-explorer transaction URL for a given chain id. */

@@ -41,6 +41,7 @@ export default async function VerificationPage({
       chainId: activeChain.id,
       origin: record.payload?.origin ?? null,
       platform: record.payload?.platform ?? null,
+      aiModel: record.payload?.model ?? null,
       sourceUrl: record.payload?.sourceUrl ?? null,
       messages: record.payload?.messages ?? null,
     };

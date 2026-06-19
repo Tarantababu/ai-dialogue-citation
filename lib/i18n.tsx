@@ -117,6 +117,10 @@ const en: Dict = {
   "verify.sealed": "SEALED & VERIFIED",
   "verify.meta.title": "Registry metadata",
   "verify.meta.timestamp": "Block timestamp",
+  "verify.meta.ai": "AI / Model",
+  "verify.cite.title": "Ready-to-cite",
+  "verify.cite.help":
+    "Copy this reference straight into your paper or book bibliography (APA 7 style).",
   "verify.meta.authorName": "Author",
   "verify.meta.custodian": "Notarized by (DeCite custodian)",
   "verify.meta.registry": "Registry address",
@@ -209,6 +213,10 @@ const tr: Dict = {
   "verify.sealed": "MÜHÜRLÜ & DOĞRULANMIŞTIR",
   "verify.meta.title": "Kayıt üst verisi",
   "verify.meta.timestamp": "Blok zaman damgası",
+  "verify.meta.ai": "YZ / Model",
+  "verify.cite.title": "Kullanıma hazır atıf",
+  "verify.cite.help":
+    "Bu künyeyi doğrudan makale veya kitap kaynakçanıza kopyalayın (APA 7 biçimi).",
   "verify.meta.authorName": "Yazar",
   "verify.meta.custodian": "Noterleyen (DeCite emanetçi)",
   "verify.meta.registry": "Kayıt sözleşmesi adresi",
