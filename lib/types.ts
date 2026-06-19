@@ -73,6 +73,17 @@ export interface ReceiptEntry {
   ts: number;
 }
 
+/** Category of a feedback submission. */
+export type FeedbackType = "suggestion" | "bug" | "praise" | "other";
+
+/** A stored feedback / suggestion submission. */
+export interface FeedbackEntry {
+  type: FeedbackType;
+  message: string;
+  email: string | null;
+  ts: number;
+}
+
 /** Successful result of the custodial seal-and-register action. */
 export interface SealRegisterSuccess {
   ok: true;

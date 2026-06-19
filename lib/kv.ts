@@ -1,7 +1,7 @@
 import "server-only";
 import { createHash } from "node:crypto";
 import { Redis } from "@upstash/redis";
-import type { ReceiptEntry } from "@/lib/types";
+import type { FeedbackEntry, ReceiptEntry } from "@/lib/types";
 
 /**
  * Receipt store (email → sealed codes) backed by Upstash Redis.
@@ -57,4 +57,33 @@ export async function getReceipts(email: string): Promise<ReceiptEntry[]> {
     }
   }
   return parsed;
+}
+
+const FEEDBACK_KEY = "decite:feedback";
+const MAX_FEEDBACK = 5000;
+
+/** Append a feedback submission. Returns false when KV isn't configured. */
+export async function recordFeedback(entry: FeedbackEntry): Promise<boolean> {
+  const r = getRedis();
+  if (!r) return false;
+  await r.lpush(FEEDBACK_KEY, JSON.stringify(entry));
+  await r.ltrim(FEEDBACK_KEY, 0, MAX_FEEDBACK - 1);
+  return true;
+}
+
+/** Read recent feedback, most recent first (for an admin view). */
+export async function getFeedback(limit = 200): Promise<FeedbackEntry[]> {
+  const r = getRedis();
+  if (!r) return [];
+  const items = await r.lrange<string | FeedbackEntry>(FEEDBACK_KEY, 0, limit - 1);
+  const out: FeedbackEntry[] = [];
+  for (const item of items) {
+    try {
+      const obj = typeof item === "string" ? JSON.parse(item) : item;
+      if (obj && typeof obj.message === "string") out.push(obj as FeedbackEntry);
+    } catch {
+      // skip
+    }
+  }
+  return out;
 }

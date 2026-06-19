@@ -122,3 +122,56 @@ export async function enforceSealLimit(
 
   return { ok: true };
 }
+
+// ── Generic per-IP limiter for other actions (feedback, etc.) ────────────────
+const bucketLimiters = new Map<string, Ratelimit>();
+const memBuckets = new Map<string, Map<string, number[]>>();
+
+function bucketLimiter(bucket: string, max: number): Ratelimit | null {
+  const r = getRedis();
+  if (!r) return null;
+  const key = `${bucket}:${max}`;
+  let lim = bucketLimiters.get(key);
+  if (!lim) {
+    lim = new Ratelimit({
+      redis: r,
+      limiter: Ratelimit.slidingWindow(max, "1 h"),
+      prefix: `decite:rl:${bucket}`,
+      analytics: false,
+    });
+    bucketLimiters.set(key, lim);
+  }
+  return lim;
+}
+
+function memBucket(bucket: string, ip: string, max: number): boolean {
+  let map = memBuckets.get(bucket);
+  if (!map) {
+    map = new Map();
+    memBuckets.set(bucket, map);
+  }
+  const now = Date.now();
+  const hits = (map.get(ip) ?? []).filter((t) => now - t < 60 * 60 * 1000);
+  if (hits.length >= max) {
+    map.set(ip, hits);
+    return false;
+  }
+  hits.push(now);
+  map.set(ip, hits);
+  return true;
+}
+
+/** Enforce a per-IP hourly limit for a named action bucket. */
+export async function limitByIp(
+  bucket: string,
+  maxPerHour: number,
+): Promise<LimitResult> {
+  const ip = await clientIp();
+  const limiter = bucketLimiter(bucket, maxPerHour);
+  const allowed = limiter
+    ? (await limiter.limit(ip)).success
+    : memBucket(bucket, ip, maxPerHour);
+  return allowed
+    ? { ok: true }
+    : { ok: false, error: "Too many submissions. Please try again later." };
+}

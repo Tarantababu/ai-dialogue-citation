@@ -18,6 +18,7 @@ export function SiteHeader() {
     { href: "/muhurle", label: t("nav.mint") },
     { href: "/dogrulama", label: t("nav.verify") },
     { href: "/makbuz", label: t("nav.receipts") },
+    { href: "/geri-bildirim", label: t("nav.feedback") },
   ];
 
   return (
