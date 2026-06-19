@@ -34,7 +34,7 @@ export function LanguageSwitcher() {
         <span className="uppercase">{locale}</span>
       </button>
       {open && (
-        <div className="absolute right-0 z-50 mt-1.5 w-36 overflow-hidden rounded-sm border border-border bg-popover shadow-md">
+        <div className="absolute right-0 z-50 mt-1.5 max-h-80 w-40 overflow-y-auto rounded-sm border border-border bg-popover shadow-md">
           {LOCALES.map((l) => (
             <button
               key={l.code}
