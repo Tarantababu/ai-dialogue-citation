@@ -102,7 +102,10 @@ const en: Dict = {
   "mint.copy": "Copy",
   "mint.copied": "Copied",
   "mint.viewVerify": "View verification page",
-  "mint.error.badLink": "Enter a valid public AI share URL (ChatGPT, Claude, Gemini, Grok, Perplexity, and more).",
+  "mint.error.badLink": "Enter a valid public AI share URL (ChatGPT, Claude, Grok, Perplexity, and more).",
+  "mint.pasteOnlyHint":
+    "{provider} keeps the conversation inside your browser (behind a bot-wall), so it can't be read from a link. Open your {provider} chat, select all and copy it, then paste it here — it seals exactly what you paste.",
+  "mint.switchToPaste": "Use Direct Text Capture",
   "mint.error.empty": "Please provide the conversation content.",
   "mint.error.sourceRef": "Please provide a bibliographic reference.",
   "mint.warn.noContract": "No contract address is configured. Set NEXT_PUBLIC_CONTRACT_ADDRESS in .env.local.",

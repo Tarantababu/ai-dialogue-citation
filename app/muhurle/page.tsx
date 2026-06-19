@@ -22,7 +22,7 @@ import { sealFree } from "@/app/actions/seal-free";
 import { SealSuccessView } from "@/components/seal-success-view";
 import { isContractConfigured } from "@/lib/contract";
 import { FREE_MODE, SEAL_PRICE_USD } from "@/lib/config";
-import { isShareUrl } from "@/lib/share-providers";
+import { isShareUrl, classifyShareUrl } from "@/lib/share-providers";
 import type { SealInput, SealRegisterResult } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
 
@@ -58,6 +58,13 @@ function MintForm() {
     return <SealSuccessView result={freeResult} />;
   }
 
+  // Some providers (Gemini, DeepSeek…) hide the chat from servers — detect their
+  // links as the user types so we can guide them to Direct Text Capture.
+  const linkProvider = shareUrl.trim()
+    ? classifyShareUrl(shareUrl.trim())
+    : null;
+  const pasteOnly = linkProvider?.mode === "paste-only";
+
   function buildInput(): SealInput {
     return {
       method: tab === "link" ? "share-link" : "direct-paste",
@@ -72,6 +79,14 @@ function MintForm() {
   function validate(): boolean {
     if (!sourceRef.trim()) {
       toast.error(t("mint.error.sourceRef"));
+      return false;
+    }
+    if (tab === "link" && pasteOnly && linkProvider) {
+      // Not an error — guide them to the working path.
+      setTab("paste");
+      toast.info(
+        t("mint.pasteOnlyHint").replace("{provider}", linkProvider.platform),
+      );
       return false;
     }
     if (tab === "link" && !isShareUrl(shareUrl.trim())) {
@@ -109,7 +124,7 @@ function MintForm() {
           setBusy(false);
           return;
         }
-        window.location.href = res.url; // keep busy through navigation
+        window.location.assign(res.url); // keep busy through navigation
       }
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -170,6 +185,26 @@ function MintForm() {
               className="font-mono text-sm"
             />
             <p className="text-xs text-muted-foreground">{t("mint.link.help")}</p>
+            {pasteOnly && linkProvider && (
+              <div className="mt-3 flex items-start gap-3 rounded-md border border-bronze/40 bg-accent p-3 text-sm text-accent-foreground">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+                <div>
+                  <p>
+                    {t("mint.pasteOnlyHint").replace(
+                      "{provider}",
+                      linkProvider.platform,
+                    )}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setTab("paste")}
+                    className="mt-1.5 font-medium text-bronze underline-offset-2 hover:underline"
+                  >
+                    {t("mint.switchToPaste")} →
+                  </button>
+                </div>
+              </div>
+            )}
           </TabsContent>
 
           <TabsContent value="paste" className="mt-6 space-y-2">
