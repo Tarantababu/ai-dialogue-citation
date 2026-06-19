@@ -454,6 +454,14 @@ export async function sealFromShareLink(
       };
     }
 
+    if (info.mode === "paste-only") {
+      return {
+        ok: false,
+        error:
+          `${info.platform} renders the conversation in your browser and doesn't expose it to servers (it's loaded via a private request / bot-challenge), so it can't be read from a link. Please switch to the "Direct Text Capture" tab and paste the conversation — it produces a faithful, permanently sealed archive.`,
+      };
+    }
+
     const html = await fetchShareHtml(rawUrl.trim());
     const { messages, model } = await extractDialogueFromHtml(html);
 

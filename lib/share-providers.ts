@@ -4,11 +4,22 @@
  * parser (platform labelling). Extend SHARE_PROVIDERS to add more products.
  */
 
+/**
+ * "scrape" — the conversation is present in the server-fetched HTML and can be
+ *            extracted.
+ * "paste-only" — the product renders the conversation client-side and/or hides
+ *            it behind a bot challenge, so a server can't read it. The link is
+ *            still recognized, but the user is routed to Direct Text Capture.
+ */
+export type ProviderMode = "scrape" | "paste-only";
+
 export interface ShareProvider {
   /** Display label, e.g. "ChatGPT". */
   name: string;
   /** True when the given URL is a share link for this provider. */
   test: (url: URL) => boolean;
+  /** Defaults to "scrape". */
+  mode?: ProviderMode;
 }
 
 function hostIs(url: URL, ...hosts: string[]): boolean {
@@ -31,6 +42,8 @@ export const SHARE_PROVIDERS: ShareProvider[] = [
     name: "Gemini",
     test: (u) =>
       hostIs(u, "gemini.google.com") && u.pathname.includes("/share/"),
+    // Conversation is loaded client-side via Google's RPC; not in server HTML.
+    mode: "paste-only",
   },
   {
     name: "Grok",
@@ -48,6 +61,8 @@ export const SHARE_PROVIDERS: ShareProvider[] = [
   {
     name: "DeepSeek",
     test: (u) => hostIs(u, "deepseek.com") && /\/(share|s)\//.test(u.pathname),
+    // Served behind an AWS WAF JS bot-challenge; servers get no content.
+    mode: "paste-only",
   },
   {
     name: "Poe",
@@ -84,7 +99,9 @@ export const SHARE_PROVIDERS: ShareProvider[] = [
 export const SUPPORTED_PROVIDERS_LABEL = SHARE_PROVIDERS.map((p) => p.name).join(", ");
 
 /** Classify a raw URL string to its provider, or null if unsupported. */
-export function classifyShareUrl(raw: string): { platform: string } | null {
+export function classifyShareUrl(
+  raw: string,
+): { platform: string; mode: ProviderMode } | null {
   let url: URL;
   try {
     url = new URL(raw.trim());
@@ -93,7 +110,9 @@ export function classifyShareUrl(raw: string): { platform: string } | null {
   }
   if (url.protocol !== "https:") return null;
   for (const provider of SHARE_PROVIDERS) {
-    if (provider.test(url)) return { platform: provider.name };
+    if (provider.test(url)) {
+      return { platform: provider.name, mode: provider.mode ?? "scrape" };
+    }
   }
   return null;
 }

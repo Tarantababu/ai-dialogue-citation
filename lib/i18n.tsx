@@ -70,7 +70,7 @@ const en: Dict = {
   "mint.link.label": "AI share URL",
   "mint.link.placeholder": "https://chatgpt.com/share/…  ·  claude.ai/share/…  ·  gemini, grok, perplexity…",
   "mint.link.help":
-    "Paste an official public share link from ChatGPT, Claude, Gemini, Grok, Copilot, Perplexity, DeepSeek, Poe, Mistral, Meta AI, Qwen and more.",
+    "Official public share link from ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen and more. Some platforms (e.g. Gemini, DeepSeek) hide the chat from servers — use Direct Text Capture for those.",
   "mint.paste.label": "Conversation text or Markdown",
   "mint.paste.placeholder": "Paste the raw dialogue here. Prefix turns with 'User:' and 'Assistant:' when possible.",
   "mint.paste.help": "Use this when the platform offers no public share link.",
