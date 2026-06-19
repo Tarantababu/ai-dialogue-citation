@@ -75,6 +75,12 @@ npm run dev
 | `RELAYER_PRIVATE_KEY` | **server only** | Funded wallet that signs + pays gas. Never `NEXT_PUBLIC_`. |
 | `PINATA_JWT` | **server only** | Pin authorization. Never `NEXT_PUBLIC_`. |
 | `NEXT_PUBLIC_PINATA_GATEWAY` | client | Read gateway hostname. |
+| `NEXT_PUBLIC_FREE_MODE` | client | `true` = free + rate-limited · `false` = Stripe per-seal fee. |
+| `SEAL_RATE_PER_HOUR` | server | Per-IP seal limit (default 5). |
+| `SEAL_DAILY_GLOBAL_CAP` | server | Global free-seal/day cap, bounds gas (default 200). |
+| `UPSTASH_REDIS_REST_URL` / `_TOKEN` | server | **Optional.** Enables receipts + shared rate limiting. |
+| `STRIPE_SECRET_KEY` | **server only** | Only when `FREE_MODE=false`. |
+| `STRIPE_WEBHOOK_SECRET` | **server only** | Only when `FREE_MODE=false`. |
 
 > **Security:** `RELAYER_PRIVATE_KEY` and `PINATA_JWT` are read only inside
 > `"use server"` modules and are never imported by a client component, so they
@@ -118,10 +124,26 @@ DC-YYYYMMDD-NN
 
 ---
 
+## Launch mode: free vs. paid
+
+`NEXT_PUBLIC_FREE_MODE="true"` (the default) makes sealing **free**. The relayer
+is protected by:
+
+- a **per-IP rate limit** (`SEAL_RATE_PER_HOUR`), and
+- a **global daily cap** (`SEAL_DAILY_GLOBAL_CAP`) that bounds total gas spend.
+
+Set `FREE_MODE="false"` to require a Stripe per-seal payment instead (the
+Checkout flow is already wired; just add the Stripe env vars + webhook).
+
+## Receipts
+
+Authors may add an email when sealing. Each seal records `email → code` in
+**Upstash Redis** (emails are SHA-256 hashed as keys). The `/makbuz` page looks
+them up. Without Upstash configured, sealing still works but the receipts page
+shows a "not enabled" notice.
+
 ## What's next
 
-- **Payment / subscription gate** in front of `sealAndRegister` (Stripe
-  Checkout for a per-seal fee or a monthly plan). This is what funds and
-  protects the relayer wallet.
-- **Auth + rate-limiting** so seals are attributable and abuse-resistant.
-- **Relayer balance monitoring** + low-funds alerts.
+- **Relayer balance monitoring** + low-funds alerts (Polygon).
+- **Flip to paid** when ready: set `FREE_MODE=false`, add Stripe keys + webhook.
+- **Abandoned-pin cleanup** (paid mode pins before payment).

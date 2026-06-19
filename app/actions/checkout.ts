@@ -10,6 +10,7 @@ import {
   META,
 } from "@/lib/stripe";
 import { isContractConfigured } from "@/lib/contract";
+import { enforceSealLimit } from "@/lib/ratelimit";
 import type { PinResult, SealInput } from "@/lib/types";
 
 /**
@@ -60,7 +61,13 @@ export async function createSealCheckout(
         error: "Payments are not configured. Set STRIPE_SECRET_KEY.",
       };
     }
+
+    // Per-IP rate limit (no global cap — payment self-limits gas).
+    const gate = await enforceSealLimit(false);
+    if (!gate.ok) return { ok: false, error: gate.error };
+
     const authorName = input.authorName?.trim() || null;
+    const email = input.email?.trim();
 
     // ── 1 · Pin the dialogue to IPFS (pre-payment) ───────────────
     let pin: PinResult;
@@ -88,11 +95,13 @@ export async function createSealCheckout(
       [META.origin]: pin.origin,
       [META.platform]: pin.platform,
       [META.sourceUrl]: cap(pin.sourceUrl ?? "", 480),
+      [META.email]: cap(email ?? "", 200),
     };
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       customer_creation: "if_required",
+      ...(email ? { customer_email: email } : {}),
       line_items: [
         {
           quantity: 1,

@@ -33,6 +33,7 @@ const en: Dict = {
   "nav.home": "Manifesto",
   "nav.mint": "Seal a Dialogue",
   "nav.verify": "Verify",
+  "nav.receipts": "My Receipts",
   "nav.language": "Language",
 
   "cta.mint.title": "Author Minter",
@@ -62,6 +63,8 @@ const en: Dict = {
   "mint.subtitle": "Pin the conversation to IPFS, then notarize it on Polygon.",
   "mint.noWallet":
     "No wallet needed. DeCite seals and notarizes on-chain on your behalf — just paste your dialogue and click Seal.",
+  "mint.freeLaunch":
+    "Free during launch. No wallet, no card — DeCite pins to IPFS and notarizes on Polygon for you. Add your email to find the receipt later.",
   "mint.tab.link": "Official Share Link",
   "mint.tab.paste": "Direct Text Capture",
   "mint.link.label": "AI share URL",
@@ -74,12 +77,16 @@ const en: Dict = {
   "mint.sourceRef.placeholder": "e.g. On the Ethics of Synthetic Reasoning (2026), Ch. 3",
   "mint.author.label": "Author name for citation (optional)",
   "mint.author.placeholder": "e.g. Yiğit Aydın",
+  "mint.email.label": "Email (optional)",
+  "mint.email.placeholder": "you@example.com",
+  "mint.email.help": "We'll attach your citation code to this email so you can find it later under My Receipts.",
   "mint.step.pin": "Pinning the dialogue to IPFS",
   "mint.step.code": "Reserving your DeCite code",
   "mint.step.notarize": "Notarizing on Polygon",
   "mint.step.wait": "This can take a few seconds while the block confirms.",
   "mint.action.seal": "Seal & Mint Citation",
   "mint.action.sealing": "Sealing…",
+  "mint.action.sealFree": "Seal for Free",
   "mint.action.pay": "Pay ${price} & Seal",
   "mint.action.preparing": "Preparing secure checkout…",
   "mint.pay.note":
@@ -130,6 +137,14 @@ const en: Dict = {
   "success.retry": "Back to the minter",
   "success.sealAnother": "Seal another dialogue",
 
+  "receipts.title": "My Receipts",
+  "receipts.subtitle": "Enter the email you used when sealing to find your citation codes.",
+  "receipts.placeholder": "you@example.com",
+  "receipts.action": "Find",
+  "receipts.empty": "No sealed citations found for this email yet.",
+  "receipts.notConfigured":
+    "Receipt lookup is not enabled on this deployment. Configure Upstash KV (UPSTASH_REDIS_REST_URL / TOKEN) to store and retrieve receipts.",
+
   "footer.note": "Sealed on IPFS · Notarized on Polygon",
   "common.user": "User",
   "common.assistant": "Assistant",
@@ -140,6 +155,7 @@ const tr: Dict = {
   "nav.home": "Manifesto",
   "nav.mint": "Diyalog Mühürle",
   "nav.verify": "Doğrula",
+  "nav.receipts": "Makbuzlarım",
   "nav.language": "Dil",
   "cta.mint.title": "Yazar Mühürleme",
   "cta.mint.desc": "İnsan–YZ iş birliğini kalıcı olarak mühürleyin ve atıf kodunu üretin.",
@@ -212,6 +228,7 @@ const es: Dict = {
   "nav.home": "Manifiesto",
   "nav.mint": "Sellar Diálogo",
   "nav.verify": "Verificar",
+  "nav.receipts": "Mis Recibos",
   "nav.language": "Idioma",
   "cta.mint.title": "Sellado de Autor",
   "cta.mint.desc": "Sella permanentemente una colaboración humano–IA y genera su código de cita.",

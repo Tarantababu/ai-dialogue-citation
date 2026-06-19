@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   Sparkles,
   Lock,
+  Gift,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -17,13 +18,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { createSealCheckout } from "@/app/actions/checkout";
+import { sealFree } from "@/app/actions/seal-free";
+import { SealSuccessView } from "@/components/seal-success-view";
 import { isContractConfigured } from "@/lib/contract";
+import { FREE_MODE, SEAL_PRICE_USD } from "@/lib/config";
+import type { SealInput, SealRegisterResult } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
 
 const SHARE_LINK_RE =
   /^https:\/\/(?:chat\.openai\.com|chatgpt\.com|claude\.ai)\/share\/[A-Za-z0-9-]+\/?$/i;
-
-const PRICE_LABEL = process.env.NEXT_PUBLIC_SEAL_PRICE_USD ?? "2";
 
 export default function MintPage() {
   return (
@@ -42,7 +45,9 @@ function MintForm() {
   const [pasteText, setPasteText] = useState("");
   const [sourceRef, setSourceRef] = useState("");
   const [authorName, setAuthorName] = useState("");
+  const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
+  const [freeResult, setFreeResult] = useState<SealRegisterResult | null>(null);
 
   useEffect(() => {
     if (searchParams.get("canceled")) {
@@ -50,43 +55,66 @@ function MintForm() {
     }
   }, [searchParams, t]);
 
-  async function handleCheckout() {
+  // After a successful free seal, show the confirmation in place of the form.
+  if (freeResult?.ok) {
+    return <SealSuccessView result={freeResult} />;
+  }
+
+  function buildInput(): SealInput {
+    return {
+      method: tab === "link" ? "share-link" : "direct-paste",
+      shareUrl: tab === "link" ? shareUrl.trim() : undefined,
+      text: tab === "paste" ? pasteText : undefined,
+      sourceRef: sourceRef.trim(),
+      authorName: authorName.trim() || undefined,
+      email: email.trim() || undefined,
+    };
+  }
+
+  function validate(): boolean {
     if (!sourceRef.trim()) {
       toast.error(t("mint.error.sourceRef"));
-      return;
+      return false;
     }
     if (tab === "link" && !SHARE_LINK_RE.test(shareUrl.trim())) {
       toast.error(t("mint.error.badLink"));
-      return;
+      return false;
     }
     if (tab === "paste" && !pasteText.trim()) {
       toast.error(t("mint.error.empty"));
-      return;
+      return false;
     }
     if (!isContractConfigured) {
       toast.error(t("mint.warn.noContract"));
-      return;
+      return false;
     }
+    return true;
+  }
 
+  async function handleSubmit() {
+    if (!validate()) return;
     setBusy(true);
     try {
-      const res = await createSealCheckout({
-        method: tab === "link" ? "share-link" : "direct-paste",
-        shareUrl: tab === "link" ? shareUrl.trim() : undefined,
-        text: tab === "paste" ? pasteText : undefined,
-        sourceRef: sourceRef.trim(),
-        authorName: authorName.trim() || undefined,
-      });
-
-      if (!res.ok) {
-        toast.error(res.error);
-        setBusy(false);
-        return;
+      if (FREE_MODE) {
+        const res = await sealFree(buildInput());
+        if (!res.ok) {
+          toast.error(res.error);
+          setBusy(false);
+          return;
+        }
+        setFreeResult(res);
+        toast.success(`${t("mint.success.title")} — ${res.code}`);
+      } else {
+        const res = await createSealCheckout(buildInput());
+        if (!res.ok) {
+          toast.error(res.error);
+          setBusy(false);
+          return;
+        }
+        window.location.href = res.url; // keep busy through navigation
       }
-      // Redirect to Stripe Checkout. (Keep busy = true through navigation.)
-      window.location.href = res.url;
     } catch {
-      toast.error("Could not start checkout. Please try again.");
+      toast.error("Something went wrong. Please try again.");
       setBusy(false);
     }
   }
@@ -101,10 +129,16 @@ function MintForm() {
         <p className="mt-3 text-lg text-muted-foreground">{t("mint.subtitle")}</p>
       </header>
 
-      {/* Wallet-free assurance */}
+      {/* Wallet-free / free-launch assurance */}
       <div className="mb-8 flex items-start gap-3 rounded-md border border-seal/30 bg-seal-soft p-4 text-sm">
-        <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-seal" />
-        <span className="text-foreground">{t("mint.noWallet")}</span>
+        {FREE_MODE ? (
+          <Gift className="mt-0.5 h-4 w-4 shrink-0 text-seal" />
+        ) : (
+          <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-seal" />
+        )}
+        <span className="text-foreground">
+          {FREE_MODE ? t("mint.freeLaunch") : t("mint.noWallet")}
+        </span>
       </div>
 
       {!isContractConfigured && (
@@ -181,30 +215,50 @@ function MintForm() {
           </div>
         </div>
 
+        <div className="mt-4 space-y-2">
+          <label className="text-sm font-medium text-foreground">
+            {t("mint.email.label")}
+          </label>
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={t("mint.email.placeholder")}
+            disabled={busy}
+          />
+          <p className="text-xs text-muted-foreground">{t("mint.email.help")}</p>
+        </div>
+
         {/* Action */}
         <div className="mt-7 border-t border-border pt-6">
           <Button
             size="lg"
-            onClick={handleCheckout}
+            onClick={handleSubmit}
             disabled={busy}
             className="w-full bg-primary text-primary-foreground hover:bg-bronze sm:w-auto"
           >
             {busy ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                {t("mint.action.preparing")}
+                {FREE_MODE
+                  ? t("mint.action.sealing")
+                  : t("mint.action.preparing")}
               </>
             ) : (
               <>
                 <ShieldCheck className="h-4 w-4" />
-                {t("mint.action.pay").replace("{price}", PRICE_LABEL)}
+                {FREE_MODE
+                  ? t("mint.action.sealFree")
+                  : t("mint.action.pay").replace("{price}", SEAL_PRICE_USD)}
               </>
             )}
           </Button>
-          <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Lock className="h-3 w-3" />
-            {t("mint.pay.note").replace("{price}", PRICE_LABEL)}
-          </p>
+          {!FREE_MODE && (
+            <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
+              <Lock className="h-3 w-3" />
+              {t("mint.pay.note").replace("{price}", SEAL_PRICE_USD)}
+            </p>
+          )}
         </div>
       </div>
     </div>

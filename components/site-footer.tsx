@@ -18,6 +18,9 @@ export function SiteFooter() {
           <Link href="/dogrulama" className="hover:text-foreground">
             {t("nav.verify")}
           </Link>
+          <Link href="/makbuz" className="hover:text-foreground">
+            {t("nav.receipts")}
+          </Link>
         </nav>
       </div>
     </footer>

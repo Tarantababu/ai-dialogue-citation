@@ -57,6 +57,15 @@ export interface SealInput {
   text?: string;
   sourceRef: string;
   authorName?: string;
+  /** Optional email so the author can look up their receipt later. */
+  email?: string;
+}
+
+/** A receipt entry, keyed off the author's email in KV. */
+export interface ReceiptEntry {
+  code: string;
+  sourceRef: string;
+  ts: number;
 }
 
 /** Successful result of the custodial seal-and-register action. */

@@ -17,6 +17,7 @@ export function SiteHeader() {
     { href: "/", label: t("nav.home") },
     { href: "/muhurle", label: t("nav.mint") },
     { href: "/dogrulama", label: t("nav.verify") },
+    { href: "/makbuz", label: t("nav.receipts") },
   ];
 
   return (

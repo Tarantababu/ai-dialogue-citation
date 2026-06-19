@@ -3,6 +3,7 @@ import type Stripe from "stripe";
 import { getStripe, META } from "@/lib/stripe";
 import { sealOnChain } from "@/lib/relayer";
 import { activeChain } from "@/lib/contract";
+import { recordReceipt } from "@/lib/kv";
 import type { OriginInputType, SealRegisterResult } from "@/lib/types";
 
 /**
@@ -45,6 +46,13 @@ async function finalizePaymentIntent(
   }
 
   const seal = await sealOnChain({ sourceRef, ipfsCID });
+
+  // Record a receipt for the buyer's email (best-effort).
+  await recordReceipt(meta[META.email] || null, {
+    code: seal.code,
+    sourceRef,
+    ts: seal.timestamp,
+  });
 
   // Persist the result so subsequent finalizations are no-ops.
   await stripe.paymentIntents.update(pi.id, {

@@ -38,6 +38,7 @@ export const META = {
   origin: "decite_origin",
   platform: "decite_platform",
   sourceUrl: "decite_source_url",
+  email: "decite_email",
   // Written after a successful seal — presence means "already finalized".
   code: "decite_code",
   txHash: "decite_tx",
