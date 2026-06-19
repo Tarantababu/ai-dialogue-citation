@@ -22,7 +22,11 @@ import { sealFree } from "@/app/actions/seal-free";
 import { SealSuccessView } from "@/components/seal-success-view";
 import { isContractConfigured } from "@/lib/contract";
 import { FREE_MODE, SEAL_PRICE_USD } from "@/lib/config";
-import { isShareUrl, classifyShareUrl } from "@/lib/share-providers";
+import {
+  isShareUrl,
+  classifyShareUrl,
+  detectPlatformFromUrl,
+} from "@/lib/share-providers";
 import type { SealInput, SealRegisterResult } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
 
@@ -41,6 +45,7 @@ function MintForm() {
   const [tab, setTab] = useState<"link" | "paste">("link");
   const [shareUrl, setShareUrl] = useState("");
   const [pasteText, setPasteText] = useState("");
+  const [pasteUrl, setPasteUrl] = useState("");
   const [sourceRef, setSourceRef] = useState("");
   const [authorName, setAuthorName] = useState("");
   const [email, setEmail] = useState("");
@@ -65,11 +70,17 @@ function MintForm() {
     : null;
   const pasteOnly = linkProvider?.mode === "paste-only";
 
+  // Live platform detection for the optional provenance link in the paste tab.
+  const pasteUrlPlatform = pasteUrl.trim()
+    ? detectPlatformFromUrl(pasteUrl.trim())
+    : null;
+
   function buildInput(): SealInput {
     return {
       method: tab === "link" ? "share-link" : "direct-paste",
       shareUrl: tab === "link" ? shareUrl.trim() : undefined,
       text: tab === "paste" ? pasteText : undefined,
+      originUrl: tab === "paste" ? pasteUrl.trim() || undefined : undefined,
       sourceRef: sourceRef.trim(),
       authorName: authorName.trim() || undefined,
       email: email.trim() || undefined,
@@ -220,6 +231,28 @@ function MintForm() {
               className="font-mono text-sm leading-relaxed"
             />
             <p className="text-xs text-muted-foreground">{t("mint.paste.help")}</p>
+
+            <div className="space-y-2 pt-2">
+              <label className="text-sm font-medium text-foreground">
+                {t("mint.originUrl.label")}
+              </label>
+              <Input
+                value={pasteUrl}
+                onChange={(e) => setPasteUrl(e.target.value)}
+                placeholder={t("mint.originUrl.placeholder")}
+                inputMode="url"
+                disabled={busy}
+                className="font-mono text-sm"
+              />
+              <p className="text-xs text-muted-foreground">
+                {pasteUrlPlatform
+                  ? t("mint.originUrl.detected").replace(
+                      "{provider}",
+                      pasteUrlPlatform,
+                    )
+                  : t("mint.originUrl.help")}
+              </p>
+            </div>
           </TabsContent>
         </Tabs>
 

@@ -74,6 +74,11 @@ const en: Dict = {
   "mint.paste.label": "Conversation text or Markdown",
   "mint.paste.placeholder": "Paste the raw dialogue here. Prefix turns with 'User:' and 'Assistant:' when possible.",
   "mint.paste.help": "Use this when the platform offers no public share link.",
+  "mint.originUrl.label": "Original AI conversation link (optional)",
+  "mint.originUrl.placeholder": "https://chatgpt.com/share/…  ·  gemini.google.com/share/…",
+  "mint.originUrl.help":
+    "Paste the link to the original chat (any AI). It records which AI was used and lets readers open the source — even though the text above is what gets sealed.",
+  "mint.originUrl.detected": "Detected AI: {provider} — this will be recorded with the citation.",
   "mint.sourceRef.label": "Bibliographic reference (work title)",
   "mint.sourceRef.placeholder": "e.g. On the Ethics of Synthetic Reasoning (2026), Ch. 3",
   "mint.author.label": "Author name for citation (optional)",

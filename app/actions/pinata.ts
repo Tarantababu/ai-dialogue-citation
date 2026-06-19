@@ -5,6 +5,8 @@ import { decode } from "turbo-stream";
 import { cleanDialogueText } from "@/lib/dialogue-clean";
 import {
   classifyShareUrl,
+  detectPlatformFromUrl,
+  normalizeUrl,
   SUPPORTED_PROVIDERS_LABEL,
 } from "@/lib/share-providers";
 import type {
@@ -516,6 +518,7 @@ export async function sealFromDirectText(
   rawText: string,
   sourceRef: string,
   authorName: string | null = null,
+  originUrl: string | null = null,
 ): Promise<PinResult> {
   try {
     if (!rawText || !rawText.trim()) {
@@ -530,11 +533,15 @@ export async function sealFromDirectText(
       return { ok: false, error: "No usable dialogue content was found." };
     }
 
+    // Provenance from an optional original-conversation link.
+    const sourceUrl = originUrl ? normalizeUrl(originUrl) : null;
+    const platform = (sourceUrl && detectPlatformFromUrl(sourceUrl)) || "Manual";
+
     const payload = buildPayload(
       messages,
       "direct-paste",
-      "Manual",
-      null,
+      platform,
+      sourceUrl,
       sourceRef,
       authorName,
     );
@@ -544,10 +551,10 @@ export async function sealFromDirectText(
       ok: true,
       ipfsCID: cid,
       size,
-      platform: "Manual",
+      platform,
       model: null,
       origin: "direct-paste",
-      sourceUrl: null,
+      sourceUrl,
       messageCount: messages.length,
     };
   } catch (err) {

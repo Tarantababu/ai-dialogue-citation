@@ -121,3 +121,50 @@ export function classifyShareUrl(
 export function isShareUrl(raw: string): boolean {
   return classifyShareUrl(raw) !== null;
 }
+
+// Hostname → platform label, for provenance links that aren't /share/ URLs.
+const HOST_PLATFORMS: [RegExp, string][] = [
+  [/(^|\.)chatgpt\.com$|(^|\.)openai\.com$/i, "ChatGPT"],
+  [/(^|\.)claude\.ai$/i, "Claude"],
+  [/(^|\.)gemini\.google\.com$/i, "Gemini"],
+  [/(^|\.)grok\.com$/i, "Grok"],
+  [/(^|\.)copilot\.microsoft\.com$/i, "Microsoft Copilot"],
+  [/(^|\.)perplexity\.ai$/i, "Perplexity"],
+  [/(^|\.)deepseek\.com$/i, "DeepSeek"],
+  [/(^|\.)poe\.com$/i, "Poe"],
+  [/(^|\.)mistral\.ai$/i, "Mistral Le Chat"],
+  [/(^|\.)meta\.ai$/i, "Meta AI"],
+  [/(^|\.)qwen\.ai$/i, "Qwen"],
+  [/(^|\.)kimi\.com$|(^|\.)moonshot\.cn$/i, "Kimi"],
+  [/(^|\.)huggingface\.co$/i, "HuggingChat"],
+  [/(^|\.)you\.com$/i, "You.com"],
+];
+
+/**
+ * Best-effort platform label from any URL on a known AI host (path-agnostic).
+ * Used to attribute a manually-pasted conversation to its source AI.
+ */
+export function detectPlatformFromUrl(raw: string): string | null {
+  let url: URL;
+  try {
+    url = new URL(raw.trim());
+  } catch {
+    return null;
+  }
+  for (const [re, name] of HOST_PLATFORMS) {
+    if (re.test(url.hostname)) return name;
+  }
+  return null;
+}
+
+/** Normalize a user-supplied URL to a stored https(s) link, or null. */
+export function normalizeUrl(raw: string): string | null {
+  if (!raw?.trim()) return null;
+  try {
+    const u = new URL(raw.trim());
+    if (u.protocol === "https:" || u.protocol === "http:") return u.toString();
+  } catch {
+    /* ignore */
+  }
+  return null;
+}

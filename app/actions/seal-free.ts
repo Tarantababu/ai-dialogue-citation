@@ -47,7 +47,12 @@ export async function sealFree(input: SealInput): Promise<SealRegisterResult> {
       if (!input.text?.trim()) {
         return { ok: false, error: "Please provide the conversation content." };
       }
-      pin = await sealFromDirectText(input.text, sourceRef, authorName);
+      pin = await sealFromDirectText(
+        input.text,
+        sourceRef,
+        authorName,
+        input.originUrl ?? null,
+      );
     }
     if (!pin.ok) return { ok: false, error: pin.error };
 

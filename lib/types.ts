@@ -62,6 +62,8 @@ export interface SealInput {
   authorName?: string;
   /** Optional email so the author can look up their receipt later. */
   email?: string;
+  /** Direct-paste only: the original AI conversation URL, for provenance. */
+  originUrl?: string;
 }
 
 /** A receipt entry, keyed off the author's email in KV. */
