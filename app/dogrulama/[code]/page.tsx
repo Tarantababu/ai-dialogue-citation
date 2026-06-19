@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { loadVerification } from "@/lib/verify";
 import { CONTRACT_ADDRESS, activeChain } from "@/lib/contract";
+import { cleanDialogueText } from "@/lib/dialogue-clean";
 import { VerificationView, type VerificationViewModel } from "@/components/verification-view";
 
 export async function generateMetadata({
@@ -43,7 +44,13 @@ export default async function VerificationPage({
       platform: record.payload?.platform ?? null,
       aiModel: record.payload?.model ?? null,
       sourceUrl: record.payload?.sourceUrl ?? null,
-      messages: record.payload?.messages ?? null,
+      // Clean inline tool markers server-side so the raw payload never ships
+      // to the client (covers dialogues sealed before the cleaner existed).
+      messages:
+        record.payload?.messages?.map((m) => ({
+          role: m.role,
+          text: cleanDialogueText(m.text),
+        })) ?? null,
     };
   } else {
     model = { status: outcome.status, code: decoded };
