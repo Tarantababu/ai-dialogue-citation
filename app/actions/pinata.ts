@@ -1,6 +1,7 @@
 "use server";
 
 import { PinataSDK } from "pinata-web3";
+import { decode } from "turbo-stream";
 import type {
   DialogueMessage,
   OriginInputType,
@@ -149,14 +150,60 @@ function* iterateScriptJson(html: string): Generator<unknown> {
 }
 
 /**
+ * Decode a React Router (turbo-stream) payload embedded in modern ChatGPT /
+ * Claude share pages. The conversation is serialized into one or more
+ * `streamController.enqueue("…")` chunks; we reassemble and decode them back
+ * into the original object graph, then let collectMessages walk it.
+ */
+async function decodeReactRouterStream(html: string): Promise<unknown | null> {
+  const re = /streamController\.enqueue\("((?:[^"\\]|\\.)*)"\)/g;
+  const chunks: string[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(html)) !== null) {
+    try {
+      chunks.push(JSON.parse(`"${m[1]}"`) as string); // unescape JS literal
+    } catch {
+      // skip unparseable chunk
+    }
+  }
+  if (chunks.length === 0) return null;
+
+  const payload = chunks.join("");
+  try {
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode(payload));
+        controller.close();
+      },
+    });
+    // The root loaderData is available on `value` immediately; we don't await
+    // `done` (deferred promises aren't needed and could otherwise hang).
+    const decoded = (await decode(stream)) as { value: unknown };
+    return decoded.value;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Extract an ordered dialogue stream from a fetched share page.
  * Returns [] when no recognizable structure is present.
  */
-function extractDialogueFromHtml(html: string): DialogueMessage[] {
+async function extractDialogueFromHtml(
+  html: string,
+): Promise<DialogueMessage[]> {
   const collected: RankedMessage[] = [];
+
+  // Strategy 1 — legacy inline <script> JSON blobs.
   for (const json of iterateScriptJson(html)) {
     collectMessages(json, collected);
     if (collected.length > MAX_MESSAGES) break;
+  }
+
+  // Strategy 2 — current React Router turbo-stream payload.
+  if (collected.length === 0) {
+    const root = await decodeReactRouterStream(html);
+    if (root) collectMessages(root, collected);
   }
 
   // De-duplicate (mappings can repeat nodes) while preserving first order.
@@ -314,7 +361,7 @@ export async function sealFromShareLink(
     }
 
     const html = await fetchShareHtml(rawUrl.trim());
-    const messages = extractDialogueFromHtml(html);
+    const messages = await extractDialogueFromHtml(html);
 
     if (messages.length === 0) {
       return {
