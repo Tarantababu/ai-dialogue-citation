@@ -80,6 +80,11 @@ const en: Dict = {
   "mint.step.wait": "This can take a few seconds while the block confirms.",
   "mint.action.seal": "Seal & Mint Citation",
   "mint.action.sealing": "Sealing…",
+  "mint.action.pay": "Pay ${price} & Seal",
+  "mint.action.preparing": "Preparing secure checkout…",
+  "mint.pay.note":
+    "A one-time ${price} fee covers IPFS pinning and the on-chain notarization gas. Secured by Stripe — we never store card details.",
+  "mint.canceled": "Checkout canceled. Your dialogue was not sealed.",
   "mint.success.title": "Sealed & Notarized",
   "mint.success.desc": "Your collaboration is permanent. Copy the APA citation for your bibliography.",
   "mint.success.code": "Citation code",
@@ -120,6 +125,10 @@ const en: Dict = {
   "verify.role.user": "User",
   "verify.role.assistant": "Assistant",
   "verify.back": "Verify another code",
+
+  "success.error.title": "We couldn't finalize your seal",
+  "success.retry": "Back to the minter",
+  "success.sealAnother": "Seal another dialogue",
 
   "footer.note": "Sealed on IPFS · Notarized on Polygon",
   "common.user": "User",
