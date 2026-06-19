@@ -30,7 +30,7 @@ export function BrandSeal({ className }: { className?: string }) {
         fontWeight="600"
         fill="currentColor"
       >
-        SD
+        DC
       </text>
     </svg>
   );

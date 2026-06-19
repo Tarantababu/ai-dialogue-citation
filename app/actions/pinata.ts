@@ -277,10 +277,14 @@ function buildPayload(
   origin: OriginInputType,
   platform: string,
   sourceUrl: string | null,
+  sourceRef: string,
+  authorName: string | null,
 ): SealedPayload {
   return {
-    schema: "sifir-dusus/dialogue@1",
+    schema: "decite/dialogue@1",
     origin,
+    authorName: authorName?.trim() || null,
+    sourceRef: sourceRef.trim(),
     sourceUrl,
     platform,
     messages,
@@ -294,7 +298,11 @@ function buildPayload(
  * Option A — seal an official AI share link.
  * Validates the URL, fetches and parses the dialogue, then pins to IPFS.
  */
-export async function sealFromShareLink(rawUrl: string): Promise<PinResult> {
+export async function sealFromShareLink(
+  rawUrl: string,
+  sourceRef: string,
+  authorName: string | null = null,
+): Promise<PinResult> {
   try {
     const info = classifyShareUrl(rawUrl);
     if (!info) {
@@ -321,6 +329,8 @@ export async function sealFromShareLink(rawUrl: string): Promise<PinResult> {
       "share-link",
       info.platform,
       rawUrl.trim(),
+      sourceRef,
+      authorName,
     );
     const { cid, size } = await pinPayload(
       payload,
@@ -351,7 +361,11 @@ export async function sealFromShareLink(rawUrl: string): Promise<PinResult> {
  * Option B — seal directly pasted text / Markdown.
  * Bypasses scraping entirely and pins the normalized JSON payload.
  */
-export async function sealFromDirectText(rawText: string): Promise<PinResult> {
+export async function sealFromDirectText(
+  rawText: string,
+  sourceRef: string,
+  authorName: string | null = null,
+): Promise<PinResult> {
   try {
     if (!rawText || !rawText.trim()) {
       return { ok: false, error: "No conversation content was provided." };
@@ -365,7 +379,14 @@ export async function sealFromDirectText(rawText: string): Promise<PinResult> {
       return { ok: false, error: "No usable dialogue content was found." };
     }
 
-    const payload = buildPayload(messages, "direct-paste", "Manual", null);
+    const payload = buildPayload(
+      messages,
+      "direct-paste",
+      "Manual",
+      null,
+      sourceRef,
+      authorName,
+    );
     const { cid, size } = await pinPayload(payload, `sdp-manual-${Date.now()}`);
 
     return {

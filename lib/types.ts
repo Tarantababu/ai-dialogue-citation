@@ -1,5 +1,5 @@
 /**
- * Shared, explicit type contracts for the Sıfır Düşüş Protocol.
+ * Shared, explicit type contracts for DeCite.
  * No `any` is permitted anywhere in the codebase — extend these instead.
  */
 
@@ -14,8 +14,12 @@ export type OriginInputType = "share-link" | "direct-paste";
 
 /** The canonical JSON document that gets pinned to IPFS. */
 export interface SealedPayload {
-  schema: "sifir-dusus/dialogue@1";
+  schema: "decite/dialogue@1";
   origin: OriginInputType;
+  /** Human author's display name, captured for citation/attribution. */
+  authorName: string | null;
+  /** Bibliographic reference of the host work. */
+  sourceRef: string;
   /** The original AI share URL, when origin === "share-link". */
   sourceUrl: string | null;
   /** Detected platform label, e.g. "ChatGPT" | "Claude" | "Manual". */
@@ -43,6 +47,36 @@ export interface PinFailure {
 }
 
 export type PinResult = PinSuccess | PinFailure;
+
+/** Typed input for the unified, wallet-free seal-and-register action. */
+export interface SealInput {
+  method: OriginInputType;
+  /** Required when method === "share-link". */
+  shareUrl?: string;
+  /** Required when method === "direct-paste". */
+  text?: string;
+  sourceRef: string;
+  authorName?: string;
+}
+
+/** Successful result of the custodial seal-and-register action. */
+export interface SealRegisterSuccess {
+  ok: true;
+  code: string;
+  txHash: `0x${string}`;
+  ipfsCID: string;
+  /** Unix seconds of the sealing block. */
+  timestamp: number;
+  /** The on-chain notarizing wallet (DeCite custodian / relayer). */
+  custodian: `0x${string}`;
+  authorName: string | null;
+  platform: string;
+  origin: OriginInputType;
+  sourceUrl: string | null;
+  chainId: number;
+}
+
+export type SealRegisterResult = SealRegisterSuccess | { ok: false; error: string };
 
 /** On-chain citation record as decoded from CitationRegistry.getCitation. */
 export interface OnChainCitation {

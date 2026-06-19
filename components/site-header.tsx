@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ArrowRight } from "lucide-react";
 import { BrandSeal } from "@/components/brand-seal";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-/** Sticky academic-press masthead: colophon, primary nav, locale, wallet. */
+/** Sticky academic-press masthead: colophon, primary nav, locale, seal CTA. */
 export function SiteHeader() {
   const { t } = useI18n();
   const pathname = usePathname();
@@ -25,11 +25,11 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-2.5">
           <BrandSeal />
           <div className="leading-tight">
-            <span className="block font-serif text-base font-semibold tracking-tight text-foreground">
-              Sıfır Düşüş
+            <span className="block font-serif text-lg font-semibold tracking-tight text-foreground">
+              DeCite
             </span>
             <span className="block text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              Protocol
+              Sealed Citations
             </span>
           </div>
         </Link>
@@ -60,11 +60,13 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2.5">
           <LanguageSwitcher />
-          <ConnectButton
-            showBalance={false}
-            chainStatus="icon"
-            accountStatus="address"
-          />
+          <Link
+            href="/muhurle"
+            className="group inline-flex items-center gap-1.5 rounded-sm bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-bronze"
+          >
+            {t("nav.mint")}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
     </header>

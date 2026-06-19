@@ -60,7 +60,7 @@ export default function VerifyLandingPage() {
       </form>
 
       <p className="mt-6 font-mono text-xs text-muted-foreground">
-        BC-SD-YYYYMMDD-NN
+        DC-YYYYMMDD-NN
       </p>
     </div>
   );

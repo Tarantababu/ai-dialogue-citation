@@ -27,8 +27,8 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Sıfır Düşüş Protocol — AI Dialogue Citation & Verification",
-    template: "%s · Sıfır Düşüş Protocol",
+    default: "DeCite — AI Dialogue Citation & Verification",
+    template: "%s · DeCite",
   },
   description:
     "Permanently seal human–AI intellectual collaborations on IPFS and Polygon, and cite them with a single human-readable code.",

@@ -5,9 +5,9 @@ pragma solidity ^0.8.24;
  * @title  CitationRegistry
  * @notice Immutable, on-chain registry for human–AI intellectual collaborations.
  *         Each citation is sealed under a deterministic, human-readable code
- *         (e.g. "BC-SD-20260619-01") and binds an IPFS CID to a wallet author
+ *         (e.g. "DC-20260619-01") and binds an IPFS CID to a wallet author
  *         and a block timestamp. Once a code is registered it can never be
- *         overwritten — this is the core guarantee of the Sıfır Düşüş Protocol.
+ *         overwritten — this is the core guarantee of the DeCite protocol.
  *
  * @dev    Gas-optimized: single SSTORE-heavy path on register, custom errors
  *         instead of revert strings, calldata args, and a packed struct.

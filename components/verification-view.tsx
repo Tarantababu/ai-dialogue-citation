@@ -35,7 +35,8 @@ export type VerificationViewModel =
       sourceRef: string;
       ipfsCID: string;
       ipfsUrl: string;
-      author: `0x${string}`;
+      custodian: `0x${string}`;
+      authorName: string | null;
       timestamp: number;
       registryAddress: `0x${string}`;
       chainId: number;
@@ -105,17 +106,22 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
               <MetaRow label={t("verify.meta.code")}>
                 <span className="font-mono text-bronze">{model.code}</span>
               </MetaRow>
+              {model.authorName && (
+                <MetaRow label={t("verify.meta.authorName")}>
+                  {model.authorName}
+                </MetaRow>
+              )}
               <MetaRow label={t("verify.meta.timestamp")}>
                 {formattedDate} UTC
               </MetaRow>
-              <MetaRow label={t("verify.meta.author")}>
+              <MetaRow label={t("verify.meta.custodian")}>
                 <a
-                  href={explorerAddressUrl(model.chainId, model.author)}
+                  href={explorerAddressUrl(model.chainId, model.custodian)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-mono text-bronze hover:underline"
                 >
-                  {shortenAddress(model.author)}
+                  {shortenAddress(model.custodian)}
                   <ExternalLink className="h-3 w-3" />
                 </a>
               </MetaRow>

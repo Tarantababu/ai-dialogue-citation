@@ -11,7 +11,7 @@ export async function generateMetadata({
   const { code } = await params;
   return {
     title: `Verify ${decodeURIComponent(code)}`,
-    description: `Verification record for sealed citation ${decodeURIComponent(code)} on the Sıfır Düşüş Protocol.`,
+    description: `Verification record for sealed citation ${decodeURIComponent(code)} on DeCite.`,
   };
 }
 
@@ -34,7 +34,8 @@ export default async function VerificationPage({
       sourceRef: record.citation.sourceRef,
       ipfsCID: record.citation.ipfsCID,
       ipfsUrl: record.ipfsUrl,
-      author: record.citation.author,
+      custodian: record.citation.author,
+      authorName: record.payload?.authorName ?? null,
       timestamp: Number(record.citation.timestamp),
       registryAddress: CONTRACT_ADDRESS,
       chainId: activeChain.id,

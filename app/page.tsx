@@ -70,12 +70,11 @@ export default function HomePage() {
         >
           <div className="rounded-md border border-border bg-card p-6 shadow-sm">
             <p className="eyebrow mb-4">Specimen</p>
-            <p className="font-mono text-sm text-bronze">BC-SD-20260619-01</p>
+            <p className="font-mono text-sm text-bronze">DC-20260619-01</p>
             <div className="my-4 hairline" />
             <p className="font-serif text-sm italic leading-relaxed text-muted-foreground">
               Aydın, Y. (2026, June 19). On the ethics of synthetic reasoning
-              [Sealed human–AI dialogue, BC-SD-20260619-01]. Sıfır Düşüş
-              Protocol.
+              [Sealed human–AI dialogue, DC-20260619-01]. DeCite.
             </p>
           </div>
         </motion.div>

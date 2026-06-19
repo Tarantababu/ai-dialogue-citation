@@ -4,8 +4,8 @@ import { polygon, polygonAmoy } from "viem/chains";
 /**
  * Contract ABI + viem public client.
  * The ABI mirrors contracts/CitationRegistry.sol exactly and is the single
- * source of truth shared by Server Actions, the verification reads, and the
- * wagmi write hooks on the minter panel.
+ * source of truth shared by the custodial seal action and the verification
+ * reads. All signing happens server-side via the relayer wallet.
  */
 
 export const CITATION_REGISTRY_ABI = [

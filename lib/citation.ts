@@ -3,13 +3,13 @@ import type { OnChainCitation, OriginInputType } from "@/lib/types";
 /**
  * Deterministic, human-readable citation codes + bibliography formatting.
  *
- * Code grammar:  BC-SD-YYYYMMDD-NN
- *   BC = Blockchain Citation · SD = Sıfır Düşüş · date · 2-digit daily sequence.
+ * Code grammar:  DC-YYYYMMDD-NN
+ *   DC = DeCite · date · 2-digit daily sequence.
  * The sequence is resolved deterministically against on-chain state so two
  * authors sealing on the same day never collide.
  */
 
-const CODE_REGEX = /^BC-SD-\d{8}-\d{2,}$/;
+const CODE_REGEX = /^DC-\d{8}-\d{2,}$/;
 
 export function isValidCitationCode(code: string): boolean {
   return CODE_REGEX.test(code.trim().toUpperCase());
@@ -27,7 +27,7 @@ function yyyymmdd(date: Date): string {
 }
 
 export function buildCitationCode(date: Date, sequence: number): string {
-  return `BC-SD-${yyyymmdd(date)}-${String(sequence).padStart(2, "0")}`;
+  return `DC-${yyyymmdd(date)}-${String(sequence).padStart(2, "0")}`;
 }
 
 /**
@@ -73,8 +73,8 @@ const MONTHS = [
  * Build an APA-7 style reference for a sealed human–AI collaboration.
  * Example:
  *   Author. (2026, June 19). On the ethics of synthetic reasoning
- *   [Sealed human–AI dialogue, BC-SD-20260619-01]. Sıfır Düşüş Protocol.
- *   https://app.example.com/dogrulama/BC-SD-20260619-01
+ *   [Sealed human–AI dialogue, DC-20260619-01]. DeCite.
+ *   https://app.example.com/dogrulama/DC-20260619-01
  */
 export function formatApaCitation(params: {
   code: string;
@@ -95,7 +95,7 @@ export function formatApaCitation(params: {
   const title = citation.sourceRef?.trim() || "Untitled sealed dialogue";
   const url = `${baseUrl.replace(/\/$/, "")}/dogrulama/${code}`;
 
-  return `${author}. (${year}, ${month} ${day}). ${title} [Sealed human–AI dialogue, ${code}]. Sıfır Düşüş Protocol. ${url}`;
+  return `${author}. (${year}, ${month} ${day}). ${title} [Sealed human–AI dialogue, ${code}]. DeCite. ${url}`;
 }
 
 /** Block-explorer transaction URL for a given chain id. */

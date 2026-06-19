@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useAccount, useChainId, usePublicClient, useWriteContract } from "wagmi";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { motion } from "framer-motion";
 import {
   Link2,
@@ -14,6 +12,7 @@ import {
   ShieldCheck,
   ExternalLink,
   AlertTriangle,
+  Sparkles,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -27,40 +26,17 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { sealFromShareLink, sealFromDirectText } from "@/app/actions/pinata";
-import {
-  CITATION_REGISTRY_ABI,
-  CONTRACT_ADDRESS,
-  activeChain,
-  isContractConfigured,
-} from "@/lib/contract";
-import {
-  findAvailableCitationCode,
-  formatApaCitation,
-  explorerTxUrl,
-} from "@/lib/citation";
-import type { OnChainCitation, OriginInputType, PinResult } from "@/lib/types";
+import { sealAndRegister } from "@/app/actions/seal";
+import { isContractConfigured } from "@/lib/contract";
+import { formatApaCitation, explorerTxUrl, shortenAddress } from "@/lib/citation";
+import type { OnChainCitation, SealRegisterSuccess } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
-
-type Phase = "idle" | "pin" | "code" | "sign" | "confirm" | "done";
-
-interface SealResult {
-  code: string;
-  txHash: `0x${string}`;
-  ipfsCID: string;
-  citation: OnChainCitation;
-  origin: OriginInputType;
-}
 
 const SHARE_LINK_RE =
   /^https:\/\/(?:chat\.openai\.com|chatgpt\.com|claude\.ai)\/share\/[A-Za-z0-9-]+\/?$/i;
 
 export default function MintPage() {
   const { t } = useI18n();
-  const { isConnected, address } = useAccount();
-  const chainId = useChainId();
-  const publicClient = usePublicClient();
-  const { writeContractAsync } = useWriteContract();
 
   const [tab, setTab] = useState<"link" | "paste">("link");
   const [shareUrl, setShareUrl] = useState("");
@@ -68,14 +44,11 @@ export default function MintPage() {
   const [sourceRef, setSourceRef] = useState("");
   const [authorName, setAuthorName] = useState("");
 
-  const [phase, setPhase] = useState<Phase>("idle");
-  const [result, setResult] = useState<SealResult | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [result, setResult] = useState<SealRegisterSuccess | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const busy = phase !== "idle" && phase !== "done";
-
   async function handleSeal() {
-    // ── Client-side validation ─────────────────────────────
     if (!sourceRef.trim()) {
       toast.error(t("mint.error.sourceRef"));
       return;
@@ -92,88 +65,35 @@ export default function MintPage() {
       toast.error(t("mint.warn.noContract"));
       return;
     }
-    if (!publicClient) {
-      toast.error("RPC client unavailable.");
-      return;
-    }
 
+    setBusy(true);
     try {
-      // ── 1 · Pin to IPFS via Server Action ────────────────
-      setPhase("pin");
-      const pin: PinResult =
-        tab === "link"
-          ? await sealFromShareLink(shareUrl.trim())
-          : await sealFromDirectText(pasteText);
+      const res = await sealAndRegister({
+        method: tab === "link" ? "share-link" : "direct-paste",
+        shareUrl: tab === "link" ? shareUrl.trim() : undefined,
+        text: tab === "paste" ? pasteText : undefined,
+        sourceRef: sourceRef.trim(),
+        authorName: authorName.trim() || undefined,
+      });
 
-      if (!pin.ok) {
-        setPhase("idle");
-        toast.error(pin.error);
+      if (!res.ok) {
+        toast.error(res.error);
         return;
       }
-
-      // ── 2 · Reserve a deterministic citation code ────────
-      setPhase("code");
-      const code = await findAvailableCitationCode(async (candidate) => {
-        return (await publicClient.readContract({
-          address: CONTRACT_ADDRESS,
-          abi: CITATION_REGISTRY_ABI,
-          functionName: "exists",
-          args: [candidate],
-        })) as boolean;
-      });
-
-      // ── 3 · Sign & broadcast the registry transaction ────
-      setPhase("sign");
-      const txHash = await writeContractAsync({
-        address: CONTRACT_ADDRESS,
-        abi: CITATION_REGISTRY_ABI,
-        functionName: "registerCitation",
-        args: [code, sourceRef.trim(), pin.ipfsCID],
-        chainId: activeChain.id,
-      });
-
-      // ── 4 · Wait for on-chain confirmation ───────────────
-      setPhase("confirm");
-      const receipt = await publicClient.waitForTransactionReceipt({
-        hash: txHash,
-      });
-      if (receipt.status !== "success") {
-        throw new Error("Transaction reverted on-chain.");
-      }
-
-      const sealed: SealResult = {
-        code,
-        txHash,
-        ipfsCID: pin.ipfsCID,
-        origin: pin.origin,
-        citation: {
-          sourceRef: sourceRef.trim(),
-          ipfsCID: pin.ipfsCID,
-          timestamp: BigInt(Math.floor(Date.now() / 1000)),
-          author: (address ?? "0x0") as `0x${string}`,
-          isRegistered: true,
-        },
-      };
-      setResult(sealed);
-      setPhase("done");
+      setResult(res);
       setDialogOpen(true);
-      toast.success(`${t("mint.success.title")} — ${code}`);
-    } catch (err) {
-      setPhase("idle");
-      const message =
-        err instanceof Error ? err.message : "Sealing failed unexpectedly.";
-      // Surface a friendly note when the daily code is already taken.
-      toast.error(message.includes("CitationAlreadyExists")
-        ? "That citation code was just taken. Please try again."
-        : message);
+      toast.success(`${t("mint.success.title")} — ${res.code}`);
+    } catch {
+      toast.error("Sealing failed unexpectedly. Please try again.");
+    } finally {
+      setBusy(false);
     }
   }
 
-  const steps: { key: Phase; label: string }[] = [
-    { key: "pin", label: t("mint.step.pin") },
-    { key: "code", label: t("mint.step.code") },
-    { key: "sign", label: t("mint.step.sign") },
-    { key: "confirm", label: t("mint.step.confirm") },
+  const steps = [
+    t("mint.step.pin"),
+    t("mint.step.code"),
+    t("mint.step.notarize"),
   ];
 
   return (
@@ -183,10 +103,14 @@ export default function MintPage() {
         <h1 className="font-serif text-4xl font-semibold text-foreground">
           {t("mint.title")}
         </h1>
-        <p className="mt-3 text-lg text-muted-foreground">
-          {t("mint.subtitle")}
-        </p>
+        <p className="mt-3 text-lg text-muted-foreground">{t("mint.subtitle")}</p>
       </header>
+
+      {/* Wallet-free assurance */}
+      <div className="mb-8 flex items-start gap-3 rounded-md border border-seal/30 bg-seal-soft p-4 text-sm">
+        <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-seal" />
+        <span className="text-foreground">{t("mint.noWallet")}</span>
+      </div>
 
       {!isContractConfigured && (
         <div className="mb-8 flex items-start gap-3 rounded-md border border-bronze/40 bg-accent p-4 text-sm text-accent-foreground">
@@ -262,86 +186,48 @@ export default function MintPage() {
           </div>
         </div>
 
-        {/* Progress ladder */}
+        {/* Progress ladder (informational while the server orchestrates) */}
         {busy && (
           <div className="mt-7 space-y-2.5 rounded-md border border-border bg-secondary/50 p-4">
-            {steps.map((s) => {
-              const order: Phase[] = ["pin", "code", "sign", "confirm"];
-              const currentIdx = order.indexOf(phase);
-              const stepIdx = order.indexOf(s.key);
-              const state =
-                stepIdx < currentIdx
-                  ? "done"
-                  : stepIdx === currentIdx
-                    ? "active"
-                    : "pending";
-              return (
-                <div key={s.key} className="flex items-center gap-3 text-sm">
-                  {state === "done" ? (
-                    <Check className="h-4 w-4 text-seal" />
-                  ) : state === "active" ? (
-                    <Loader2 className="h-4 w-4 animate-spin text-bronze" />
-                  ) : (
-                    <span className="h-4 w-4 rounded-full border border-border" />
-                  )}
-                  <span
-                    className={
-                      state === "pending"
-                        ? "text-muted-foreground"
-                        : "text-foreground"
-                    }
-                  >
-                    {s.label}
-                  </span>
-                </div>
-              );
-            })}
+            {steps.map((label) => (
+              <div key={label} className="flex items-center gap-3 text-sm">
+                <Loader2 className="h-4 w-4 animate-spin text-bronze" />
+                <span className="text-foreground">{label}</span>
+              </div>
+            ))}
+            <p className="pt-1 text-xs text-muted-foreground">
+              {t("mint.step.wait")}
+            </p>
           </div>
         )}
 
-        {/* Action zone */}
+        {/* Action */}
         <div className="mt-7 border-t border-border pt-6">
-          {!isConnected ? (
-            <div className="flex flex-col items-start gap-3">
-              <p className="text-sm text-muted-foreground">
-                {t("mint.connectFirst")}
-              </p>
-              <ConnectButton
-                label={t("nav.mint")}
-                showBalance={false}
-                chainStatus="full"
-              />
-            </div>
-          ) : (
-            <Button
-              size="lg"
-              onClick={handleSeal}
-              disabled={busy}
-              className="w-full bg-primary text-primary-foreground hover:bg-bronze sm:w-auto"
-            >
-              {busy ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  {t("mint.action.sealing")}
-                </>
-              ) : (
-                <>
-                  <ShieldCheck className="h-4 w-4" />
-                  {t("mint.action.seal")}
-                </>
-              )}
-            </Button>
-          )}
+          <Button
+            size="lg"
+            onClick={handleSeal}
+            disabled={busy}
+            className="w-full bg-primary text-primary-foreground hover:bg-bronze sm:w-auto"
+          >
+            {busy ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                {t("mint.action.sealing")}
+              </>
+            ) : (
+              <>
+                <ShieldCheck className="h-4 w-4" />
+                {t("mint.action.seal")}
+              </>
+            )}
+          </Button>
         </div>
       </div>
 
-      {/* ── APA citation clipboard module ──────────────────────── */}
       <SuccessDialog
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         result={result}
-        authorName={authorName}
-        chainId={chainId}
       />
     </div>
   );
@@ -351,23 +237,26 @@ function SuccessDialog({
   open,
   onOpenChange,
   result,
-  authorName,
-  chainId,
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
-  result: SealResult | null;
-  authorName: string;
-  chainId: number;
+  result: SealRegisterSuccess | null;
 }) {
   const { t } = useI18n();
   if (!result) return null;
 
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+  const citation: OnChainCitation = {
+    sourceRef: "",
+    ipfsCID: result.ipfsCID,
+    timestamp: BigInt(result.timestamp),
+    author: result.custodian,
+    isRegistered: true,
+  };
   const apa = formatApaCitation({
     code: result.code,
-    citation: result.citation,
-    authorName,
+    citation,
+    authorName: result.authorName ?? undefined,
     baseUrl,
   });
 
@@ -390,11 +279,7 @@ function SuccessDialog({
         </DialogHeader>
 
         <div className="space-y-4">
-          <CopyRow
-            label={t("mint.success.code")}
-            value={result.code}
-            mono
-          />
+          <CopyRow label={t("mint.success.code")} value={result.code} mono />
           <div>
             <p className="mb-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
               {t("mint.success.apa")}
@@ -403,7 +288,7 @@ function SuccessDialog({
           </div>
           <div className="flex items-center justify-between gap-3 text-sm">
             <a
-              href={explorerTxUrl(chainId, result.txHash)}
+              href={explorerTxUrl(result.chainId, result.txHash)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-bronze hover:underline"
@@ -417,6 +302,10 @@ function SuccessDialog({
               {t("mint.viewVerify")} →
             </Link>
           </div>
+          <p className="text-xs text-muted-foreground">
+            {t("mint.success.custodian")}{" "}
+            <span className="font-mono">{shortenAddress(result.custodian)}</span>
+          </p>
         </div>
       </DialogContent>
     </Dialog>
