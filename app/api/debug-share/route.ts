@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { decode } from "turbo-stream";
+import { sealFromShareLink } from "@/app/actions/pinata";
 
 /**
  * TEMPORARY diagnostic — reports what THIS server receives when fetching a
@@ -13,6 +14,12 @@ export async function GET(req: NextRequest): Promise<Response> {
   const u = req.nextUrl.searchParams.get("u") ?? "";
   if (!SHARE_RE.test(u)) {
     return Response.json({ error: "bad url" }, { status: 400 });
+  }
+
+  // Mode: exercise the REAL pin pipeline (fetch + decode + Pinata pin).
+  if (req.nextUrl.searchParams.get("real") === "1") {
+    const result = await sealFromShareLink(u, "Debug — real path test", null);
+    return Response.json({ mode: "real-sealFromShareLink", result });
   }
 
   const ua =
