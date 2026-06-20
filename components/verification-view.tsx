@@ -37,6 +37,7 @@ import {
 
 const PINATA_GATEWAY = process.env.NEXT_PUBLIC_PINATA_GATEWAY;
 import { cleanDialogueText, aiModelLabel } from "@/lib/dialogue-clean";
+import { siteBaseUrl } from "@/lib/site";
 import type { DialogueMessage, OnChainCitation, OriginInputType } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
 
@@ -372,7 +373,7 @@ function CitationCard({
   const { t } = useI18n();
   const [copied, setCopied] = useState(false);
 
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+  const baseUrl = siteBaseUrl();
   const citation: OnChainCitation = {
     sourceRef: model.sourceRef,
     ipfsCID: model.ipfsCID,

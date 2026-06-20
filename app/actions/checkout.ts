@@ -32,9 +32,10 @@ function cap(value: string | undefined, max: number): string {
 }
 
 async function baseUrl(): Promise<string> {
-  const h = await headers();
-  const explicit = process.env.NEXT_PUBLIC_APP_URL;
+  const explicit =
+    process.env.NEXT_PUBLIC_SITE_URL ?? process.env.NEXT_PUBLIC_APP_URL;
   if (explicit) return explicit.replace(/\/$/, "");
+  const h = await headers();
   const host = h.get("x-forwarded-host") ?? h.get("host");
   const proto = h.get("x-forwarded-proto") ?? "https";
   return `${proto}://${host}`;

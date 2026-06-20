@@ -18,6 +18,7 @@ import {
   explorerTxUrl,
   shortenAddress,
 } from "@/lib/citation";
+import { siteBaseUrl } from "@/lib/site";
 import type { OnChainCitation, SealRegisterResult } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
 
@@ -44,7 +45,7 @@ export function SealSuccessView({ result }: { result: SealRegisterResult }) {
     );
   }
 
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+  const baseUrl = siteBaseUrl();
   const citation: OnChainCitation = {
     sourceRef: "",
     ipfsCID: result.ipfsCID,
