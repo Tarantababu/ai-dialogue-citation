@@ -111,7 +111,7 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
         <h2 className="mb-4 font-serif text-xl font-semibold text-foreground">
           {t("verify.meta.title")}
         </h2>
-        <div className="overflow-hidden rounded-md border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <Table>
             <TableBody>
               <MetaRow label={t("verify.meta.code")}>
@@ -345,10 +345,10 @@ function MetaRow({
 }) {
   return (
     <TableRow>
-      <TableCell className="w-48 bg-secondary/40 align-top text-xs font-medium uppercase tracking-wide text-muted-foreground">
+      <TableCell className="w-32 bg-secondary/40 align-top text-xs font-medium uppercase tracking-wide text-muted-foreground sm:w-48">
         {label}
       </TableCell>
-      <TableCell className="align-top text-sm">{children}</TableCell>
+      <TableCell className="align-top break-words text-sm">{children}</TableCell>
     </TableRow>
   );
 }

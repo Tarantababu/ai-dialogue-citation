@@ -174,12 +174,12 @@ function MintForm() {
 
       <div className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-8">
         <Tabs value={tab} onValueChange={(v) => setTab(v as "link" | "paste")}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="link" className="gap-2">
-              <Link2 className="h-4 w-4" /> {t("mint.tab.link")}
+          <TabsList className="grid h-auto w-full grid-cols-2">
+            <TabsTrigger value="link" className="gap-1.5 whitespace-normal py-2 text-center text-xs sm:gap-2 sm:text-sm">
+              <Link2 className="h-4 w-4 shrink-0" /> {t("mint.tab.link")}
             </TabsTrigger>
-            <TabsTrigger value="paste" className="gap-2">
-              <ClipboardType className="h-4 w-4" /> {t("mint.tab.paste")}
+            <TabsTrigger value="paste" className="gap-1.5 whitespace-normal py-2 text-center text-xs sm:gap-2 sm:text-sm">
+              <ClipboardType className="h-4 w-4 shrink-0" /> {t("mint.tab.paste")}
             </TabsTrigger>
           </TabsList>
 
