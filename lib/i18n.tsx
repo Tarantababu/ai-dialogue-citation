@@ -114,7 +114,7 @@ const en: Dict = {
   "mint.step.code": "Reserving your citation code",
   "mint.step.notarize": "Recording it in the public registry",
   "mint.step.wait": "This takes a few seconds — please keep this page open.",
-  "mint.action.seal": "Seal & Mint Citation",
+  "mint.action.seal": "Seal & create citation",
   "mint.action.sealing": "Sealing…",
   "mint.action.sealFree": "Seal for Free",
   "mint.action.pay": "Pay ${price} & Seal",
