@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s · DeCite",
   },
   description:
-    "Permanently seal human–AI intellectual collaborations on IPFS and Polygon, and cite them with a single human-readable code.",
+    "Save a conversation you had with an AI permanently, and get a short citation code you can put in your paper or book. Anyone can look it up and read exactly what was said — no account, nothing technical.",
 };
 
 export default function RootLayout({
