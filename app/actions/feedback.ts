@@ -2,6 +2,7 @@
 
 import { recordFeedback, kvConfigured } from "@/lib/kv";
 import { limitByIp } from "@/lib/ratelimit";
+import { sendFeedbackNotification, sendFeedbackAck } from "@/lib/email";
 import type { FeedbackType } from "@/lib/types";
 
 const TYPES: FeedbackType[] = ["suggestion", "bug", "praise", "other"];
@@ -45,6 +46,9 @@ export async function submitFeedback(input: {
 
   try {
     await recordFeedback({ type, message, email, ts: Math.floor(Date.now() / 1000) });
+    // Notify the operator, and acknowledge the sender (both best-effort).
+    await sendFeedbackNotification({ type, message, email });
+    if (email) await sendFeedbackAck(email);
     return { ok: true };
   } catch (err) {
     return {

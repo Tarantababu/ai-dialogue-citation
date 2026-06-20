@@ -5,6 +5,7 @@ import { sealOnChain } from "@/lib/relayer";
 import { isContractConfigured } from "@/lib/contract";
 import { enforceSealLimit } from "@/lib/ratelimit";
 import { recordReceipt } from "@/lib/kv";
+import { sendSealReceipt } from "@/lib/email";
 import { FREE_MODE } from "@/lib/config";
 import type { PinResult, SealInput, SealRegisterResult } from "@/lib/types";
 
@@ -59,12 +60,28 @@ export async function sealFree(input: SealInput): Promise<SealRegisterResult> {
     // ── 2 · Notarize on Polygon ──────────────────────────────────
     const seal = await sealOnChain({ sourceRef, ipfsCID: pin.ipfsCID });
 
-    // ── 3 · Record receipt (best-effort) ─────────────────────────
+    // ── 3 · Record receipt + email it (both best-effort) ─────────
     await recordReceipt(input.email, {
       code: seal.code,
       sourceRef,
       ts: seal.timestamp,
     });
+
+    if (input.email?.trim()) {
+      await sendSealReceipt({
+        to: input.email.trim(),
+        code: seal.code,
+        sourceRef,
+        authorName,
+        platform: pin.platform,
+        model: pin.model,
+        custodian: seal.custodian,
+        txHash: seal.txHash,
+        chainId: seal.chainId,
+        timestamp: seal.timestamp,
+        ipfsCID: pin.ipfsCID,
+      });
+    }
 
     return {
       ok: true,
