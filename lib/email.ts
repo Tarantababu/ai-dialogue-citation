@@ -152,12 +152,30 @@ export async function sendSealReceipt(p: SealReceiptParams): Promise<boolean> {
     <p style="margin:22px 0 0;font-family:${SANS};font-size:13px;line-height:1.6;color:${C.muted};">This record is permanent and app-independent: even if DeCite ever goes offline, your citation stays readable directly from the Polygon blockchain and IPFS.</p>
   `;
 
+  const text = [
+    "Your citation is permanently sealed.",
+    "",
+    `Citation code: ${p.code}`,
+    `Work: ${p.sourceRef}`,
+    "",
+    "Cite it (APA):",
+    apa,
+    "",
+    `Open the citation page: ${verifyUrl}`,
+    `Public record: ${txUrl}`,
+    `Saved file: ${ipfsUrl}`,
+    "",
+    "This record is permanent and stays reachable even if DeCite ever goes offline.",
+    "— DeCite · de-cite.com",
+  ].join("\n");
+
   try {
     const { error } = await resend.emails.send({
       from: FROM,
       to: p.to,
       subject: `Your citation is sealed — ${p.code}`,
       html: shell("Your DeCite citation is permanently sealed.", inner),
+      text,
     });
     return !error;
   } catch {
@@ -181,6 +199,7 @@ export async function sendFeedbackAck(to: string): Promise<boolean> {
       to,
       subject: "We received your DeCite feedback",
       html: shell("Thanks for your feedback — we read everything.", inner),
+      text: "Thank you for your feedback. We received your message and read every one. If a reply is warranted, we'll be in touch.\n\n— DeCite · de-cite.com",
     });
     return !error;
   } catch {
@@ -214,6 +233,7 @@ export async function sendFeedbackNotification(p: {
       replyTo: p.email ?? undefined,
       subject: `DeCite feedback: ${p.type}`,
       html: shell(`New ${p.type} feedback on DeCite.`, inner),
+      text: `New ${p.type} feedback on DeCite:\n\n${p.message}\n\nReply-to: ${p.email ?? "— (not provided)"}`,
     });
     return !error;
   } catch {
