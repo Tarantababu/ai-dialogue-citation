@@ -121,3 +121,40 @@ export function explorerAddressUrl(chainId: number, address: string): string {
       : "https://amoy.polygonscan.com";
   return `${base}/address/${address}`;
 }
+
+/**
+ * Block-explorer "Read Contract" page — lets anyone call getCitation(code)
+ * straight from the browser, with no dependency on the DeCite app.
+ */
+export function explorerReadContractUrl(
+  chainId: number,
+  address: string,
+): string {
+  return `${explorerAddressUrl(chainId, address)}#readContract`;
+}
+
+/** Sourcify decentralized verification page for the contract. */
+export function sourcifyUrl(chainId: number, address: string): string {
+  return `https://repo.sourcify.dev/contracts/full_match/${chainId}/${address}/`;
+}
+
+/**
+ * Independent IPFS gateways for a CID. The archive is content-addressed, so
+ * any of these (or any other gateway) returns the identical, tamper-proof file
+ * — DeCite's own gateway is just one of many.
+ */
+export function ipfsGatewayUrls(
+  cid: string,
+  appGateway?: string,
+): { label: string; url: string }[] {
+  const gateways: { label: string; url: string }[] = [
+    { label: "ipfs.io", url: `https://ipfs.io/ipfs/${cid}` },
+    { label: "dweb.link", url: `https://${cid}.ipfs.dweb.link` },
+    { label: "w3s.link", url: `https://${cid}.ipfs.w3s.link` },
+  ];
+  if (appGateway) {
+    const host = appGateway.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    gateways.unshift({ label: host, url: `https://${host}/ipfs/${cid}` });
+  }
+  return gateways;
+}

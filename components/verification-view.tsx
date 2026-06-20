@@ -16,6 +16,7 @@ import {
   Quote,
   Copy,
   Check,
+  Globe,
 } from "lucide-react";
 import {
   Table,
@@ -29,8 +30,12 @@ import {
   shortenAddress,
   originLabel,
   explorerAddressUrl,
+  explorerReadContractUrl,
+  ipfsGatewayUrls,
   formatApaCitation,
 } from "@/lib/citation";
+
+const PINATA_GATEWAY = process.env.NEXT_PUBLIC_PINATA_GATEWAY;
 import { cleanDialogueText, aiModelLabel } from "@/lib/dialogue-clean";
 import type { DialogueMessage, OnChainCitation, OriginInputType } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
@@ -245,7 +250,89 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
           </div>
         </div>
       </section>
+
+      {/* ── Independent, app-free access ─────────────────────── */}
+      <PermanenceCard model={model} />
     </div>
+  );
+}
+
+/** How to retrieve this citation directly from Polygon + IPFS, without DeCite. */
+function PermanenceCard({
+  model,
+}: {
+  model: Extract<VerificationViewModel, { status: "ok" }>;
+}) {
+  const { t } = useI18n();
+  const gateways = ipfsGatewayUrls(model.ipfsCID, PINATA_GATEWAY);
+
+  return (
+    <section className="mt-10 rounded-lg border border-seal/30 bg-seal-soft/50 p-6 sm:p-7">
+      <div className="flex items-center gap-2.5">
+        <Globe className="h-5 w-5 text-seal" strokeWidth={1.5} />
+        <h2 className="font-serif text-lg font-semibold text-foreground">
+          {t("verify.perm.title")}
+        </h2>
+      </div>
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        {t("verify.perm.body")}
+      </p>
+
+      <div className="mt-5 grid gap-5 sm:grid-cols-2">
+        {/* Path 1 — the blockchain registry */}
+        <div className="rounded-md border border-border bg-card p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-bronze">
+            1 · {t("verify.perm.chain")}
+          </p>
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            {t("verify.perm.callHint").replace("{code}", model.code)}
+          </p>
+          <div className="mt-3 break-all rounded-sm bg-secondary/60 px-2.5 py-2 font-mono text-xs text-foreground">
+            {model.registryAddress}
+          </div>
+          <a
+            href={explorerReadContractUrl(model.chainId, model.registryAddress)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-bronze hover:underline"
+          >
+            {t("verify.perm.readOn")}
+            <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+          </a>
+        </div>
+
+        {/* Path 2 — the IPFS archive via any gateway */}
+        <div className="rounded-md border border-border bg-card p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-bronze">
+            2 · {t("verify.perm.ipfs")}
+          </p>
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            {t("verify.perm.ipfsHint")}
+          </p>
+          <div className="mt-3 break-all rounded-sm bg-secondary/60 px-2.5 py-2 font-mono text-xs text-foreground">
+            {model.ipfsCID}
+          </div>
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+            {gateways.map((g) => (
+              <a
+                key={g.label}
+                href={g.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-medium text-bronze hover:underline"
+              >
+                {g.label}
+                <ExternalLink className="h-3 w-3 shrink-0" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-4 text-xs italic leading-relaxed text-muted-foreground">
+        {t("verify.perm.note")}
+      </p>
+    </section>
   );
 }
 

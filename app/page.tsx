@@ -2,8 +2,19 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, FileSignature, ScanSearch, Anchor, Clock, Quote } from "lucide-react";
+import {
+  ArrowRight,
+  FileSignature,
+  ScanSearch,
+  Anchor,
+  Clock,
+  Quote,
+  Globe,
+  ExternalLink,
+} from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { CONTRACT_ADDRESS, activeChain, isContractConfigured } from "@/lib/contract";
+import { explorerReadContractUrl } from "@/lib/citation";
 
 export default function HomePage() {
   const { t } = useI18n();
@@ -114,6 +125,36 @@ export default function HomePage() {
             </p>
           </div>
         ))}
+      </section>
+
+      {/* ── Independent permanence ───────────────────────────── */}
+      <section className="my-16 rounded-md border border-seal/30 bg-seal-soft/50 p-8 sm:p-10">
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-8">
+            <div className="mb-3 flex items-center gap-2.5">
+              <Globe className="h-6 w-6 shrink-0 text-seal" strokeWidth={1.5} />
+              <h2 className="font-serif text-2xl font-semibold text-foreground sm:text-3xl">
+                {t("home.independent.title")}
+              </h2>
+            </div>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              {t("home.independent.body")}
+            </p>
+          </div>
+          {isContractConfigured && (
+            <div className="lg:col-span-4 lg:text-right">
+              <a
+                href={explorerReadContractUrl(activeChain.id, CONTRACT_ADDRESS)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-sm border border-bronze/40 bg-card px-5 py-3 text-sm font-medium text-bronze transition-colors hover:bg-accent"
+              >
+                {t("home.independent.viewRegistry")}
+                <ExternalLink className="h-4 w-4 shrink-0" />
+              </a>
+            </div>
+          )}
+        </div>
       </section>
 
       {/* ── Dual portals ─────────────────────────────────────── */}
