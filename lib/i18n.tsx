@@ -313,6 +313,7 @@ const en: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "Latest",
+  "nav.more": "More",
   "mint.share.label": "List in the public “Latest citations” feed",
   "mint.share.help":
     "On by default. Anyone with the code can already read a sealed citation; this simply lists it publicly so others can discover it. Turn it off to keep it out of the feed.",
@@ -564,6 +565,7 @@ const zh: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "最新",
+  "nav.more": "更多",
   "mint.share.label": "列入公开的「最新引用」列表",
   "mint.share.help":
     "默认开启。任何持有代码的人本就能读到已封存的引用；此选项只是将其公开列出，方便他人发现。关闭即可不在该列表中显示。",
@@ -815,6 +817,7 @@ const hi: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "नवीनतम",
+  "nav.more": "और",
   "mint.share.label": "सार्वजनिक ‘नवीनतम उद्धरण’ सूची में शामिल करें",
   "mint.share.help":
     "डिफ़ॉल्ट रूप से चालू। कोड रखने वाला कोई भी व्यक्ति पहले से ही सील उद्धरण पढ़ सकता है; यह बस उसे सार्वजनिक रूप से सूचीबद्ध करता है ताकि दूसरे उसे खोज सकें। सूची से बाहर रखने के लिए इसे बंद कर दें।",
@@ -1066,6 +1069,7 @@ const es: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "Recientes",
+  "nav.more": "Más",
   "mint.share.label": "Incluir en la lista pública «Citas recientes»",
   "mint.share.help":
     "Activado por defecto. Cualquiera con el código ya puede leer una cita sellada; esto solo la incluye públicamente para que otros la descubran. Desactívalo para mantenerla fuera de la lista.",
@@ -1317,6 +1321,7 @@ const fr: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "Récentes",
+  "nav.more": "Plus",
   "mint.share.label": "Ajouter à la liste publique « Citations récentes »",
   "mint.share.help":
     "Activé par défaut. Quiconque possède le code peut déjà lire une citation scellée ; ceci la liste simplement publiquement pour que d'autres la découvrent. Désactivez-le pour la garder hors de la liste.",
@@ -1568,6 +1573,7 @@ const ar: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "الأحدث",
+  "nav.more": "المزيد",
   "mint.share.label": "أدرِجها في قائمة «أحدث الاستشهادات» العامة",
   "mint.share.help":
     "مُفعّل افتراضيًا. من لديه الرمز يستطيع أصلًا قراءة استشهاد مختوم؛ هذا الخيار يدرجه علنًا فقط ليكتشفه الآخرون. أوقِفه لإبقائه خارج القائمة.",
@@ -1819,6 +1825,7 @@ const pt: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "Recentes",
+  "nav.more": "Mais",
   "mint.share.label": "Incluir na lista pública «Citações recentes»",
   "mint.share.help":
     "Ativado por padrão. Qualquer pessoa com o código já pode ler uma citação selada; isto apenas a lista publicamente para que outros a descubram. Desative para mantê-la fora da lista.",
@@ -2070,6 +2077,7 @@ const ru: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "Последние",
+  "nav.more": "Ещё",
   "mint.share.label": "Добавить в публичный список «Последние ссылки»",
   "mint.share.help":
     "Включено по умолчанию. Любой, у кого есть код, и так может прочитать запечатанную ссылку; эта настройка лишь публично перечисляет её, чтобы другие могли её найти. Выключите, чтобы не показывать её в списке.",
@@ -2321,6 +2329,7 @@ const de: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "Neueste",
+  "nav.more": "Mehr",
   "mint.share.label": "In die öffentliche Liste „Neueste Zitate“ aufnehmen",
   "mint.share.help":
     "Standardmäßig aktiviert. Wer den Code hat, kann ein versiegeltes Zitat ohnehin lesen; dies listet es nur öffentlich auf, damit andere es entdecken. Schalten Sie es aus, um es aus der Liste herauszuhalten.",
@@ -2572,6 +2581,7 @@ const ja: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "最新",
+  "nav.more": "その他",
   "mint.share.label": "公開の「最新の引用」一覧に掲載する",
   "mint.share.help":
     "既定でオンです。コードを持つ人は封印された引用をもともと読めます。これは他の人が見つけられるよう公開一覧に載せるだけです。一覧に載せたくない場合はオフにしてください。",
@@ -2823,6 +2833,7 @@ const tr: Dict = {
 
   // ─── Latest citations + share toggle ──────────────────────────────────────
   "nav.latest": "En Yeniler",
+  "nav.more": "Daha fazla",
   "mint.share.label": "Herkese açık «Son atıflar» listesine ekle",
   "mint.share.help":
     "Varsayılan olarak açık. Koda sahip olan herkes mühürlenmiş bir atfı zaten okuyabilir; bu yalnızca başkalarının keşfedebilmesi için onu herkese açık biçimde listeler. Listeden çıkarmak için kapatın.",
