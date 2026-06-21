@@ -57,6 +57,7 @@ const en: Dict = {
   "nav.verify": "Verify",
   "nav.receipts": "My Receipts",
   "nav.feedback": "Feedback",
+  "nav.faq": "FAQ",
   "nav.language": "Language",
 
   "cta.mint.title": "For authors",
@@ -105,7 +106,7 @@ const en: Dict = {
   "mint.sourceRef.label": "Where you'll use it (work title)",
   "mint.sourceRef.placeholder": "e.g. On the Ethics of Synthetic Reasoning (2026), Ch. 3",
   "mint.author.label": "Your name for the citation (optional)",
-  "mint.author.placeholder": "e.g. Yiğit Aydın",
+  "mint.author.placeholder": "e.g. Maria Garcia",
   "mint.email.label": "Email (optional)",
   "mint.email.placeholder": "you@example.com",
   "mint.email.help": "We'll email you the citation and keep it under My Receipts so you can find it later.",
@@ -216,6 +217,100 @@ const en: Dict = {
   "feedback.thanks.again": "Send more feedback",
   "feedback.thanks.home": "Back to home",
 
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "Frequently asked questions",
+  "faq.subtitle":
+    "Everything about sealing a conversation with AI, citing it, and how the proof stays readable forever. Can't find your question? Send it through Feedback — we answer everything.",
+  "faq.group.about": "About DeCite",
+  "faq.group.sealing": "Sealing a conversation",
+  "faq.group.citation": "Your citation",
+  "faq.group.readers": "For readers & reviewers",
+  "faq.group.trust": "Permanence & trust",
+  "faq.group.privacy": "Privacy & safety",
+  "faq.stillTitle": "Still have a question?",
+  "faq.stillBody":
+    "If something here didn't answer it, ask us directly — we read every message and usually reply within a day.",
+  "faq.stillCta": "Ask a question",
+  "faq.sealCta": "Seal a dialogue",
+
+  "faq.q.what": "What is DeCite?",
+  "faq.a.what":
+    "DeCite saves a conversation you had with an AI to a permanent public record and gives you a short citation code — like DC-20260619-01 — that you can put in your paper, book, or article. Anyone who has the code can later look it up and read the exact conversation, word for word, along with the date and time it was saved. It turns a chat that could disappear into a source that can always be checked.",
+  "faq.q.who": "Who is it for?",
+  "faq.a.who":
+    "Anyone whose thinking took shape in conversation with an AI and who wants to attribute it honestly — researchers, students, authors, journalists, and educators. Authors use it to create a citable, permanent record; readers, reviewers, and editors use it to verify exactly what an AI was asked and what it answered.",
+  "faq.q.free":
+    "Is it really free? Is there a catch?",
+  "faq.a.free":
+    "Sealing is free while we launch — no account, no card, no hidden step. We cover the cost of saving and permanently registering each conversation for you. If that ever changes, the price will be shown clearly before you seal anything, and conversations already sealed stay sealed forever.",
+
+  "faq.q.how": "How do I seal a conversation?",
+  "faq.a.how":
+    "Paste either a public share link to your AI chat or the conversation text itself, add a short title for where you'll use it, and click Seal. In a few seconds DeCite saves the conversation to a permanent archive, reserves your citation code, and records it in a public registry. You'll see the citation right away, and we'll email it to you if you add your address.",
+  "faq.q.linkVsPaste":
+    "What's the difference between 'Official Share Link' and 'Direct Text Capture'?",
+  "faq.a.linkVsPaste":
+    "Use Official Share Link when your AI gives you a public link that anyone can open — DeCite reads the conversation from it and saves a permanent copy. Use Direct Text Capture when there's no public link: you paste the conversation text yourself and DeCite saves exactly what you paste. Both produce the same kind of permanent, citable record.",
+  "faq.q.platforms": "Which AI platforms are supported?",
+  "faq.a.platforms":
+    "Public share links work from ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen, and more. For any AI that doesn't offer a public link — or for a private chat you'd rather paste — use Direct Text Capture, which works with any tool, including ones not on this list.",
+  "faq.q.gemini":
+    "Gemini or DeepSeek don't give me a public link. What do I do?",
+  "faq.a.gemini":
+    "Some platforms keep the chat inside your browser, so a link can't be read by outside readers. Open the conversation, select and copy the text, then switch to Direct Text Capture and paste it. DeCite saves exactly what you paste. You can also add the original chat link in the optional field so your citation records which AI you used.",
+  "faq.q.account": "Do I need an account, a payment, or a crypto wallet?",
+  "faq.a.account":
+    "No. There's no sign-up, no card, and nothing to install. You don't need a wallet or any technical knowledge — DeCite handles the saving and registering for you behind the scenes. An email is optional, and only used to send you the citation and let you find it again later.",
+  "faq.q.time": "How long does sealing take?",
+  "faq.a.time":
+    "Usually just a few seconds. Keep the page open while it works — DeCite is saving the conversation to a permanent archive, reserving your code, and recording it in the public registry. When it's done you'll see your citation immediately.",
+  "faq.q.language": "Can I seal a conversation in any language?",
+  "faq.a.language":
+    "Yes. DeCite saves the conversation text exactly as it is, in any language and script. The interface itself is available in several languages — switch it any time from the language menu in the top bar.",
+
+  "faq.q.code": "What does the citation code look like?",
+  "faq.a.code":
+    "It's a short, clean code in the form DC-YYYYMMDD-NN — for example DC-20260619-01, meaning the first conversation sealed on 19 June 2026. It's easy to type into a bibliography and easy for a reader to look up.",
+  "faq.q.cite": "How do I cite it in my paper or book?",
+  "faq.a.cite":
+    "When you seal a conversation, DeCite gives you a ready-made reference in APA 7 style that you can copy straight into your bibliography, along with the citation code and the public-record link. You're free to adapt it to whatever style your journal or publisher requires.",
+  "faq.q.edit":
+    "Can I edit or update a conversation after sealing it?",
+  "faq.a.edit":
+    "No — and that's the whole point. A sealed conversation can't be changed by anyone, including us, which is exactly what makes it trustworthy as a citation. If the conversation continued or you want to capture a newer version, simply seal it again to get a separate citation.",
+  "faq.q.lost": "I lost my citation code. How do I find it again?",
+  "faq.a.lost":
+    "If you added your email when sealing, go to My Receipts and enter that same email to see all the citation codes tied to it. If you didn't add an email, you'll need the code itself to look the conversation up — so keep it somewhere safe.",
+
+  "faq.q.lookup": "How does someone look up my citation?",
+  "faq.a.lookup":
+    "They go to the Verify page, type in the citation code, and the exact sealed conversation opens — the full text, the date and time it was sealed, and which AI was used. No account or payment is needed to read it.",
+  "faq.q.readerAccount":
+    "Do readers or reviewers need an account to verify?",
+  "faq.a.readerAccount":
+    "No. Anyone with the code can read the conversation, for free, with no sign-up. Because the record also lives on independent public infrastructure, a determined reviewer can even verify it without using the DeCite website at all.",
+
+  "faq.q.where": "Where is the conversation actually stored?",
+  "faq.a.where":
+    "In two independent public places that no single company controls: a permanent public archive that holds the full conversation, and a public registry that records its citation code and the moment it was sealed. DeCite is just a convenient window onto both — the record doesn't depend on us to exist.",
+  "faq.q.ifGone": "What happens if DeCite ever disappears?",
+  "faq.a.ifGone":
+    "Your citations keep working. Because each one is stored on independent public infrastructure, anyone can still open the public registry and the permanent archive directly — no website, no account, and no permission needed. The proof outlives the company.",
+  "faq.q.timestamp": "How do I know the date and time can be trusted?",
+  "faq.a.timestamp":
+    "When a conversation is sealed, the exact date and time are written into a public registry that can't be quietly altered afterwards. So the timing isn't just our word — anyone can check it independently, which is what makes it hold up under scrutiny.",
+
+  "faq.q.public": "Is the sealed conversation public? Who can see it?",
+  "faq.a.public":
+    "Yes. A sealed conversation is meant to be citable, so anyone who has the citation code can read it, and it stays public permanently. Only seal conversations you're comfortable making public for good.",
+  "faq.q.sensitive":
+    "What about personal or confidential information in the chat?",
+  "faq.a.sensitive":
+    "Because sealing is permanent and public, remove anything private or sensitive — names, contact details, unpublished data, anything confidential — before you seal. Once a conversation is sealed it cannot be edited or taken down, so review the text carefully first.",
+  "faq.q.email": "Do you store my email, and what for?",
+  "faq.a.email":
+    "Email is optional. If you provide one, we use it only to send you your citation and to let you find your codes again under My Receipts. It isn't part of the public record and we don't use it for anything else.",
+
   "footer.note": "Permanent · Time-stamped · Independently verifiable",
   "common.user": "User",
   "common.assistant": "Assistant",
@@ -229,6 +324,7 @@ const zh: Dict = {
   "nav.verify": "查询",
   "nav.receipts": "我的凭证",
   "nav.feedback": "反馈",
+  "nav.faq": "常见问题",
   "nav.language": "语言",
   "cta.mint.title": "面向作者",
   "cta.mint.desc": "把你与 AI 的一次对话永久保存下来，并获得可写入著作的引用。",
@@ -375,6 +471,7 @@ const hi: Dict = {
   "nav.verify": "खोजें",
   "nav.receipts": "मेरी रसीदें",
   "nav.feedback": "प्रतिक्रिया",
+  "nav.faq": "सामान्य प्रश्न",
   "nav.language": "भाषा",
   "cta.mint.title": "लेखकों के लिए",
   "cta.mint.desc": "AI के साथ हुई किसी बातचीत को स्थायी रूप से सहेजें और अपनी रचना में डालने योग्य उद्धरण पाएं।",
@@ -521,6 +618,7 @@ const es: Dict = {
   "nav.verify": "Buscar",
   "nav.receipts": "Mis recibos",
   "nav.feedback": "Sugerencias",
+  "nav.faq": "Preguntas frecuentes",
   "nav.language": "Idioma",
   "cta.mint.title": "Para autores",
   "cta.mint.desc": "Guarda para siempre una conversación que tuviste con una AI y obtén una cita para usar en tu trabajo.",
@@ -667,6 +765,7 @@ const fr: Dict = {
   "nav.verify": "Rechercher",
   "nav.receipts": "Mes reçus",
   "nav.feedback": "Retour",
+  "nav.faq": "FAQ",
   "nav.language": "Langue",
   "cta.mint.title": "Pour les auteurs",
   "cta.mint.desc": "Sauvegardez pour toujours une conversation que vous avez eue avec une AI et obtenez une citation à utiliser dans votre travail.",
@@ -813,6 +912,7 @@ const ar: Dict = {
   "nav.verify": "بحث",
   "nav.receipts": "إيصالاتي",
   "nav.feedback": "ملاحظات",
+  "nav.faq": "الأسئلة الشائعة",
   "nav.language": "اللغة",
   "cta.mint.title": "للمؤلفين",
   "cta.mint.desc": "احفظ إلى الأبد محادثة أجريتها مع AI واحصل على استشهاد تضعه في عملك.",
@@ -959,6 +1059,7 @@ const pt: Dict = {
   "nav.verify": "Buscar",
   "nav.receipts": "Meus recibos",
   "nav.feedback": "Feedback",
+  "nav.faq": "Perguntas frequentes",
   "nav.language": "Idioma",
   "cta.mint.title": "Para autores",
   "cta.mint.desc": "Guarde para sempre uma conversa que você teve com uma AI e obtenha uma citação para usar no seu trabalho.",
@@ -1105,6 +1206,7 @@ const ru: Dict = {
   "nav.verify": "Найти",
   "nav.receipts": "Мои квитанции",
   "nav.feedback": "Отзывы",
+  "nav.faq": "Вопросы и ответы",
   "nav.language": "Язык",
   "cta.mint.title": "Для авторов",
   "cta.mint.desc": "Навсегда сохраните разговор с AI и получите ссылку, которую можно вставить в свою работу.",
@@ -1251,6 +1353,7 @@ const de: Dict = {
   "nav.verify": "Suchen",
   "nav.receipts": "Meine Belege",
   "nav.feedback": "Feedback",
+  "nav.faq": "Häufige Fragen",
   "nav.language": "Sprache",
   "cta.mint.title": "Für Autorinnen und Autoren",
   "cta.mint.desc": "Sichere ein Gespräch, das du mit einer AI geführt hast, dauerhaft und erhalte ein Zitat für deine Arbeit.",
@@ -1397,6 +1500,7 @@ const ja: Dict = {
   "nav.verify": "照会",
   "nav.receipts": "受領記録",
   "nav.feedback": "フィードバック",
+  "nav.faq": "よくある質問",
   "nav.language": "言語",
   "cta.mint.title": "著者の方へ",
   "cta.mint.desc": "AI と交わした対話を永久に保存し、著作に使える引用を受け取りましょう。",
@@ -1543,6 +1647,7 @@ const tr: Dict = {
   "nav.verify": "Sorgula",
   "nav.receipts": "Makbuzlarım",
   "nav.feedback": "Geri Bildirim",
+  "nav.faq": "Sıkça Sorulan Sorular",
   "nav.language": "Dil",
   "cta.mint.title": "Yazarlar için",
   "cta.mint.desc": "AI ile yaptığınız bir konuşmayı kalıcı olarak saklayın ve eserinizde kullanabileceğiniz bir atıf alın.",

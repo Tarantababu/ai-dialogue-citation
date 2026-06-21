@@ -21,6 +21,7 @@ export function SiteHeader() {
     { href: "/muhurle", label: t("nav.mint") },
     { href: "/dogrulama", label: t("nav.verify") },
     { href: "/makbuz", label: t("nav.receipts") },
+    { href: "/sss", label: t("nav.faq") },
     { href: "/geri-bildirim", label: t("nav.feedback") },
   ];
 

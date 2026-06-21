@@ -21,6 +21,9 @@ export function SiteFooter() {
           <Link href="/makbuz" className="hover:text-foreground">
             {t("nav.receipts")}
           </Link>
+          <Link href="/sss" className="hover:text-foreground">
+            {t("nav.faq")}
+          </Link>
           <Link href="/geri-bildirim" className="hover:text-foreground">
             {t("nav.feedback")}
           </Link>
