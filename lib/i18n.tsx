@@ -311,6 +311,22 @@ const en: Dict = {
   "faq.a.email":
     "Email is optional. If you provide one, we use it only to send you your citation and to let you find your codes again under My Receipts. It isn't part of the public record and we don't use it for anything else.",
 
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "Latest",
+  "mint.share.label": "List in the public “Latest citations” feed",
+  "mint.share.help":
+    "On by default. Anyone with the code can already read a sealed citation; this simply lists it publicly so others can discover it. Turn it off to keep it out of the feed.",
+  "latest.title": "Latest citations",
+  "latest.subtitle":
+    "Recently sealed conversations that authors chose to share publicly. Open any one to read the exact dialogue behind it.",
+  "latest.loading": "Loading the latest citations…",
+  "latest.empty": "No public citations yet — seal one and it can appear here.",
+  "latest.notConfigured": "The public feed isn’t available on this site yet.",
+  "latest.error": "The feed couldn’t be loaded right now. Please try again.",
+  "latest.anon": "Anonymous",
+  "latest.viewAll": "View all",
+  "latest.sealCta": "Seal a dialogue",
+
   "footer.note": "Permanent · Time-stamped · Independently verifiable",
   "common.user": "User",
   "common.assistant": "Assistant",
@@ -545,6 +561,22 @@ const zh: Dict = {
   "faq.q.email": "你们会存储我的邮箱吗？用来做什么？",
   "faq.a.email":
     "邮箱是可选的。如果你提供了邮箱，我们仅用它把引用发送给你，并让你能在“我的凭证”中再次找到你的代码。它不属于公共记录，我们也不会将其用于其他任何用途。",
+
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "最新",
+  "mint.share.label": "列入公开的「最新引用」列表",
+  "mint.share.help":
+    "默认开启。任何持有代码的人本就能读到已封存的引用；此选项只是将其公开列出，方便他人发现。关闭即可不在该列表中显示。",
+  "latest.title": "最新引用",
+  "latest.subtitle":
+    "作者选择公开分享的近期封存对话。打开任意一条即可读到其背后的完整对话。",
+  "latest.loading": "正在加载最新引用……",
+  "latest.empty": "暂无公开引用——封存一条，它便可出现在这里。",
+  "latest.notConfigured": "本站点尚未启用公开列表。",
+  "latest.error": "暂时无法加载列表，请重试。",
+  "latest.anon": "匿名",
+  "latest.viewAll": "查看全部",
+  "latest.sealCta": "封存对话",
 
   "footer.note": "永久 · 时间戳记 · 可独立核验",
   "common.user": "用户",
@@ -781,6 +813,22 @@ const hi: Dict = {
   "faq.a.email":
     "ईमेल वैकल्पिक है। यदि आप एक देते हैं, तो हम उसका उपयोग केवल आपको आपका उद्धरण भेजने और ‘मेरी रसीदें’ में आपके कोड दोबारा खोजने देने के लिए करते हैं। यह सार्वजनिक रिकॉर्ड का हिस्सा नहीं है और हम उसका किसी और चीज़ के लिए उपयोग नहीं करते।",
 
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "नवीनतम",
+  "mint.share.label": "सार्वजनिक ‘नवीनतम उद्धरण’ सूची में शामिल करें",
+  "mint.share.help":
+    "डिफ़ॉल्ट रूप से चालू। कोड रखने वाला कोई भी व्यक्ति पहले से ही सील उद्धरण पढ़ सकता है; यह बस उसे सार्वजनिक रूप से सूचीबद्ध करता है ताकि दूसरे उसे खोज सकें। सूची से बाहर रखने के लिए इसे बंद कर दें।",
+  "latest.title": "नवीनतम उद्धरण",
+  "latest.subtitle":
+    "हाल ही में सील की गई बातचीतें जिन्हें लेखकों ने सार्वजनिक रूप से साझा करना चुना। पीछे की सटीक बातचीत पढ़ने के लिए किसी को भी खोलें।",
+  "latest.loading": "नवीनतम उद्धरण लोड हो रहे हैं…",
+  "latest.empty": "अभी कोई सार्वजनिक उद्धरण नहीं — एक सील करें और वह यहाँ दिख सकता है।",
+  "latest.notConfigured": "इस साइट पर सार्वजनिक सूची अभी उपलब्ध नहीं है।",
+  "latest.error": "सूची अभी लोड नहीं हो सकी। कृपया फिर से प्रयास करें।",
+  "latest.anon": "गुमनाम",
+  "latest.viewAll": "सभी देखें",
+  "latest.sealCta": "बातचीत सील करें",
+
   "footer.note": "स्थायी · समय-अंकित · स्वतंत्र रूप से सत्यापन-योग्य",
   "common.user": "उपयोगकर्ता",
   "common.assistant": "सहायक",
@@ -1015,6 +1063,22 @@ const es: Dict = {
   "faq.q.email": "¿Guardáis mi correo y para qué?",
   "faq.a.email":
     "El correo es opcional. Si lo proporcionas, lo usamos solo para enviarte tu cita y para que puedas volver a encontrar tus códigos en Mis recibos. No forma parte del registro público y no lo usamos para nada más.",
+
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "Recientes",
+  "mint.share.label": "Incluir en la lista pública «Citas recientes»",
+  "mint.share.help":
+    "Activado por defecto. Cualquiera con el código ya puede leer una cita sellada; esto solo la incluye públicamente para que otros la descubran. Desactívalo para mantenerla fuera de la lista.",
+  "latest.title": "Citas recientes",
+  "latest.subtitle":
+    "Conversaciones selladas recientemente que sus autores eligieron compartir públicamente. Abre cualquiera para leer el diálogo exacto que hay detrás.",
+  "latest.loading": "Cargando las citas recientes…",
+  "latest.empty": "Aún no hay citas públicas: sella una y podrá aparecer aquí.",
+  "latest.notConfigured": "La lista pública aún no está disponible en este sitio.",
+  "latest.error": "No se pudo cargar la lista ahora mismo. Inténtalo de nuevo.",
+  "latest.anon": "Anónimo",
+  "latest.viewAll": "Ver todas",
+  "latest.sealCta": "Sellar un diálogo",
 
   "footer.note": "Permanente · Con fecha y hora · Verificable de forma independiente",
   "common.user": "Usuario",
@@ -1251,6 +1315,22 @@ const fr: Dict = {
   "faq.a.email":
     "L'e-mail est facultatif. Si vous en fournissez un, nous l'utilisons uniquement pour vous envoyer votre citation et vous permettre de retrouver vos codes dans Mes reçus. Il ne fait pas partie du registre public et nous ne l'utilisons pour rien d'autre.",
 
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "Récentes",
+  "mint.share.label": "Ajouter à la liste publique « Citations récentes »",
+  "mint.share.help":
+    "Activé par défaut. Quiconque possède le code peut déjà lire une citation scellée ; ceci la liste simplement publiquement pour que d'autres la découvrent. Désactivez-le pour la garder hors de la liste.",
+  "latest.title": "Citations récentes",
+  "latest.subtitle":
+    "Conversations récemment scellées que leurs auteurs ont choisi de partager publiquement. Ouvrez-en une pour lire le dialogue exact qui se trouve derrière.",
+  "latest.loading": "Chargement des citations récentes…",
+  "latest.empty": "Aucune citation publique pour l'instant — scellez-en une et elle pourra apparaître ici.",
+  "latest.notConfigured": "La liste publique n'est pas encore disponible sur ce site.",
+  "latest.error": "La liste n'a pas pu être chargée pour le moment. Veuillez réessayer.",
+  "latest.anon": "Anonyme",
+  "latest.viewAll": "Tout voir",
+  "latest.sealCta": "Sceller un dialogue",
+
   "footer.note": "Permanent · Horodaté · Vérifiable de façon indépendante",
   "common.user": "Utilisateur",
   "common.assistant": "Assistant",
@@ -1485,6 +1565,22 @@ const ar: Dict = {
   "faq.q.email": "هل تخزّنون بريدي الإلكتروني، ولماذا؟",
   "faq.a.email":
     "البريد اختياري. إن قدّمته، نستخدمه فقط لإرسال استشهادك إليك وتمكينك من إيجاد رموزك مجددًا في «إيصالاتي». وهو ليس جزءًا من السجل العام ولا نستخدمه لأي غرض آخر.",
+
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "الأحدث",
+  "mint.share.label": "أدرِجها في قائمة «أحدث الاستشهادات» العامة",
+  "mint.share.help":
+    "مُفعّل افتراضيًا. من لديه الرمز يستطيع أصلًا قراءة استشهاد مختوم؛ هذا الخيار يدرجه علنًا فقط ليكتشفه الآخرون. أوقِفه لإبقائه خارج القائمة.",
+  "latest.title": "أحدث الاستشهادات",
+  "latest.subtitle":
+    "محادثات مختومة حديثًا اختار مؤلفوها مشاركتها علنًا. افتح أيًا منها لقراءة الحوار نفسه الذي وراءها.",
+  "latest.loading": "جارٍ تحميل أحدث الاستشهادات…",
+  "latest.empty": "لا توجد استشهادات عامة بعد — اختم واحدًا وقد يظهر هنا.",
+  "latest.notConfigured": "القائمة العامة غير متاحة على هذا الموقع بعد.",
+  "latest.error": "تعذّر تحميل القائمة الآن. يرجى المحاولة مرة أخرى.",
+  "latest.anon": "مجهول",
+  "latest.viewAll": "عرض الكل",
+  "latest.sealCta": "اختم محادثة",
 
   "footer.note": "دائم · مؤرّخ بالوقت · قابل للتحقق باستقلالية",
   "common.user": "المستخدم",
@@ -1721,6 +1817,22 @@ const pt: Dict = {
   "faq.a.email":
     "O e-mail é opcional. Se você fornecer um, nós o usamos apenas para lhe enviar sua citação e para você reencontrar seus códigos em Meus recibos. Ele não faz parte do registro público e não o usamos para mais nada.",
 
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "Recentes",
+  "mint.share.label": "Incluir na lista pública «Citações recentes»",
+  "mint.share.help":
+    "Ativado por padrão. Qualquer pessoa com o código já pode ler uma citação selada; isto apenas a lista publicamente para que outros a descubram. Desative para mantê-la fora da lista.",
+  "latest.title": "Citações recentes",
+  "latest.subtitle":
+    "Conversas seladas recentemente que os autores escolheram compartilhar publicamente. Abra qualquer uma para ler o diálogo exato por trás dela.",
+  "latest.loading": "Carregando as citações recentes…",
+  "latest.empty": "Ainda não há citações públicas — sele uma e ela poderá aparecer aqui.",
+  "latest.notConfigured": "A lista pública ainda não está disponível neste site.",
+  "latest.error": "Não foi possível carregar a lista agora. Tente novamente.",
+  "latest.anon": "Anônimo",
+  "latest.viewAll": "Ver todas",
+  "latest.sealCta": "Selar um diálogo",
+
   "footer.note": "Permanente · Com data e hora · Verificável de forma independente",
   "common.user": "Usuário",
   "common.assistant": "Assistente",
@@ -1955,6 +2067,22 @@ const ru: Dict = {
   "faq.q.email": "Вы храните мою почту и зачем?",
   "faq.a.email":
     "Почта необязательна. Если вы её укажете, мы используем её только чтобы прислать вам вашу ссылку и дать вам снова найти ваши коды в «Моих квитанциях». Она не входит в публичную запись, и больше ни для чего мы её не используем.",
+
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "Последние",
+  "mint.share.label": "Добавить в публичный список «Последние ссылки»",
+  "mint.share.help":
+    "Включено по умолчанию. Любой, у кого есть код, и так может прочитать запечатанную ссылку; эта настройка лишь публично перечисляет её, чтобы другие могли её найти. Выключите, чтобы не показывать её в списке.",
+  "latest.title": "Последние ссылки",
+  "latest.subtitle":
+    "Недавно запечатанные разговоры, которые авторы решили опубликовать. Откройте любой, чтобы прочитать сам разговор за ним.",
+  "latest.loading": "Загрузка последних ссылок…",
+  "latest.empty": "Публичных ссылок пока нет — запечатайте одну, и она сможет появиться здесь.",
+  "latest.notConfigured": "Публичный список на этом сайте пока недоступен.",
+  "latest.error": "Сейчас не удалось загрузить список. Попробуйте ещё раз.",
+  "latest.anon": "Аноним",
+  "latest.viewAll": "Показать все",
+  "latest.sealCta": "Запечатать диалог",
 
   "footer.note": "Навсегда · С отметкой времени · Проверяемо независимо",
   "common.user": "Пользователь",
@@ -2191,6 +2319,22 @@ const de: Dict = {
   "faq.a.email":
     "Die E-Mail ist optional. Geben Sie eine an, nutzen wir sie nur, um Ihnen Ihr Zitat zu senden und Sie Ihre Codes unter Meine Belege wiederfinden zu lassen. Sie ist nicht Teil des öffentlichen Eintrags, und für nichts anderes verwenden wir sie.",
 
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "Neueste",
+  "mint.share.label": "In die öffentliche Liste „Neueste Zitate“ aufnehmen",
+  "mint.share.help":
+    "Standardmäßig aktiviert. Wer den Code hat, kann ein versiegeltes Zitat ohnehin lesen; dies listet es nur öffentlich auf, damit andere es entdecken. Schalten Sie es aus, um es aus der Liste herauszuhalten.",
+  "latest.title": "Neueste Zitate",
+  "latest.subtitle":
+    "Kürzlich versiegelte Gespräche, die ihre Autoren öffentlich teilen wollten. Öffnen Sie eines, um den genauen Dialog dahinter zu lesen.",
+  "latest.loading": "Neueste Zitate werden geladen…",
+  "latest.empty": "Noch keine öffentlichen Zitate — versiegeln Sie eines, dann kann es hier erscheinen.",
+  "latest.notConfigured": "Die öffentliche Liste ist auf dieser Seite noch nicht verfügbar.",
+  "latest.error": "Die Liste konnte gerade nicht geladen werden. Bitte erneut versuchen.",
+  "latest.anon": "Anonym",
+  "latest.viewAll": "Alle ansehen",
+  "latest.sealCta": "Einen Dialog versiegeln",
+
   "footer.note": "Dauerhaft · Mit Zeitstempel · Unabhängig überprüfbar",
   "common.user": "Nutzer",
   "common.assistant": "Assistent",
@@ -2426,6 +2570,22 @@ const ja: Dict = {
   "faq.a.email":
     "メールは任意です。ご提供いただいた場合、引用をお送りし、「受領記録」でコードを再び見つけられるようにするためだけに使います。これは公開記録には含まれず、それ以外の用途には一切使いません。",
 
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "最新",
+  "mint.share.label": "公開の「最新の引用」一覧に掲載する",
+  "mint.share.help":
+    "既定でオンです。コードを持つ人は封印された引用をもともと読めます。これは他の人が見つけられるよう公開一覧に載せるだけです。一覧に載せたくない場合はオフにしてください。",
+  "latest.title": "最新の引用",
+  "latest.subtitle":
+    "著者が公開を選んだ、最近封印された会話です。いずれかを開くと、その背後にある実際の対話を読めます。",
+  "latest.loading": "最新の引用を読み込んでいます…",
+  "latest.empty": "公開された引用はまだありません——封印すればここに表示されることがあります。",
+  "latest.notConfigured": "このサイトでは公開一覧はまだ利用できません。",
+  "latest.error": "ただ今一覧を読み込めませんでした。もう一度お試しください。",
+  "latest.anon": "匿名",
+  "latest.viewAll": "すべて見る",
+  "latest.sealCta": "対話を封印する",
+
   "footer.note": "永続 · 日時記録 · 独立して検証可能",
   "common.user": "ユーザー",
   "common.assistant": "アシスタント",
@@ -2660,6 +2820,22 @@ const tr: Dict = {
   "faq.q.email": "E-postamı saklıyor musunuz, ne için?",
   "faq.a.email":
     "E-posta isteğe bağlıdır. Verirseniz, onu yalnızca atfınızı göndermek ve kodlarınızı Makbuzlarım'da tekrar bulmanızı sağlamak için kullanırız. Herkese açık kaydın parçası değildir ve başka hiçbir şey için kullanmayız.",
+
+  // ─── Latest citations + share toggle ──────────────────────────────────────
+  "nav.latest": "En Yeniler",
+  "mint.share.label": "Herkese açık «Son atıflar» listesine ekle",
+  "mint.share.help":
+    "Varsayılan olarak açık. Koda sahip olan herkes mühürlenmiş bir atfı zaten okuyabilir; bu yalnızca başkalarının keşfedebilmesi için onu herkese açık biçimde listeler. Listeden çıkarmak için kapatın.",
+  "latest.title": "Son atıflar",
+  "latest.subtitle":
+    "Yazarlarının herkese açık paylaşmayı seçtiği, yakın zamanda mühürlenmiş sohbetler. Arkasındaki tam diyaloğu okumak için herhangi birini açın.",
+  "latest.loading": "Son atıflar yükleniyor…",
+  "latest.empty": "Henüz herkese açık atıf yok — birini mühürleyin, burada görünebilir.",
+  "latest.notConfigured": "Herkese açık liste bu sitede henüz mevcut değil.",
+  "latest.error": "Liste şu anda yüklenemedi. Lütfen tekrar deneyin.",
+  "latest.anon": "Anonim",
+  "latest.viewAll": "Tümünü gör",
+  "latest.sealCta": "Bir diyaloğu mühürle",
 
   "footer.note": "Kalıcı · Zaman damgalı · Bağımsız doğrulanabilir",
   "common.user": "Kullanıcı",

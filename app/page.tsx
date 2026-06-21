@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Anchor, Clock, Quote, Gift, Globe, ExternalLink } from "lucide-react";
 import { SealForm } from "@/components/seal-form";
+import { LatestCitations } from "@/components/latest-citations";
 import { useI18n } from "@/lib/i18n";
 import {
   CONTRACT_ADDRESS,
@@ -73,6 +74,11 @@ export default function HomePage() {
           </Link>
         </p>
       </motion.section>
+
+      {/* ── Latest citations (only renders when the feed has entries) ── */}
+      <section className="mt-14">
+        <LatestCitations compact limit={5} />
+      </section>
 
       <div className="hairline my-16" />
 

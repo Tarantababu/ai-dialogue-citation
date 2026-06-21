@@ -1,7 +1,11 @@
 import "server-only";
 import { createHash } from "node:crypto";
 import { Redis } from "@upstash/redis";
-import type { FeedbackEntry, ReceiptEntry } from "@/lib/types";
+import type {
+  FeedbackEntry,
+  PublicCitationEntry,
+  ReceiptEntry,
+} from "@/lib/types";
 
 /**
  * Receipt store (email → sealed codes) backed by Upstash Redis.
@@ -57,6 +61,46 @@ export async function getReceipts(email: string): Promise<ReceiptEntry[]> {
     }
   }
   return parsed;
+}
+
+const PUBLIC_KEY = "decite:public";
+const MAX_PUBLIC = 1000;
+
+/**
+ * Append a citation to the public "Latest citations" feed (best-effort).
+ * Called only when the author opted in. Returns false when KV isn't configured.
+ */
+export async function recordPublicCitation(
+  entry: PublicCitationEntry,
+): Promise<boolean> {
+  const r = getRedis();
+  if (!r) return false;
+  await r.lpush(PUBLIC_KEY, JSON.stringify(entry));
+  await r.ltrim(PUBLIC_KEY, 0, MAX_PUBLIC - 1);
+  return true;
+}
+
+/** Read the most recently sealed public citations, newest first. */
+export async function getPublicCitations(
+  limit = 50,
+): Promise<PublicCitationEntry[]> {
+  const r = getRedis();
+  if (!r) return [];
+  const items = await r.lrange<string | PublicCitationEntry>(
+    PUBLIC_KEY,
+    0,
+    limit - 1,
+  );
+  const out: PublicCitationEntry[] = [];
+  for (const item of items) {
+    try {
+      const obj = typeof item === "string" ? JSON.parse(item) : item;
+      if (obj && typeof obj.code === "string") out.push(obj as PublicCitationEntry);
+    } catch {
+      // skip malformed entry
+    }
+  }
+  return out;
 }
 
 const FEEDBACK_KEY = "decite:feedback";

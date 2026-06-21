@@ -103,6 +103,7 @@ export async function createSealCheckout(
       [META.model]: cap(pin.model ?? "", 80),
       [META.sourceUrl]: cap(pin.sourceUrl ?? "", 480),
       [META.email]: cap(email ?? "", 200),
+      [META.listPublic]: input.listPublicly === false ? "0" : "1",
     };
 
     const session = await stripe.checkout.sessions.create({

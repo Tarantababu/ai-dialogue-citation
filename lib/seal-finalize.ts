@@ -3,7 +3,7 @@ import type Stripe from "stripe";
 import { getStripe, META } from "@/lib/stripe";
 import { sealOnChain } from "@/lib/relayer";
 import { activeChain } from "@/lib/contract";
-import { recordReceipt } from "@/lib/kv";
+import { recordReceipt, recordPublicCitation } from "@/lib/kv";
 import { sendSealReceipt } from "@/lib/email";
 import type { OriginInputType, SealRegisterResult } from "@/lib/types";
 
@@ -56,6 +56,17 @@ async function finalizePaymentIntent(
     sourceRef,
     ts: seal.timestamp,
   });
+
+  // List in the public feed when the author opted in (default on).
+  if (meta[META.listPublic] !== "0") {
+    await recordPublicCitation({
+      code: seal.code,
+      sourceRef,
+      authorName: meta[META.authorName] || null,
+      platform: meta[META.platform] || "Manual",
+      ts: seal.timestamp,
+    });
+  }
   if (buyerEmail) {
     await sendSealReceipt({
       to: buyerEmail,

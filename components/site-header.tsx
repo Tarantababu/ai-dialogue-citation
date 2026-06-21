@@ -19,6 +19,7 @@ export function SiteHeader() {
   const links = [
     { href: "/", label: t("nav.home") },
     { href: "/muhurle", label: t("nav.mint") },
+    { href: "/son-atiflar", label: t("nav.latest") },
     { href: "/dogrulama", label: t("nav.verify") },
     { href: "/makbuz", label: t("nav.receipts") },
     { href: "/sss", label: t("nav.faq") },

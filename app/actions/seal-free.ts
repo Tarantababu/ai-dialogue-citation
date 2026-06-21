@@ -4,7 +4,7 @@ import { sealFromShareLink, sealFromDirectText } from "./pinata";
 import { sealOnChain } from "@/lib/relayer";
 import { isContractConfigured } from "@/lib/contract";
 import { enforceSealLimit } from "@/lib/ratelimit";
-import { recordReceipt } from "@/lib/kv";
+import { recordReceipt, recordPublicCitation } from "@/lib/kv";
 import { sendSealReceipt } from "@/lib/email";
 import { FREE_MODE } from "@/lib/config";
 import type { PinResult, SealInput, SealRegisterResult } from "@/lib/types";
@@ -66,6 +66,17 @@ export async function sealFree(input: SealInput): Promise<SealRegisterResult> {
       sourceRef,
       ts: seal.timestamp,
     });
+
+    // ── 3b · List in the public feed when opted in (default on) ──
+    if (input.listPublicly !== false) {
+      await recordPublicCitation({
+        code: seal.code,
+        sourceRef,
+        authorName,
+        platform: pin.platform,
+        ts: seal.timestamp,
+      });
+    }
 
     if (input.email?.trim()) {
       await sendSealReceipt({

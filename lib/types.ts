@@ -64,12 +64,27 @@ export interface SealInput {
   email?: string;
   /** Direct-paste only: the original AI conversation URL, for provenance. */
   originUrl?: string;
+  /**
+   * Whether to list this citation in the public "Latest citations" feed.
+   * Defaults to true. (A sealed citation is always readable from its code;
+   * this only controls public discoverability in the feed.)
+   */
+  listPublicly?: boolean;
 }
 
 /** A receipt entry, keyed off the author's email in KV. */
 export interface ReceiptEntry {
   code: string;
   sourceRef: string;
+  ts: number;
+}
+
+/** A publicly listed citation, shown in the "Latest citations" feed. */
+export interface PublicCitationEntry {
+  code: string;
+  sourceRef: string;
+  authorName: string | null;
+  platform: string;
   ts: number;
 }
 

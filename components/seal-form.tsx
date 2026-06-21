@@ -9,7 +9,9 @@ import {
   ShieldCheck,
   AlertTriangle,
   Lock,
+  Sparkles,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -44,6 +46,7 @@ export function SealForm() {
   const [sourceRef, setSourceRef] = useState("");
   const [authorName, setAuthorName] = useState("");
   const [email, setEmail] = useState("");
+  const [listPublicly, setListPublicly] = useState(true);
   const [busy, setBusy] = useState(false);
   const [freeResult, setFreeResult] = useState<SealRegisterResult | null>(null);
 
@@ -68,6 +71,7 @@ export function SealForm() {
       sourceRef: sourceRef.trim(),
       authorName: authorName.trim() || undefined,
       email: email.trim() || undefined,
+      listPublicly,
     };
   }
 
@@ -256,6 +260,42 @@ export function SealForm() {
           disabled={busy}
         />
         <p className="text-xs text-muted-foreground">{t("mint.email.help")}</p>
+      </div>
+
+      {/* Share publicly toggle — on by default */}
+      <div className="mt-4 flex items-start gap-3 rounded-md border border-border bg-secondary/40 p-3.5">
+        <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-bronze" strokeWidth={1.5} />
+        <div className="min-w-0 flex-1">
+          <label
+            htmlFor="seal-share-public"
+            className="block cursor-pointer text-sm font-medium text-foreground"
+          >
+            {t("mint.share.label")}
+          </label>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+            {t("mint.share.help")}
+          </p>
+        </div>
+        <button
+          id="seal-share-public"
+          type="button"
+          role="switch"
+          aria-checked={listPublicly}
+          aria-label={t("mint.share.label")}
+          disabled={busy}
+          onClick={() => setListPublicly((v) => !v)}
+          className={cn(
+            "relative mt-0.5 inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors disabled:opacity-50",
+            listPublicly ? "bg-seal" : "bg-muted-foreground/30",
+          )}
+        >
+          <span
+            className={cn(
+              "inline-block h-5 w-5 transform rounded-full bg-white shadow-sm transition-transform",
+              listPublicly ? "translate-x-[22px]" : "translate-x-0.5",
+            )}
+          />
+        </button>
       </div>
 
       <div className="mt-6">

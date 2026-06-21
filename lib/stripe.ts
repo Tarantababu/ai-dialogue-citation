@@ -40,6 +40,7 @@ export const META = {
   model: "decite_model",
   sourceUrl: "decite_source_url",
   email: "decite_email",
+  listPublic: "decite_list_public",
   // Written after a successful seal — presence means "already finalized".
   code: "decite_code",
   txHash: "decite_tx",
