@@ -458,6 +458,94 @@ const zh: Dict = {
   "feedback.thanks.body": "我们已收到你的反馈。它确实帮助塑造 DeCite。",
   "feedback.thanks.again": "再发送一条",
   "feedback.thanks.home": "返回首页",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "常见问题",
+  "faq.subtitle":
+    "关于如何封存与 AI 的对话、如何引用它，以及凭证如何永久可读的一切。没有找到你的问题？通过“反馈”发送给我们——我们会回答所有问题。",
+  "faq.group.about": "关于 DeCite",
+  "faq.group.sealing": "封存对话",
+  "faq.group.citation": "你的引用",
+  "faq.group.readers": "面向读者与审稿人",
+  "faq.group.trust": "永久性与可信度",
+  "faq.group.privacy": "隐私与安全",
+  "faq.stillTitle": "还有疑问？",
+  "faq.stillBody":
+    "如果这里没有解答你的问题，可以直接问我们——我们会阅读每一条消息，通常一天内回复。",
+  "faq.stillCta": "提出问题",
+  "faq.sealCta": "封存对话",
+
+  "faq.q.what": "DeCite 是什么？",
+  "faq.a.what":
+    "DeCite 会把你与 AI 的对话保存到永久的公共记录中，并为你生成一个简短的引用代码——例如 DC-20260619-01——你可以把它写进论文、书籍或文章里。任何持有该代码的人之后都能查询并逐字读到这段对话，以及它被保存的日期和时间。它把一段可能消失的对话变成一个永远可以核查的来源。",
+  "faq.q.who": "它适合谁使用？",
+  "faq.a.who":
+    "适合任何在与 AI 的对话中形成思考、并希望诚实标注来源的人——研究者、学生、作者、记者和教育工作者。作者用它来创建可引用的永久记录；读者、审稿人和编辑用它来核实 AI 究竟被问了什么、又回答了什么。",
+  "faq.q.free": "真的免费吗？有什么附加条件吗？",
+  "faq.a.free":
+    "在我们上线推广期间，封存是免费的——无需账户、无需银行卡、没有隐藏步骤。保存并永久登记每段对话的费用由我们承担。如果将来有所变动，价格会在你封存任何内容之前清楚地显示出来，而且已经封存的对话将永远保持封存。",
+
+  "faq.q.how": "我该如何封存一段对话？",
+  "faq.a.how":
+    "粘贴你的 AI 对话的公开分享链接，或者直接粘贴对话文本，再为它将被使用的地方加一个简短标题，然后点击“封存”。几秒钟内，DeCite 就会把对话保存到永久存档、为你预留引用代码，并将其记录到公共登记表中。你会立即看到引用；如果你填写了邮箱，我们也会把它发送给你。",
+  "faq.q.linkVsPaste": "“官方分享链接”和“直接粘贴文本”有什么区别？",
+  "faq.a.linkVsPaste":
+    "当你的 AI 提供任何人都能打开的公开链接时，使用“官方分享链接”——DeCite 会从中读取对话并保存一份永久副本。当没有公开链接时，使用“直接粘贴文本”：你自己粘贴对话文本，DeCite 会原样保存你粘贴的内容。两者都会生成同样永久、可引用的记录。",
+  "faq.q.platforms": "支持哪些 AI 平台？",
+  "faq.a.platforms":
+    "ChatGPT、Claude、Grok、Copilot、Perplexity、Poe、Mistral、Meta AI、Qwen 等平台的公开分享链接均可使用。对于不提供公开链接的任何 AI——或你更愿意粘贴的私密对话——请使用“直接粘贴文本”，它适用于任何工具，包括未列在此处的工具。",
+  "faq.q.gemini": "Gemini 或 DeepSeek 不提供公开链接，我该怎么办？",
+  "faq.a.gemini":
+    "有些平台把对话保留在你的浏览器里，因此链接无法被外部读者打开。打开对话，全选并复制文本，然后切换到“直接粘贴文本”并粘贴。DeCite 会原样保存你粘贴的内容。你也可以在可选字段中填入原始对话链接，让你的引用记录下你使用的是哪个 AI。",
+  "faq.q.account": "我需要账户、付款或加密钱包吗？",
+  "faq.a.account":
+    "不需要。无需注册、无需银行卡，也没有任何东西要安装。你不需要钱包或任何技术知识——DeCite 会在后台为你完成保存和登记。邮箱是可选的，仅用于把引用发送给你，并方便你日后再次找到它。",
+  "faq.q.time": "封存需要多长时间？",
+  "faq.a.time":
+    "通常只需几秒钟。在它运行时请保持页面打开——DeCite 正在把对话保存到永久存档、预留你的代码，并将其记录到公共登记表中。完成后你会立即看到你的引用。",
+  "faq.q.language": "我可以封存任何语言的对话吗？",
+  "faq.a.language":
+    "可以。DeCite 会以任何语言和文字原样保存对话文本。界面本身提供多种语言——你可以随时通过顶栏的语言菜单切换。",
+
+  "faq.q.code": "引用代码长什么样？",
+  "faq.a.code":
+    "它是一个简短、清晰的代码，格式为 DC-YYYYMMDD-NN——例如 DC-20260619-01，表示 2026 年 6 月 19 日封存的第一段对话。它便于输入到参考文献中，也便于读者查询。",
+  "faq.q.cite": "我该如何在论文或书籍中引用它？",
+  "faq.a.cite":
+    "当你封存一段对话时，DeCite 会提供一条现成的 APA 7 格式参考文献，你可以直接复制到参考文献列表中，同时还附有引用代码和公共记录链接。你可以自由地将其调整为你的期刊或出版社所要求的任何格式。",
+  "faq.q.edit": "封存之后我可以编辑或更新对话吗？",
+  "faq.a.edit":
+    "不能——而这正是关键所在。已封存的对话任何人都无法更改，包括我们，正是这一点使它作为引用值得信赖。如果对话有了后续，或者你想保存更新的版本，只需再次封存即可获得一条单独的引用。",
+  "faq.q.lost": "我弄丢了引用代码，怎样才能再次找到它？",
+  "faq.a.lost":
+    "如果你在封存时填写了邮箱，请进入“我的凭证”并输入同一个邮箱，即可看到与之关联的所有引用代码。如果你没有填写邮箱，就需要凭代码本身来查询对话——所以请把它妥善保存。",
+
+  "faq.q.lookup": "别人如何查询我的引用？",
+  "faq.a.lookup":
+    "他们进入“查询”页面，输入引用代码，那段被封存的对话就会原样打开——完整文本、封存的日期和时间，以及所使用的 AI。阅读它无需账户或付款。",
+  "faq.q.readerAccount": "读者或审稿人需要账户才能核验吗？",
+  "faq.a.readerAccount":
+    "不需要。任何持有代码的人都可以免费阅读对话，无需注册。由于记录同时存放在不受单一公司控制的独立公共基础设施上，认真的审稿人甚至完全不使用 DeCite 网站也能核验它。",
+
+  "faq.q.where": "对话实际上存储在哪里？",
+  "faq.a.where":
+    "存放在两个不受任何单一公司控制的独立公共场所：一个保存完整对话的永久公共存档，以及一个记录其引用代码和封存时刻的公共登记表。DeCite 只是方便地查看两者的窗口——记录的存在并不依赖于我们。",
+  "faq.q.ifGone": "如果 DeCite 有一天消失了会怎样？",
+  "faq.a.ifGone":
+    "你的引用依然有效。由于每条引用都存放在独立的公共基础设施上，任何人仍然可以直接打开公共登记表和永久存档——无需网站、无需账户，也无需任何许可。证据比公司更长久。",
+  "faq.q.timestamp": "我怎么知道日期和时间是可信的？",
+  "faq.a.timestamp":
+    "当一段对话被封存时，确切的日期和时间会被写入一个事后无法被悄悄篡改的公共登记表。因此时间不仅仅是我们的一面之词——任何人都可以独立核查，这正是它经得起审视的原因。",
+
+  "faq.q.public": "封存的对话是公开的吗？谁能看到？",
+  "faq.a.public":
+    "是的。封存的对话本就是为了可被引用，因此任何持有引用代码的人都能阅读它，并且它会永久公开。请只封存你愿意永久公开的对话。",
+  "faq.q.sensitive": "对话中的个人或机密信息怎么办？",
+  "faq.a.sensitive":
+    "由于封存是永久且公开的，请在封存之前删除任何私密或敏感内容——姓名、联系方式、未发表的数据、任何机密信息。对话一旦封存就无法编辑或撤下，所以请先仔细检查文本。",
+  "faq.q.email": "你们会存储我的邮箱吗？用来做什么？",
+  "faq.a.email":
+    "邮箱是可选的。如果你提供了邮箱，我们仅用它把引用发送给你，并让你能在“我的凭证”中再次找到你的代码。它不属于公共记录，我们也不会将其用于其他任何用途。",
+
   "footer.note": "永久 · 时间戳记 · 可独立核验",
   "common.user": "用户",
   "common.assistant": "助手",
@@ -605,6 +693,94 @@ const hi: Dict = {
   "feedback.thanks.body": "आपकी प्रतिक्रिया मिल गई। यह वास्तव में DeCite को आकार देने में मदद करती है।",
   "feedback.thanks.again": "और प्रतिक्रिया भेजें",
   "feedback.thanks.home": "होम पर वापस",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "सामान्य प्रश्न",
+  "faq.subtitle":
+    "AI के साथ हुई बातचीत को सील करने, उसका उद्धरण देने, और प्रमाण को हमेशा पठनीय बनाए रखने के बारे में सब कुछ। अपना प्रश्न नहीं मिला? उसे ‘प्रतिक्रिया’ के ज़रिए भेजें — हम हर प्रश्न का उत्तर देते हैं।",
+  "faq.group.about": "DeCite के बारे में",
+  "faq.group.sealing": "बातचीत सील करना",
+  "faq.group.citation": "आपका उद्धरण",
+  "faq.group.readers": "पाठकों और समीक्षकों के लिए",
+  "faq.group.trust": "स्थायित्व और विश्वसनीयता",
+  "faq.group.privacy": "गोपनीयता और सुरक्षा",
+  "faq.stillTitle": "अब भी कोई प्रश्न है?",
+  "faq.stillBody":
+    "अगर यहाँ किसी बात का उत्तर नहीं मिला, तो हमसे सीधे पूछें — हम हर संदेश पढ़ते हैं और आमतौर पर एक दिन के भीतर जवाब देते हैं।",
+  "faq.stillCta": "प्रश्न पूछें",
+  "faq.sealCta": "बातचीत सील करें",
+
+  "faq.q.what": "DeCite क्या है?",
+  "faq.a.what":
+    "DeCite आपकी AI के साथ हुई बातचीत को एक स्थायी सार्वजनिक रिकॉर्ड में सहेजता है और आपको एक छोटा उद्धरण कोड देता है — जैसे DC-20260619-01 — जिसे आप अपने शोधपत्र, पुस्तक या लेख में डाल सकते हैं। जिसके पास यह कोड हो, वह बाद में उसे खोजकर ठीक वही बातचीत शब्दशः पढ़ सकता है, साथ ही वह तारीख और समय भी जब उसे सहेजा गया था। यह एक ऐसी बातचीत को, जो गायब हो सकती थी, एक ऐसे स्रोत में बदल देता है जिसे हमेशा जाँचा जा सकता है।",
+  "faq.q.who": "यह किसके लिए है?",
+  "faq.a.who":
+    "हर उस व्यक्ति के लिए जिसकी सोच AI के साथ बातचीत में आकार लेती है और जो उसका ईमानदारी से श्रेय देना चाहता है — शोधकर्ता, छात्र, लेखक, पत्रकार और शिक्षक। लेखक इसका उपयोग एक उद्धरण-योग्य, स्थायी रिकॉर्ड बनाने के लिए करते हैं; पाठक, समीक्षक और संपादक इसका उपयोग यह सत्यापित करने के लिए करते हैं कि AI से ठीक क्या पूछा गया और उसने क्या उत्तर दिया।",
+  "faq.q.free": "क्या यह सचमुच मुफ़्त है? कोई छिपी शर्त तो नहीं?",
+  "faq.a.free":
+    "लॉन्च के दौरान सील करना मुफ़्त है — न कोई खाता, न कार्ड, न कोई छिपा हुआ चरण। हर बातचीत को सहेजने और स्थायी रूप से दर्ज करने का खर्च हम वहन करते हैं। अगर यह कभी बदलता है, तो कुछ भी सील करने से पहले कीमत स्पष्ट रूप से दिखाई जाएगी, और जो बातचीतें पहले ही सील हो चुकी हैं वे हमेशा सील रहेंगी।",
+
+  "faq.q.how": "मैं बातचीत कैसे सील करूँ?",
+  "faq.a.how":
+    "अपनी AI बातचीत का कोई सार्वजनिक शेयर लिंक या बातचीत का टेक्स्ट चिपकाएँ, जहाँ आप उसका उपयोग करेंगे उसके लिए एक छोटा शीर्षक जोड़ें, और ‘सील करें’ पर क्लिक करें। कुछ ही सेकंड में DeCite बातचीत को स्थायी संग्रह में सहेज देता है, आपका उद्धरण कोड आरक्षित कर देता है, और उसे सार्वजनिक रजिस्ट्री में दर्ज कर देता है। उद्धरण आपको तुरंत दिख जाएगा, और यदि आप अपना पता जोड़ते हैं तो हम उसे आपको ईमेल कर देंगे।",
+  "faq.q.linkVsPaste": "‘आधिकारिक शेयर लिंक’ और ‘सीधा टेक्स्ट पेस्ट’ में क्या अंतर है?",
+  "faq.a.linkVsPaste":
+    "‘आधिकारिक शेयर लिंक’ का उपयोग तब करें जब आपका AI ऐसा सार्वजनिक लिंक दे जिसे कोई भी खोल सके — DeCite उससे बातचीत पढ़कर एक स्थायी प्रति सहेज लेता है। ‘सीधा टेक्स्ट पेस्ट’ का उपयोग तब करें जब कोई सार्वजनिक लिंक न हो: आप खुद बातचीत का टेक्स्ट चिपकाते हैं और DeCite ठीक वही सहेजता है जो आपने चिपकाया। दोनों ही एक जैसा स्थायी, उद्धरण-योग्य रिकॉर्ड बनाते हैं।",
+  "faq.q.platforms": "कौन-से AI प्लेटफ़ॉर्म समर्थित हैं?",
+  "faq.a.platforms":
+    "ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen और अन्य के सार्वजनिक शेयर लिंक काम करते हैं। किसी भी ऐसे AI के लिए जो सार्वजनिक लिंक नहीं देता — या किसी निजी बातचीत के लिए जिसे आप चिपकाना पसंद करें — ‘सीधा टेक्स्ट पेस्ट’ का उपयोग करें, जो किसी भी टूल के साथ काम करता है, इस सूची में न होने वाले टूल सहित।",
+  "faq.q.gemini": "Gemini या DeepSeek मुझे सार्वजनिक लिंक नहीं देते। मैं क्या करूँ?",
+  "faq.a.gemini":
+    "कुछ प्लेटफ़ॉर्म बातचीत को आपके ब्राउज़र के भीतर ही रखते हैं, इसलिए कोई लिंक बाहरी पाठक नहीं पढ़ सकते। बातचीत खोलें, टेक्स्ट चुनकर कॉपी करें, फिर ‘सीधा टेक्स्ट पेस्ट’ पर जाकर उसे चिपकाएँ। DeCite ठीक वही सहेजता है जो आपने चिपकाया। आप वैकल्पिक फ़ील्ड में मूल बातचीत का लिंक भी जोड़ सकते हैं ताकि आपका उद्धरण यह दर्ज कर ले कि आपने कौन-सा AI इस्तेमाल किया।",
+  "faq.q.account": "क्या मुझे खाता, भुगतान या क्रिप्टो वॉलेट चाहिए?",
+  "faq.a.account":
+    "नहीं। कोई साइन-अप नहीं, कोई कार्ड नहीं, और इंस्टॉल करने को कुछ नहीं। आपको वॉलेट या किसी तकनीकी जानकारी की ज़रूरत नहीं — DeCite पर्दे के पीछे आपके लिए सहेजने और दर्ज करने का काम संभाल लेता है। ईमेल वैकल्पिक है, और केवल आपको उद्धरण भेजने तथा बाद में उसे दोबारा ढूँढ़ने देने के लिए उपयोग होता है।",
+  "faq.q.time": "सील करने में कितना समय लगता है?",
+  "faq.a.time":
+    "आमतौर पर बस कुछ सेकंड। जब तक यह चल रहा हो पृष्ठ खुला रखें — DeCite बातचीत को स्थायी संग्रह में सहेज रहा है, आपका कोड आरक्षित कर रहा है, और उसे सार्वजनिक रजिस्ट्री में दर्ज कर रहा है। पूरा होते ही आपको अपना उद्धरण तुरंत दिख जाएगा।",
+  "faq.q.language": "क्या मैं किसी भी भाषा की बातचीत सील कर सकता हूँ?",
+  "faq.a.language":
+    "हाँ। DeCite बातचीत के टेक्स्ट को किसी भी भाषा और लिपि में ठीक वैसे ही सहेजता है जैसा वह है। इंटरफ़ेस स्वयं कई भाषाओं में उपलब्ध है — आप इसे ऊपरी पट्टी के भाषा मेन्यू से कभी भी बदल सकते हैं।",
+
+  "faq.q.code": "उद्धरण कोड कैसा दिखता है?",
+  "faq.a.code":
+    "यह DC-YYYYMMDD-NN रूप का एक छोटा, साफ़ कोड है — उदाहरण के लिए DC-20260619-01, जिसका अर्थ है 19 जून 2026 को सील की गई पहली बातचीत। इसे संदर्भ-सूची में टाइप करना आसान है और पाठक के लिए खोजना भी आसान है।",
+  "faq.q.cite": "मैं इसे अपने शोधपत्र या पुस्तक में कैसे उद्धृत करूँ?",
+  "faq.a.cite":
+    "जब आप कोई बातचीत सील करते हैं, तो DeCite आपको APA 7 शैली में एक तैयार संदर्भ देता है जिसे आप सीधे अपनी संदर्भ-सूची में कॉपी कर सकते हैं, साथ में उद्धरण कोड और सार्वजनिक-रिकॉर्ड लिंक भी। आप इसे अपने जर्नल या प्रकाशक की ज़रूरत के अनुसार किसी भी शैली में ढाल सकते हैं।",
+  "faq.q.edit": "सील करने के बाद क्या मैं बातचीत संपादित या अपडेट कर सकता हूँ?",
+  "faq.a.edit":
+    "नहीं — और यही पूरी बात है। एक सील की गई बातचीत को कोई नहीं बदल सकता, हम भी नहीं, और यही उसे उद्धरण के रूप में भरोसेमंद बनाता है। अगर बातचीत आगे बढ़ी या आप कोई नया संस्करण सहेजना चाहते हैं, तो बस उसे फिर से सील कर दें और एक अलग उद्धरण पा लें।",
+  "faq.q.lost": "मेरा उद्धरण कोड खो गया। मैं उसे दोबारा कैसे पाऊँ?",
+  "faq.a.lost":
+    "अगर आपने सील करते समय अपना ईमेल जोड़ा था, तो ‘मेरी रसीदें’ पर जाकर वही ईमेल डालें और उससे जुड़े सभी उद्धरण कोड देख लें। अगर आपने ईमेल नहीं जोड़ा था, तो बातचीत खोजने के लिए आपको कोड की ही ज़रूरत होगी — इसलिए उसे कहीं सुरक्षित रखें।",
+
+  "faq.q.lookup": "कोई मेरा उद्धरण कैसे खोजता है?",
+  "faq.a.lookup":
+    "वे ‘खोजें’ पृष्ठ पर जाते हैं, उद्धरण कोड टाइप करते हैं, और ठीक वही सील की गई बातचीत खुल जाती है — पूरा टेक्स्ट, सील किए जाने की तारीख और समय, और कौन-सा AI इस्तेमाल हुआ। इसे पढ़ने के लिए किसी खाते या भुगतान की ज़रूरत नहीं।",
+  "faq.q.readerAccount": "क्या सत्यापन के लिए पाठकों या समीक्षकों को खाता चाहिए?",
+  "faq.a.readerAccount":
+    "नहीं। जिसके पास कोड हो, वह बातचीत मुफ़्त में, बिना साइन-अप के पढ़ सकता है। चूँकि रिकॉर्ड किसी एक कंपनी के नियंत्रण से बाहर स्वतंत्र सार्वजनिक अवसंरचना पर भी रहता है, एक गंभीर समीक्षक उसे DeCite वेबसाइट का उपयोग किए बिना भी सत्यापित कर सकता है।",
+
+  "faq.q.where": "बातचीत वास्तव में कहाँ संग्रहीत होती है?",
+  "faq.a.where":
+    "दो स्वतंत्र सार्वजनिक स्थानों में जिन्हें कोई एक कंपनी नियंत्रित नहीं करती: एक स्थायी सार्वजनिक संग्रह जो पूरी बातचीत रखता है, और एक सार्वजनिक रजिस्ट्री जो उसका उद्धरण कोड और सील किए जाने का क्षण दर्ज करती है। DeCite बस दोनों को देखने की एक सुविधाजनक खिड़की है — रिकॉर्ड के अस्तित्व के लिए हम पर निर्भरता नहीं है।",
+  "faq.q.ifGone": "अगर DeCite कभी गायब हो जाए तो क्या होगा?",
+  "faq.a.ifGone":
+    "आपके उद्धरण काम करते रहेंगे। चूँकि हर उद्धरण स्वतंत्र सार्वजनिक अवसंरचना पर संग्रहीत है, कोई भी अब भी सार्वजनिक रजिस्ट्री और स्थायी संग्रह को सीधे खोल सकता है — न वेबसाइट, न खाता, न किसी अनुमति की ज़रूरत। प्रमाण कंपनी से अधिक टिकाऊ है।",
+  "faq.q.timestamp": "मुझे कैसे पता चले कि तारीख और समय पर भरोसा किया जा सकता है?",
+  "faq.a.timestamp":
+    "जब कोई बातचीत सील होती है, तो उसकी ठीक तारीख और समय एक सार्वजनिक रजिस्ट्री में लिख दिए जाते हैं जिन्हें बाद में चुपचाप बदला नहीं जा सकता। इसलिए समय केवल हमारी बात नहीं है — कोई भी उसे स्वतंत्र रूप से जाँच सकता है, और यही उसे परखने पर टिका रहने योग्य बनाता है।",
+
+  "faq.q.public": "क्या सील की गई बातचीत सार्वजनिक होती है? उसे कौन देख सकता है?",
+  "faq.a.public":
+    "हाँ। सील की गई बातचीत का उद्देश्य ही उद्धरण-योग्य होना है, इसलिए जिसके पास उद्धरण कोड हो वह उसे पढ़ सकता है, और वह स्थायी रूप से सार्वजनिक रहती है। केवल वही बातचीतें सील करें जिन्हें आप हमेशा के लिए सार्वजनिक करने में सहज हों।",
+  "faq.q.sensitive": "बातचीत में मौजूद निजी या गोपनीय जानकारी का क्या?",
+  "faq.a.sensitive":
+    "चूँकि सील करना स्थायी और सार्वजनिक है, सील करने से पहले कोई भी निजी या संवेदनशील चीज़ हटा दें — नाम, संपर्क विवरण, अप्रकाशित डेटा, कोई भी गोपनीय बात। एक बार सील होने के बाद बातचीत न संपादित की जा सकती है न हटाई जा सकती है, इसलिए पहले टेक्स्ट को ध्यान से जाँच लें।",
+  "faq.q.email": "क्या आप मेरा ईमेल संग्रहीत करते हैं, और किसलिए?",
+  "faq.a.email":
+    "ईमेल वैकल्पिक है। यदि आप एक देते हैं, तो हम उसका उपयोग केवल आपको आपका उद्धरण भेजने और ‘मेरी रसीदें’ में आपके कोड दोबारा खोजने देने के लिए करते हैं। यह सार्वजनिक रिकॉर्ड का हिस्सा नहीं है और हम उसका किसी और चीज़ के लिए उपयोग नहीं करते।",
+
   "footer.note": "स्थायी · समय-अंकित · स्वतंत्र रूप से सत्यापन-योग्य",
   "common.user": "उपयोगकर्ता",
   "common.assistant": "सहायक",
@@ -752,6 +928,94 @@ const es: Dict = {
   "feedback.thanks.body": "Recibimos tus comentarios. Realmente ayudan a dar forma a DeCite.",
   "feedback.thanks.again": "Enviar más",
   "feedback.thanks.home": "Volver al inicio",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "Preguntas frecuentes",
+  "faq.subtitle":
+    "Todo sobre cómo sellar una conversación con IA, citarla y cómo la prueba sigue siendo legible para siempre. ¿No encuentras tu pregunta? Envíala por Sugerencias: respondemos a todo.",
+  "faq.group.about": "Sobre DeCite",
+  "faq.group.sealing": "Sellar una conversación",
+  "faq.group.citation": "Tu cita",
+  "faq.group.readers": "Para lectores y revisores",
+  "faq.group.trust": "Permanencia y confianza",
+  "faq.group.privacy": "Privacidad y seguridad",
+  "faq.stillTitle": "¿Aún tienes una pregunta?",
+  "faq.stillBody":
+    "Si algo aquí no la resolvió, pregúntanos directamente: leemos todos los mensajes y solemos responder en un día.",
+  "faq.stillCta": "Hacer una pregunta",
+  "faq.sealCta": "Sellar un diálogo",
+
+  "faq.q.what": "¿Qué es DeCite?",
+  "faq.a.what":
+    "DeCite guarda una conversación que tuviste con una IA en un registro público permanente y te da un código de cita corto —como DC-20260619-01— que puedes poner en tu artículo, libro o publicación. Cualquiera que tenga el código puede luego buscarlo y leer la conversación exacta, palabra por palabra, junto con la fecha y la hora en que se guardó. Convierte un chat que podría desaparecer en una fuente que siempre se puede comprobar.",
+  "faq.q.who": "¿Para quién es?",
+  "faq.a.who":
+    "Para cualquiera cuyo pensamiento haya tomado forma en conversación con una IA y quiera atribuirlo con honestidad: investigadores, estudiantes, autores, periodistas y docentes. Los autores lo usan para crear un registro permanente y citable; los lectores, revisores y editores lo usan para verificar exactamente qué se le preguntó a la IA y qué respondió.",
+  "faq.q.free": "¿De verdad es gratis? ¿Hay truco?",
+  "faq.a.free":
+    "Sellar es gratis durante el lanzamiento: sin cuenta, sin tarjeta, sin pasos ocultos. Nosotros cubrimos el coste de guardar y registrar permanentemente cada conversación. Si eso llegara a cambiar, el precio se mostrará con claridad antes de que selles nada, y las conversaciones ya selladas permanecerán selladas para siempre.",
+
+  "faq.q.how": "¿Cómo sello una conversación?",
+  "faq.a.how":
+    "Pega un enlace público para compartir tu chat de IA o el texto de la conversación, añade un título breve de dónde la usarás y haz clic en Sellar. En unos segundos, DeCite guarda la conversación en un archivo permanente, reserva tu código de cita y la registra en un registro público. Verás la cita de inmediato y te la enviaremos por correo si añades tu dirección.",
+  "faq.q.linkVsPaste": "¿Cuál es la diferencia entre «Enlace oficial» y «Pegar texto directo»?",
+  "faq.a.linkVsPaste":
+    "Usa Enlace oficial cuando tu IA te dé un enlace público que cualquiera pueda abrir: DeCite lee la conversación desde él y guarda una copia permanente. Usa Pegar texto directo cuando no haya enlace público: pegas tú mismo el texto de la conversación y DeCite guarda exactamente lo que pegas. Ambos producen el mismo tipo de registro permanente y citable.",
+  "faq.q.platforms": "¿Qué plataformas de IA son compatibles?",
+  "faq.a.platforms":
+    "Los enlaces públicos funcionan con ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen y más. Para cualquier IA que no ofrezca un enlace público —o para un chat privado que prefieras pegar— usa Pegar texto directo, que funciona con cualquier herramienta, incluidas las que no están en esta lista.",
+  "faq.q.gemini": "Gemini o DeepSeek no me dan un enlace público. ¿Qué hago?",
+  "faq.a.gemini":
+    "Algunas plataformas mantienen el chat dentro de tu navegador, así que un enlace no lo pueden leer lectores externos. Abre la conversación, selecciona y copia el texto, luego cambia a Pegar texto directo y pégalo. DeCite guarda exactamente lo que pegas. También puedes añadir el enlace del chat original en el campo opcional para que tu cita registre qué IA usaste.",
+  "faq.q.account": "¿Necesito una cuenta, un pago o una cartera cripto?",
+  "faq.a.account":
+    "No. No hay registro, ni tarjeta, ni nada que instalar. No necesitas una cartera ni conocimientos técnicos: DeCite se encarga de guardar y registrar por ti entre bastidores. El correo es opcional y solo se usa para enviarte la cita y permitirte encontrarla de nuevo más tarde.",
+  "faq.q.time": "¿Cuánto tarda en sellarse?",
+  "faq.a.time":
+    "Normalmente solo unos segundos. Mantén la página abierta mientras trabaja: DeCite está guardando la conversación en un archivo permanente, reservando tu código y registrándola en el registro público. Cuando termine, verás tu cita de inmediato.",
+  "faq.q.language": "¿Puedo sellar una conversación en cualquier idioma?",
+  "faq.a.language":
+    "Sí. DeCite guarda el texto de la conversación tal cual, en cualquier idioma y alfabeto. La propia interfaz está disponible en varios idiomas: cámbialo cuando quieras desde el menú de idioma de la barra superior.",
+
+  "faq.q.code": "¿Cómo es el código de cita?",
+  "faq.a.code":
+    "Es un código corto y limpio con la forma DC-AAAAMMDD-NN; por ejemplo DC-20260619-01, que significa la primera conversación sellada el 19 de junio de 2026. Es fácil de escribir en una bibliografía y fácil de buscar para un lector.",
+  "faq.q.cite": "¿Cómo la cito en mi artículo o libro?",
+  "faq.a.cite":
+    "Al sellar una conversación, DeCite te da una referencia lista en estilo APA 7 que puedes copiar directamente en tu bibliografía, junto con el código de cita y el enlace al registro público. Eres libre de adaptarla al estilo que exija tu revista o editorial.",
+  "faq.q.edit": "¿Puedo editar o actualizar una conversación después de sellarla?",
+  "faq.a.edit":
+    "No, y ese es justamente el sentido. Una conversación sellada no la puede cambiar nadie, ni siquiera nosotros, y eso es precisamente lo que la hace fiable como cita. Si la conversación continuó o quieres capturar una versión más nueva, simplemente vuelve a sellarla para obtener una cita aparte.",
+  "faq.q.lost": "Perdí mi código de cita. ¿Cómo lo encuentro de nuevo?",
+  "faq.a.lost":
+    "Si añadiste tu correo al sellar, ve a Mis recibos e introduce ese mismo correo para ver todos los códigos de cita asociados a él. Si no añadiste un correo, necesitarás el código en sí para buscar la conversación, así que guárdalo en un lugar seguro.",
+
+  "faq.q.lookup": "¿Cómo busca alguien mi cita?",
+  "faq.a.lookup":
+    "Van a la página Buscar, escriben el código de cita y se abre la conversación sellada exacta: el texto completo, la fecha y la hora en que se selló, y qué IA se usó. No hace falta cuenta ni pago para leerla.",
+  "faq.q.readerAccount": "¿Los lectores o revisores necesitan una cuenta para verificar?",
+  "faq.a.readerAccount":
+    "No. Cualquiera con el código puede leer la conversación, gratis y sin registrarse. Como el registro también vive en infraestructura pública independiente, un revisor decidido puede incluso verificarlo sin usar para nada el sitio web de DeCite.",
+
+  "faq.q.where": "¿Dónde se almacena realmente la conversación?",
+  "faq.a.where":
+    "En dos lugares públicos independientes que ninguna empresa controla por sí sola: un archivo público permanente que guarda la conversación completa y un registro público que anota su código de cita y el momento en que se selló. DeCite es solo una ventana cómoda a ambos; el registro no depende de nosotros para existir.",
+  "faq.q.ifGone": "¿Qué pasa si DeCite desaparece algún día?",
+  "faq.a.ifGone":
+    "Tus citas siguen funcionando. Como cada una se almacena en infraestructura pública independiente, cualquiera puede abrir directamente el registro público y el archivo permanente: sin sitio web, sin cuenta y sin necesidad de permiso. La prueba sobrevive a la empresa.",
+  "faq.q.timestamp": "¿Cómo sé que se puede confiar en la fecha y la hora?",
+  "faq.a.timestamp":
+    "Cuando se sella una conversación, la fecha y la hora exactas se escriben en un registro público que después no se puede alterar a escondidas. Así que el momento no es solo nuestra palabra: cualquiera puede comprobarlo de forma independiente, y eso es lo que hace que resista el escrutinio.",
+
+  "faq.q.public": "¿La conversación sellada es pública? ¿Quién puede verla?",
+  "faq.a.public":
+    "Sí. Una conversación sellada está pensada para ser citable, así que cualquiera que tenga el código de cita puede leerla, y permanece pública de forma permanente. Sella solo conversaciones que te sientas cómodo haciendo públicas para siempre.",
+  "faq.q.sensitive": "¿Qué pasa con la información personal o confidencial del chat?",
+  "faq.a.sensitive":
+    "Como sellar es permanente y público, elimina cualquier cosa privada o sensible —nombres, datos de contacto, datos no publicados, cualquier información confidencial— antes de sellar. Una vez sellada, la conversación no se puede editar ni retirar, así que revisa el texto con cuidado primero.",
+  "faq.q.email": "¿Guardáis mi correo y para qué?",
+  "faq.a.email":
+    "El correo es opcional. Si lo proporcionas, lo usamos solo para enviarte tu cita y para que puedas volver a encontrar tus códigos en Mis recibos. No forma parte del registro público y no lo usamos para nada más.",
+
   "footer.note": "Permanente · Con fecha y hora · Verificable de forma independiente",
   "common.user": "Usuario",
   "common.assistant": "Asistente",
@@ -899,6 +1163,94 @@ const fr: Dict = {
   "feedback.thanks.body": "Votre retour a bien été reçu. Il aide vraiment à façonner DeCite.",
   "feedback.thanks.again": "Envoyer un autre retour",
   "feedback.thanks.home": "Retour à l'accueil",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "Foire aux questions",
+  "faq.subtitle":
+    "Tout sur le scellement d'une conversation avec une IA, sa citation et la façon dont la preuve reste lisible pour toujours. Vous ne trouvez pas votre question ? Envoyez-la via Retour — nous répondons à tout.",
+  "faq.group.about": "À propos de DeCite",
+  "faq.group.sealing": "Sceller une conversation",
+  "faq.group.citation": "Votre citation",
+  "faq.group.readers": "Pour les lecteurs et relecteurs",
+  "faq.group.trust": "Permanence et confiance",
+  "faq.group.privacy": "Confidentialité et sécurité",
+  "faq.stillTitle": "Encore une question ?",
+  "faq.stillBody":
+    "Si rien ici n'y a répondu, posez-la-nous directement — nous lisons chaque message et répondons généralement sous un jour.",
+  "faq.stillCta": "Poser une question",
+  "faq.sealCta": "Sceller un dialogue",
+
+  "faq.q.what": "Qu'est-ce que DeCite ?",
+  "faq.a.what":
+    "DeCite enregistre une conversation que vous avez eue avec une IA dans un registre public permanent et vous donne un code de citation court — comme DC-20260619-01 — que vous pouvez insérer dans votre article, votre livre ou votre publication. Quiconque possède le code peut ensuite le rechercher et lire la conversation exacte, mot pour mot, ainsi que la date et l'heure de l'enregistrement. Cela transforme un échange qui pourrait disparaître en une source toujours vérifiable.",
+  "faq.q.who": "À qui cela s'adresse-t-il ?",
+  "faq.a.who":
+    "À toute personne dont la réflexion a pris forme au fil d'une conversation avec une IA et qui souhaite l'attribuer honnêtement : chercheurs, étudiants, auteurs, journalistes et enseignants. Les auteurs s'en servent pour créer un enregistrement permanent et citable ; les lecteurs, relecteurs et éditeurs s'en servent pour vérifier exactement ce qui a été demandé à l'IA et ce qu'elle a répondu.",
+  "faq.q.free": "Est-ce vraiment gratuit ? Y a-t-il un piège ?",
+  "faq.a.free":
+    "Le scellement est gratuit pendant notre lancement — sans compte, sans carte, sans étape cachée. Nous prenons en charge le coût d'enregistrement et d'inscription permanente de chaque conversation. Si cela devait changer, le prix serait clairement affiché avant que vous ne scelliez quoi que ce soit, et les conversations déjà scellées le resteront pour toujours.",
+
+  "faq.q.how": "Comment sceller une conversation ?",
+  "faq.a.how":
+    "Collez soit un lien de partage public vers votre échange avec l'IA, soit le texte de la conversation lui-même, ajoutez un titre court indiquant où vous l'utiliserez, puis cliquez sur Sceller. En quelques secondes, DeCite enregistre la conversation dans une archive permanente, réserve votre code de citation et l'inscrit dans un registre public. Vous voyez la citation aussitôt, et nous vous l'envoyons par e-mail si vous indiquez votre adresse.",
+  "faq.q.linkVsPaste": "Quelle est la différence entre « Lien de partage officiel » et « Coller le texte » ?",
+  "faq.a.linkVsPaste":
+    "Utilisez Lien de partage officiel lorsque votre IA vous fournit un lien public que tout le monde peut ouvrir — DeCite y lit la conversation et en enregistre une copie permanente. Utilisez Coller le texte lorsqu'il n'y a pas de lien public : vous collez vous-même le texte de la conversation et DeCite enregistre exactement ce que vous collez. Les deux produisent le même type d'enregistrement permanent et citable.",
+  "faq.q.platforms": "Quelles plateformes d'IA sont prises en charge ?",
+  "faq.a.platforms":
+    "Les liens de partage publics fonctionnent avec ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen et d'autres. Pour toute IA qui ne propose pas de lien public — ou pour un échange privé que vous préférez coller — utilisez Coller le texte, qui fonctionne avec n'importe quel outil, y compris ceux qui ne figurent pas dans cette liste.",
+  "faq.q.gemini": "Gemini ou DeepSeek ne me donnent pas de lien public. Que faire ?",
+  "faq.a.gemini":
+    "Certaines plateformes conservent l'échange dans votre navigateur ; un lien ne peut donc pas être lu par des lecteurs extérieurs. Ouvrez la conversation, sélectionnez et copiez le texte, puis passez à Coller le texte et collez-le. DeCite enregistre exactement ce que vous collez. Vous pouvez aussi ajouter le lien de l'échange d'origine dans le champ facultatif pour que votre citation note quelle IA vous avez utilisée.",
+  "faq.q.account": "Ai-je besoin d'un compte, d'un paiement ou d'un portefeuille crypto ?",
+  "faq.a.account":
+    "Non. Aucune inscription, aucune carte, rien à installer. Vous n'avez besoin ni de portefeuille ni de connaissances techniques — DeCite s'occupe de l'enregistrement et de l'inscription pour vous en coulisses. L'e-mail est facultatif et sert uniquement à vous envoyer la citation et à vous permettre de la retrouver plus tard.",
+  "faq.q.time": "Combien de temps prend le scellement ?",
+  "faq.a.time":
+    "Généralement quelques secondes seulement. Laissez la page ouverte pendant le traitement — DeCite enregistre la conversation dans une archive permanente, réserve votre code et l'inscrit dans le registre public. Une fois terminé, vous voyez votre citation immédiatement.",
+  "faq.q.language": "Puis-je sceller une conversation dans n'importe quelle langue ?",
+  "faq.a.language":
+    "Oui. DeCite enregistre le texte de la conversation tel quel, dans n'importe quelle langue et écriture. L'interface elle-même est disponible en plusieurs langues — changez-la à tout moment depuis le menu de langue de la barre supérieure.",
+
+  "faq.q.code": "À quoi ressemble le code de citation ?",
+  "faq.a.code":
+    "C'est un code court et net de la forme DC-AAAAMMJJ-NN — par exemple DC-20260619-01, soit la première conversation scellée le 19 juin 2026. Il est facile à saisir dans une bibliographie et facile à rechercher pour un lecteur.",
+  "faq.q.cite": "Comment la citer dans mon article ou mon livre ?",
+  "faq.a.cite":
+    "Lorsque vous scellez une conversation, DeCite vous fournit une référence prête à l'emploi au format APA 7 que vous pouvez copier directement dans votre bibliographie, avec le code de citation et le lien vers le registre public. Vous êtes libre de l'adapter au style exigé par votre revue ou votre éditeur.",
+  "faq.q.edit": "Puis-je modifier ou mettre à jour une conversation après l'avoir scellée ?",
+  "faq.a.edit":
+    "Non — et c'est tout l'intérêt. Une conversation scellée ne peut être modifiée par personne, pas même par nous, et c'est précisément ce qui la rend fiable comme citation. Si la conversation s'est poursuivie ou si vous voulez en saisir une version plus récente, scellez-la simplement à nouveau pour obtenir une citation distincte.",
+  "faq.q.lost": "J'ai perdu mon code de citation. Comment le retrouver ?",
+  "faq.a.lost":
+    "Si vous avez indiqué votre e-mail lors du scellement, allez dans Mes reçus et saisissez ce même e-mail pour voir tous les codes de citation qui y sont liés. Si vous n'avez pas indiqué d'e-mail, il vous faudra le code lui-même pour rechercher la conversation — conservez-le donc en lieu sûr.",
+
+  "faq.q.lookup": "Comment quelqu'un recherche-t-il ma citation ?",
+  "faq.a.lookup":
+    "Il se rend sur la page Rechercher, saisit le code de citation, et la conversation scellée exacte s'ouvre : le texte intégral, la date et l'heure du scellement, et l'IA utilisée. Aucun compte ni paiement n'est nécessaire pour la lire.",
+  "faq.q.readerAccount": "Les lecteurs ou relecteurs ont-ils besoin d'un compte pour vérifier ?",
+  "faq.a.readerAccount":
+    "Non. Quiconque possède le code peut lire la conversation, gratuitement et sans inscription. Comme l'enregistrement réside aussi sur une infrastructure publique indépendante, un relecteur déterminé peut même le vérifier sans utiliser le site DeCite du tout.",
+
+  "faq.q.where": "Où la conversation est-elle réellement stockée ?",
+  "faq.a.where":
+    "Dans deux lieux publics indépendants qu'aucune entreprise ne contrôle à elle seule : une archive publique permanente qui conserve la conversation intégrale, et un registre public qui consigne son code de citation et le moment du scellement. DeCite n'est qu'une fenêtre pratique vers les deux — l'enregistrement ne dépend pas de nous pour exister.",
+  "faq.q.ifGone": "Que se passe-t-il si DeCite venait à disparaître ?",
+  "faq.a.ifGone":
+    "Vos citations continuent de fonctionner. Comme chacune est stockée sur une infrastructure publique indépendante, n'importe qui peut toujours ouvrir directement le registre public et l'archive permanente — sans site web, sans compte et sans autorisation. La preuve survit à l'entreprise.",
+  "faq.q.timestamp": "Comment savoir que la date et l'heure sont fiables ?",
+  "faq.a.timestamp":
+    "Lorsqu'une conversation est scellée, la date et l'heure exactes sont inscrites dans un registre public qui ne peut être discrètement altéré par la suite. L'horodatage n'est donc pas seulement notre parole — n'importe qui peut le vérifier de façon indépendante, et c'est ce qui lui permet de résister à l'examen.",
+
+  "faq.q.public": "La conversation scellée est-elle publique ? Qui peut la voir ?",
+  "faq.a.public":
+    "Oui. Une conversation scellée est destinée à être citable, donc quiconque possède le code de citation peut la lire, et elle reste publique de façon permanente. Ne scellez que des conversations que vous êtes à l'aise de rendre publiques pour toujours.",
+  "faq.q.sensitive": "Et les informations personnelles ou confidentielles dans l'échange ?",
+  "faq.a.sensitive":
+    "Le scellement étant permanent et public, retirez tout élément privé ou sensible — noms, coordonnées, données non publiées, toute information confidentielle — avant de sceller. Une fois scellée, la conversation ne peut être ni modifiée ni retirée, alors relisez attentivement le texte au préalable.",
+  "faq.q.email": "Conservez-vous mon e-mail, et pour quoi faire ?",
+  "faq.a.email":
+    "L'e-mail est facultatif. Si vous en fournissez un, nous l'utilisons uniquement pour vous envoyer votre citation et vous permettre de retrouver vos codes dans Mes reçus. Il ne fait pas partie du registre public et nous ne l'utilisons pour rien d'autre.",
+
   "footer.note": "Permanent · Horodaté · Vérifiable de façon indépendante",
   "common.user": "Utilisateur",
   "common.assistant": "Assistant",
@@ -1046,6 +1398,94 @@ const ar: Dict = {
   "feedback.thanks.body": "تم استلام ملاحظتك. إنها تساعد فعلًا في تشكيل DeCite.",
   "feedback.thanks.again": "إرسال المزيد",
   "feedback.thanks.home": "العودة إلى الرئيسية",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "الأسئلة الشائعة",
+  "faq.subtitle":
+    "كل ما يتعلق بختم محادثة مع الذكاء الاصطناعي والاستشهاد بها وكيف يبقى الدليل قابلاً للقراءة إلى الأبد. لم تجد سؤالك؟ أرسله عبر الملاحظات — نجيب عن كل شيء.",
+  "faq.group.about": "حول DeCite",
+  "faq.group.sealing": "ختم محادثة",
+  "faq.group.citation": "استشهادك",
+  "faq.group.readers": "للقرّاء والمراجعين",
+  "faq.group.trust": "الدوام والموثوقية",
+  "faq.group.privacy": "الخصوصية والأمان",
+  "faq.stillTitle": "ما زال لديك سؤال؟",
+  "faq.stillBody":
+    "إذا لم يُجب شيء هنا عن سؤالك، فاسألنا مباشرةً — نقرأ كل رسالة ونرد عادةً خلال يوم واحد.",
+  "faq.stillCta": "اطرح سؤالاً",
+  "faq.sealCta": "اختم محادثة",
+
+  "faq.q.what": "ما هو DeCite؟",
+  "faq.a.what":
+    "يحفظ DeCite محادثة أجريتها مع ذكاء اصطناعي في سجل عام دائم ويمنحك رمز استشهاد قصيرًا — مثل DC-20260619-01 — يمكنك وضعه في ورقتك البحثية أو كتابك أو مقالتك. وأي شخص لديه الرمز يستطيع لاحقًا البحث عنه وقراءة المحادثة نفسها كلمة بكلمة، مع التاريخ والوقت اللذين حُفظت فيهما. إنه يحوّل محادثة قد تختفي إلى مصدر يمكن التحقق منه دائمًا.",
+  "faq.q.who": "لمن هذه الخدمة؟",
+  "faq.a.who":
+    "لكل من تبلور تفكيره خلال محادثة مع ذكاء اصطناعي ويريد أن يَنسب ذلك بأمانة — الباحثون والطلاب والمؤلفون والصحفيون والمعلمون. يستخدمه المؤلفون لإنشاء سجل دائم قابل للاستشهاد؛ ويستخدمه القرّاء والمراجعون والمحررون للتحقق بدقة مما سُئل عنه الذكاء الاصطناعي وما أجاب به.",
+  "faq.q.free": "هل هو مجاني حقًا؟ هل من مقابل خفي؟",
+  "faq.a.free":
+    "الختم مجاني خلال فترة الإطلاق — بلا حساب ولا بطاقة ولا خطوة خفية. نحن نتحمّل تكلفة حفظ كل محادثة وتسجيلها بشكل دائم نيابةً عنك. وإن تغيّر ذلك يومًا، فسيُعرض السعر بوضوح قبل أن تختم أي شيء، وتبقى المحادثات المختومة بالفعل مختومة إلى الأبد.",
+
+  "faq.q.how": "كيف أختم محادثة؟",
+  "faq.a.how":
+    "الصق إمّا رابط مشاركة عامًا لمحادثة الذكاء الاصطناعي وإمّا نص المحادثة نفسه، وأضف عنوانًا قصيرًا لمكان استخدامك له، ثم انقر «اختم». في غضون ثوانٍ يحفظ DeCite المحادثة في أرشيف دائم، ويحجز رمز الاستشهاد الخاص بك، ويسجّلها في سجل عام. ستظهر لك الاستشهاد فورًا، وسنرسله إليك عبر البريد إن أضفت عنوانك.",
+  "faq.q.linkVsPaste": "ما الفرق بين «رابط مشاركة رسمي» و«لصق النص مباشرة»؟",
+  "faq.a.linkVsPaste":
+    "استخدم «رابط مشاركة رسمي» عندما يمنحك الذكاء الاصطناعي رابطًا عامًا يستطيع أي شخص فتحه — يقرأ DeCite المحادثة منه ويحفظ نسخة دائمة. واستخدم «لصق النص مباشرة» عند عدم وجود رابط عام: تلصق نص المحادثة بنفسك ويحفظ DeCite بالضبط ما تلصقه. وكلاهما ينتج النوع نفسه من السجل الدائم القابل للاستشهاد.",
+  "faq.q.platforms": "ما منصات الذكاء الاصطناعي المدعومة؟",
+  "faq.a.platforms":
+    "تعمل روابط المشاركة العامة من ChatGPT وClaude وGrok وCopilot وPerplexity وPoe وMistral وMeta AI وQwen وغيرها. ولأي ذكاء اصطناعي لا يوفّر رابطًا عامًا — أو لمحادثة خاصة تفضّل لصقها — استخدم «لصق النص مباشرة»، الذي يعمل مع أي أداة، بما فيها غير المدرجة هنا.",
+  "faq.q.gemini": "Gemini أو DeepSeek لا يمنحانني رابطًا عامًا. ماذا أفعل؟",
+  "faq.a.gemini":
+    "تُبقي بعض المنصات المحادثة داخل متصفّحك، لذا لا يستطيع القرّاء الخارجيون قراءتها من رابط. افتح المحادثة، وحدّد النص وانسخه، ثم انتقل إلى «لصق النص مباشرة» والصقه. يحفظ DeCite بالضبط ما تلصقه. ويمكنك أيضًا إضافة رابط المحادثة الأصلية في الحقل الاختياري كي يسجّل استشهادك أي ذكاء اصطناعي استخدمت.",
+  "faq.q.account": "هل أحتاج إلى حساب أو دفع أو محفظة عملات رقمية؟",
+  "faq.a.account":
+    "لا. لا تسجيل ولا بطاقة ولا شيء لتثبيته. لا تحتاج إلى محفظة ولا إلى أي معرفة تقنية — يتولّى DeCite الحفظ والتسجيل نيابةً عنك خلف الكواليس. البريد الإلكتروني اختياري، ويُستخدم فقط لإرسال الاستشهاد إليك وتمكينك من إيجاده لاحقًا.",
+  "faq.q.time": "كم يستغرق الختم؟",
+  "faq.a.time":
+    "عادةً بضع ثوانٍ فقط. أبقِ الصفحة مفتوحة أثناء العمل — يحفظ DeCite المحادثة في أرشيف دائم، ويحجز رمزك، ويسجّلها في السجل العام. وعند الانتهاء سترى استشهادك فورًا.",
+  "faq.q.language": "هل يمكنني ختم محادثة بأي لغة؟",
+  "faq.a.language":
+    "نعم. يحفظ DeCite نص المحادثة كما هو تمامًا، بأي لغة وأي خط. والواجهة نفسها متوفرة بعدة لغات — بدّلها في أي وقت من قائمة اللغة في الشريط العلوي.",
+
+  "faq.q.code": "كيف يبدو رمز الاستشهاد؟",
+  "faq.a.code":
+    "إنه رمز قصير وواضح بصيغة DC-YYYYMMDD-NN — مثل DC-20260619-01، أي أول محادثة مختومة في 19 يونيو 2026. يَسهُل كتابته في قائمة المراجع ويَسهُل على القارئ البحث عنه.",
+  "faq.q.cite": "كيف أستشهد به في ورقتي أو كتابي؟",
+  "faq.a.cite":
+    "عند ختم محادثة، يمنحك DeCite مرجعًا جاهزًا بنمط APA 7 يمكنك نسخه مباشرةً إلى قائمة مراجعك، مع رمز الاستشهاد ورابط السجل العام. ولك مطلق الحرية في تكييفه مع أي نمط تطلبه مجلتك أو دار نشرك.",
+  "faq.q.edit": "هل يمكنني تعديل محادثة أو تحديثها بعد ختمها؟",
+  "faq.a.edit":
+    "لا — وهذا هو جوهر الفكرة. لا يستطيع أحد تغيير محادثة مختومة، ولا نحن أنفسنا، وهذا بالضبط ما يجعلها جديرة بالثقة كاستشهاد. وإن استمرّت المحادثة أو أردت حفظ نسخة أحدث، فاختمها من جديد فحسب لتحصل على استشهاد منفصل.",
+  "faq.q.lost": "فقدت رمز الاستشهاد. كيف أجده مجددًا؟",
+  "faq.a.lost":
+    "إن أضفت بريدك عند الختم، فانتقل إلى «إيصالاتي» وأدخل البريد نفسه لترى كل رموز الاستشهاد المرتبطة به. وإن لم تضف بريدًا، فستحتاج إلى الرمز نفسه للبحث عن المحادثة — لذا احتفظ به في مكان آمن.",
+
+  "faq.q.lookup": "كيف يبحث شخص ما عن استشهادي؟",
+  "faq.a.lookup":
+    "ينتقل إلى صفحة «بحث»، ويكتب رمز الاستشهاد، فتُفتح المحادثة المختومة نفسها بالضبط — النص الكامل، وتاريخ ووقت الختم، والذكاء الاصطناعي المستخدَم. ولا يلزم حساب ولا دفع لقراءتها.",
+  "faq.q.readerAccount": "هل يحتاج القرّاء أو المراجعون إلى حساب للتحقق؟",
+  "faq.a.readerAccount":
+    "لا. أي شخص لديه الرمز يستطيع قراءة المحادثة مجانًا وبلا تسجيل. ولأن السجل موجود أيضًا على بنية تحتية عامة مستقلة، يستطيع المراجع الجادّ التحقق منه حتى دون استخدام موقع DeCite إطلاقًا.",
+
+  "faq.q.where": "أين تُخزَّن المحادثة فعليًا؟",
+  "faq.a.where":
+    "في مكانين عامين مستقلين لا تتحكّم فيهما أي شركة بمفردها: أرشيف عام دائم يحفظ المحادثة كاملة، وسجل عام يدوّن رمز استشهادها ولحظة ختمها. وما DeCite إلا نافذة مريحة على كليهما — فوجود السجل لا يعتمد علينا.",
+  "faq.q.ifGone": "ماذا يحدث إن اختفى DeCite يومًا ما؟",
+  "faq.a.ifGone":
+    "تظل استشهاداتك تعمل. لأن كلًا منها مخزَّن على بنية تحتية عامة مستقلة، يستطيع أي شخص فتح السجل العام والأرشيف الدائم مباشرةً — بلا موقع ولا حساب ولا إذن. فالدليل يبقى أطول من الشركة.",
+  "faq.q.timestamp": "كيف أعرف أن التاريخ والوقت جديران بالثقة؟",
+  "faq.a.timestamp":
+    "عند ختم محادثة، يُكتب تاريخها ووقتها بالضبط في سجل عام لا يمكن العبث به خفيةً لاحقًا. فالتوقيت ليس مجرد كلامنا — يستطيع أي شخص التحقق منه باستقلالية، وهذا ما يجعله يصمد أمام التدقيق.",
+
+  "faq.q.public": "هل المحادثة المختومة عامة؟ ومن يستطيع رؤيتها؟",
+  "faq.a.public":
+    "نعم. المحادثة المختومة مُعدّة لتكون قابلة للاستشهاد، لذا يستطيع أي شخص لديه رمز الاستشهاد قراءتها، وتبقى عامة بشكل دائم. اختم فقط المحادثات التي تطمئن إلى جعلها عامة إلى الأبد.",
+  "faq.q.sensitive": "ماذا عن المعلومات الشخصية أو السرية في المحادثة؟",
+  "faq.a.sensitive":
+    "لأن الختم دائم وعام، احذف أي شيء خاص أو حساس — الأسماء وبيانات الاتصال والبيانات غير المنشورة وأي معلومة سرية — قبل الختم. وبمجرد ختم المحادثة لا يمكن تعديلها ولا إزالتها، لذا راجع النص بعناية أولاً.",
+  "faq.q.email": "هل تخزّنون بريدي الإلكتروني، ولماذا؟",
+  "faq.a.email":
+    "البريد اختياري. إن قدّمته، نستخدمه فقط لإرسال استشهادك إليك وتمكينك من إيجاد رموزك مجددًا في «إيصالاتي». وهو ليس جزءًا من السجل العام ولا نستخدمه لأي غرض آخر.",
+
   "footer.note": "دائم · مؤرّخ بالوقت · قابل للتحقق باستقلالية",
   "common.user": "المستخدم",
   "common.assistant": "المساعد",
@@ -1193,6 +1633,94 @@ const pt: Dict = {
   "feedback.thanks.body": "Seu feedback foi recebido. Ele realmente ajuda a moldar o DeCite.",
   "feedback.thanks.again": "Enviar mais",
   "feedback.thanks.home": "Voltar ao início",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "Perguntas frequentes",
+  "faq.subtitle":
+    "Tudo sobre selar uma conversa com IA, citá-la e como a prova continua legível para sempre. Não encontrou sua pergunta? Envie pelo Feedback — respondemos a tudo.",
+  "faq.group.about": "Sobre o DeCite",
+  "faq.group.sealing": "Selar uma conversa",
+  "faq.group.citation": "Sua citação",
+  "faq.group.readers": "Para leitores e revisores",
+  "faq.group.trust": "Permanência e confiança",
+  "faq.group.privacy": "Privacidade e segurança",
+  "faq.stillTitle": "Ainda tem uma pergunta?",
+  "faq.stillBody":
+    "Se nada aqui respondeu, pergunte diretamente a nós — lemos cada mensagem e costumamos responder em um dia.",
+  "faq.stillCta": "Fazer uma pergunta",
+  "faq.sealCta": "Selar um diálogo",
+
+  "faq.q.what": "O que é o DeCite?",
+  "faq.a.what":
+    "O DeCite salva uma conversa que você teve com uma IA em um registro público permanente e lhe dá um código de citação curto — como DC-20260619-01 — que você pode colocar no seu artigo, livro ou publicação. Qualquer pessoa que tenha o código pode depois buscá-lo e ler a conversa exata, palavra por palavra, junto com a data e a hora em que foi salva. Ele transforma um bate-papo que poderia desaparecer em uma fonte que sempre pode ser verificada.",
+  "faq.q.who": "Para quem é?",
+  "faq.a.who":
+    "Para qualquer pessoa cujo pensamento tomou forma em conversa com uma IA e que queira atribuí-lo com honestidade — pesquisadores, estudantes, autores, jornalistas e educadores. Autores o usam para criar um registro permanente e citável; leitores, revisores e editores o usam para verificar exatamente o que foi perguntado à IA e o que ela respondeu.",
+  "faq.q.free": "É realmente grátis? Tem pegadinha?",
+  "faq.a.free":
+    "Selar é grátis durante o lançamento — sem conta, sem cartão, sem etapa oculta. Nós cobrimos o custo de salvar e registrar permanentemente cada conversa. Se isso um dia mudar, o preço será mostrado com clareza antes de você selar qualquer coisa, e as conversas já seladas permanecem seladas para sempre.",
+
+  "faq.q.how": "Como selo uma conversa?",
+  "faq.a.how":
+    "Cole um link público de compartilhamento do seu bate-papo com a IA ou o próprio texto da conversa, adicione um título curto de onde você vai usá-la e clique em Selar. Em poucos segundos, o DeCite salva a conversa em um arquivo permanente, reserva o seu código de citação e a registra em um registro público. Você verá a citação na hora, e a enviaremos por e-mail se você adicionar seu endereço.",
+  "faq.q.linkVsPaste": "Qual é a diferença entre «Link de compartilhamento oficial» e «Colar texto direto»?",
+  "faq.a.linkVsPaste":
+    "Use Link de compartilhamento oficial quando sua IA fornecer um link público que qualquer pessoa possa abrir — o DeCite lê a conversa a partir dele e salva uma cópia permanente. Use Colar texto direto quando não houver link público: você mesmo cola o texto da conversa e o DeCite salva exatamente o que você colar. Ambos produzem o mesmo tipo de registro permanente e citável.",
+  "faq.q.platforms": "Quais plataformas de IA são compatíveis?",
+  "faq.a.platforms":
+    "Links públicos de compartilhamento funcionam com ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen e mais. Para qualquer IA que não ofereça um link público — ou para um bate-papo privado que você prefira colar — use Colar texto direto, que funciona com qualquer ferramenta, inclusive as que não estão nesta lista.",
+  "faq.q.gemini": "Gemini ou DeepSeek não me dão um link público. O que faço?",
+  "faq.a.gemini":
+    "Algumas plataformas mantêm o bate-papo dentro do seu navegador, então um link não pode ser lido por leitores externos. Abra a conversa, selecione e copie o texto, depois mude para Colar texto direto e cole-o. O DeCite salva exatamente o que você colar. Você também pode adicionar o link do bate-papo original no campo opcional para que sua citação registre qual IA você usou.",
+  "faq.q.account": "Preciso de conta, pagamento ou carteira de criptomoedas?",
+  "faq.a.account":
+    "Não. Não há cadastro, nem cartão, nem nada para instalar. Você não precisa de carteira nem de conhecimento técnico — o DeCite cuida de salvar e registrar para você nos bastidores. O e-mail é opcional e serve apenas para lhe enviar a citação e permitir que você a encontre de novo depois.",
+  "faq.q.time": "Quanto tempo leva para selar?",
+  "faq.a.time":
+    "Normalmente só alguns segundos. Mantenha a página aberta enquanto ele trabalha — o DeCite está salvando a conversa em um arquivo permanente, reservando o seu código e registrando-a no registro público. Quando terminar, você verá sua citação imediatamente.",
+  "faq.q.language": "Posso selar uma conversa em qualquer idioma?",
+  "faq.a.language":
+    "Sim. O DeCite salva o texto da conversa exatamente como está, em qualquer idioma e alfabeto. A própria interface está disponível em vários idiomas — troque a qualquer momento pelo menu de idioma na barra superior.",
+
+  "faq.q.code": "Como é o código de citação?",
+  "faq.a.code":
+    "É um código curto e limpo no formato DC-AAAAMMDD-NN — por exemplo DC-20260619-01, ou seja, a primeira conversa selada em 19 de junho de 2026. É fácil de digitar numa bibliografia e fácil de um leitor buscar.",
+  "faq.q.cite": "Como faço para citá-la no meu artigo ou livro?",
+  "faq.a.cite":
+    "Ao selar uma conversa, o DeCite lhe dá uma referência pronta no estilo APA 7 que você pode copiar direto para a sua bibliografia, junto com o código de citação e o link do registro público. Você tem liberdade para adaptá-la ao estilo que sua revista ou editora exigir.",
+  "faq.q.edit": "Posso editar ou atualizar uma conversa depois de selá-la?",
+  "faq.a.edit":
+    "Não — e esse é justamente o ponto. Uma conversa selada não pode ser alterada por ninguém, nem por nós, e é exatamente isso que a torna confiável como citação. Se a conversa continuou ou você quer registrar uma versão mais recente, basta selá-la de novo para obter uma citação separada.",
+  "faq.q.lost": "Perdi meu código de citação. Como o encontro de novo?",
+  "faq.a.lost":
+    "Se você adicionou seu e-mail ao selar, vá em Meus recibos e informe esse mesmo e-mail para ver todos os códigos de citação ligados a ele. Se não adicionou um e-mail, você precisará do próprio código para buscar a conversa — então guarde-o em lugar seguro.",
+
+  "faq.q.lookup": "Como alguém busca minha citação?",
+  "faq.a.lookup":
+    "A pessoa vai à página Buscar, digita o código de citação, e a conversa selada exata se abre — o texto completo, a data e a hora em que foi selada, e qual IA foi usada. Não é preciso conta nem pagamento para lê-la.",
+  "faq.q.readerAccount": "Leitores ou revisores precisam de conta para verificar?",
+  "faq.a.readerAccount":
+    "Não. Qualquer pessoa com o código pode ler a conversa, de graça e sem cadastro. Como o registro também fica em infraestrutura pública independente, um revisor determinado pode até verificá-lo sem usar o site do DeCite.",
+
+  "faq.q.where": "Onde a conversa fica realmente armazenada?",
+  "faq.a.where":
+    "Em dois lugares públicos independentes que nenhuma empresa controla sozinha: um arquivo público permanente que guarda a conversa completa e um registro público que anota seu código de citação e o momento em que foi selada. O DeCite é só uma janela conveniente para ambos — o registro não depende de nós para existir.",
+  "faq.q.ifGone": "O que acontece se o DeCite um dia desaparecer?",
+  "faq.a.ifGone":
+    "Suas citações continuam funcionando. Como cada uma fica armazenada em infraestrutura pública independente, qualquer pessoa ainda pode abrir diretamente o registro público e o arquivo permanente — sem site, sem conta e sem precisar de permissão. A prova sobrevive à empresa.",
+  "faq.q.timestamp": "Como sei que a data e a hora são confiáveis?",
+  "faq.a.timestamp":
+    "Quando uma conversa é selada, a data e a hora exatas são gravadas em um registro público que não pode ser alterado às escondidas depois. Assim, o horário não é só a nossa palavra — qualquer pessoa pode verificá-lo de forma independente, e é isso que o faz resistir ao escrutínio.",
+
+  "faq.q.public": "A conversa selada é pública? Quem pode vê-la?",
+  "faq.a.public":
+    "Sim. Uma conversa selada existe para ser citável, então qualquer pessoa que tenha o código de citação pode lê-la, e ela permanece pública para sempre. Sele apenas conversas que você se sinta à vontade de tornar públicas para sempre.",
+  "faq.q.sensitive": "E as informações pessoais ou confidenciais no bate-papo?",
+  "faq.a.sensitive":
+    "Como selar é permanente e público, remova qualquer coisa privada ou sensível — nomes, dados de contato, dados não publicados, qualquer informação confidencial — antes de selar. Depois de selada, a conversa não pode ser editada nem retirada, então revise o texto com cuidado antes.",
+  "faq.q.email": "Vocês armazenam meu e-mail e para quê?",
+  "faq.a.email":
+    "O e-mail é opcional. Se você fornecer um, nós o usamos apenas para lhe enviar sua citação e para você reencontrar seus códigos em Meus recibos. Ele não faz parte do registro público e não o usamos para mais nada.",
+
   "footer.note": "Permanente · Com data e hora · Verificável de forma independente",
   "common.user": "Usuário",
   "common.assistant": "Assistente",
@@ -1340,6 +1868,94 @@ const ru: Dict = {
   "feedback.thanks.body": "Ваш отзыв получен. Он действительно помогает развивать DeCite.",
   "feedback.thanks.again": "Отправить ещё",
   "feedback.thanks.home": "На главную",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "Частые вопросы",
+  "faq.subtitle":
+    "Всё о том, как запечатать разговор с ИИ, сослаться на него и почему доказательство остаётся читаемым навсегда. Не нашли свой вопрос? Пришлите его через «Отзывы» — мы отвечаем на всё.",
+  "faq.group.about": "О DeCite",
+  "faq.group.sealing": "Как запечатать разговор",
+  "faq.group.citation": "Ваша ссылка",
+  "faq.group.readers": "Для читателей и рецензентов",
+  "faq.group.trust": "Постоянство и доверие",
+  "faq.group.privacy": "Конфиденциальность и безопасность",
+  "faq.stillTitle": "Остался вопрос?",
+  "faq.stillBody":
+    "Если здесь нет ответа, спросите нас напрямую — мы читаем каждое сообщение и обычно отвечаем в течение дня.",
+  "faq.stillCta": "Задать вопрос",
+  "faq.sealCta": "Запечатать диалог",
+
+  "faq.q.what": "Что такое DeCite?",
+  "faq.a.what":
+    "DeCite сохраняет ваш разговор с ИИ в постоянную публичную запись и выдаёт короткий код ссылки — например DC-20260619-01, — который можно вставить в вашу статью, книгу или публикацию. Любой, у кого есть этот код, сможет затем найти его и прочитать тот самый разговор слово в слово, вместе с датой и временем сохранения. Так разговор, который мог бы исчезнуть, превращается в источник, который всегда можно проверить.",
+  "faq.q.who": "Для кого это?",
+  "faq.a.who":
+    "Для всех, чья мысль сложилась в разговоре с ИИ и кто хочет честно указать источник, — исследователей, студентов, авторов, журналистов и преподавателей. Авторы используют это, чтобы создать постоянную запись, на которую можно сослаться; читатели, рецензенты и редакторы — чтобы проверить, что именно спрашивали у ИИ и что он ответил.",
+  "faq.q.free": "Это правда бесплатно? В чём подвох?",
+  "faq.a.free":
+    "На время запуска запечатывание бесплатно — без аккаунта, без карты, без скрытых шагов. Расходы на сохранение и постоянную регистрацию каждого разговора мы берём на себя. Если это когда-нибудь изменится, цена будет ясно показана прежде, чем вы что-либо запечатаете, а уже запечатанные разговоры останутся запечатанными навсегда.",
+
+  "faq.q.how": "Как запечатать разговор?",
+  "faq.a.how":
+    "Вставьте либо публичную ссылку на ваш чат с ИИ, либо сам текст разговора, добавьте короткое название того, где вы его используете, и нажмите «Запечатать». За несколько секунд DeCite сохраняет разговор в постоянный архив, резервирует ваш код ссылки и заносит его в публичный реестр. Ссылку вы увидите сразу, а если укажете адрес — мы отправим её вам на почту.",
+  "faq.q.linkVsPaste": "В чём разница между «Официальной ссылкой» и «Вставить текст»?",
+  "faq.a.linkVsPaste":
+    "Используйте «Официальную ссылку», когда ИИ даёт публичную ссылку, которую может открыть любой, — DeCite читает по ней разговор и сохраняет постоянную копию. Используйте «Вставить текст», когда публичной ссылки нет: вы сами вставляете текст разговора, и DeCite сохраняет ровно то, что вы вставили. Оба способа дают одинаковую постоянную запись, на которую можно сослаться.",
+  "faq.q.platforms": "Какие платформы ИИ поддерживаются?",
+  "faq.a.platforms":
+    "Публичные ссылки работают из ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen и других. Для любого ИИ, который не даёт публичной ссылки, — или для приватного чата, который вы предпочтёте вставить, — используйте «Вставить текст»: он работает с любым инструментом, в том числе с теми, что не в этом списке.",
+  "faq.q.gemini": "Gemini или DeepSeek не дают мне публичной ссылки. Что делать?",
+  "faq.a.gemini":
+    "Некоторые платформы держат чат внутри вашего браузера, поэтому по ссылке его не прочитают сторонние читатели. Откройте разговор, выделите и скопируйте текст, затем перейдите на «Вставить текст» и вставьте его. DeCite сохраняет ровно то, что вы вставили. Можно также указать ссылку на исходный чат в необязательном поле, чтобы в вашей записи отметилось, каким ИИ вы пользовались.",
+  "faq.q.account": "Нужны ли аккаунт, оплата или криптокошелёк?",
+  "faq.a.account":
+    "Нет. Никакой регистрации, никакой карты и ничего устанавливать. Вам не нужны ни кошелёк, ни технические знания — DeCite берёт сохранение и регистрацию на себя за кулисами. Электронная почта необязательна и используется только чтобы прислать вам ссылку и дать найти её позже.",
+  "faq.q.time": "Сколько занимает запечатывание?",
+  "faq.a.time":
+    "Обычно всего несколько секунд. Пока идёт работа, держите страницу открытой — DeCite сохраняет разговор в постоянный архив, резервирует ваш код и заносит его в публичный реестр. Как только всё готово, вы сразу увидите свою ссылку.",
+  "faq.q.language": "Можно ли запечатать разговор на любом языке?",
+  "faq.a.language":
+    "Да. DeCite сохраняет текст разговора точно как есть, на любом языке и в любой письменности. Сам интерфейс доступен на нескольких языках — переключите его в любой момент в меню языка в верхней панели.",
+
+  "faq.q.code": "Как выглядит код ссылки?",
+  "faq.a.code":
+    "Это короткий и понятный код вида DC-ГГГГММДД-NN — например DC-20260619-01, то есть первый разговор, запечатанный 19 июня 2026 года. Его легко вписать в список литературы и легко найти читателю.",
+  "faq.q.cite": "Как сослаться на это в статье или книге?",
+  "faq.a.cite":
+    "Когда вы запечатываете разговор, DeCite даёт готовую ссылку в стиле APA 7, которую можно скопировать прямо в список литературы, вместе с кодом ссылки и адресом публичной записи. Вы вправе адаптировать её под любой стиль, который требует ваш журнал или издатель.",
+  "faq.q.edit": "Можно ли изменить или обновить разговор после запечатывания?",
+  "faq.a.edit":
+    "Нет — и в этом весь смысл. Запечатанный разговор не может изменить никто, включая нас, и именно это делает его надёжным как ссылку. Если разговор продолжился или вы хотите зафиксировать более новую версию, просто запечатайте его снова и получите отдельную ссылку.",
+  "faq.q.lost": "Я потерял код ссылки. Как найти его снова?",
+  "faq.a.lost":
+    "Если при запечатывании вы указали почту, зайдите в «Мои квитанции» и введите тот же адрес, чтобы увидеть все привязанные к нему коды ссылок. Если почту вы не указывали, для поиска разговора понадобится сам код — поэтому храните его в надёжном месте.",
+
+  "faq.q.lookup": "Как кто-то находит мою ссылку?",
+  "faq.a.lookup":
+    "Он заходит на страницу «Найти», вводит код ссылки — и открывается тот самый запечатанный разговор: полный текст, дата и время запечатывания и какой ИИ использовался. Чтобы прочитать его, не нужны ни аккаунт, ни оплата.",
+  "faq.q.readerAccount": "Нужен ли читателям или рецензентам аккаунт для проверки?",
+  "faq.a.readerAccount":
+    "Нет. Любой, у кого есть код, может прочитать разговор бесплатно и без регистрации. Поскольку запись хранится ещё и на независимой публичной инфраструктуре, дотошный рецензент может проверить её даже вовсе не пользуясь сайтом DeCite.",
+
+  "faq.q.where": "Где на самом деле хранится разговор?",
+  "faq.a.where":
+    "В двух независимых публичных местах, которые не контролирует ни одна отдельная компания: в постоянном публичном архиве, где лежит весь разговор, и в публичном реестре, который фиксирует его код ссылки и момент запечатывания. DeCite — лишь удобное окно к обоим; существование записи от нас не зависит.",
+  "faq.q.ifGone": "Что будет, если DeCite когда-нибудь исчезнет?",
+  "faq.a.ifGone":
+    "Ваши ссылки продолжат работать. Поскольку каждая хранится на независимой публичной инфраструктуре, любой по-прежнему сможет напрямую открыть публичный реестр и постоянный архив — без сайта, без аккаунта и без разрешений. Доказательство переживает компанию.",
+  "faq.q.timestamp": "Как узнать, что дате и времени можно доверять?",
+  "faq.a.timestamp":
+    "Когда разговор запечатывается, точная дата и время записываются в публичный реестр, который потом нельзя незаметно изменить. Поэтому время — не просто наше слово: любой может проверить его независимо, и именно это позволяет ему выдержать придирчивую проверку.",
+
+  "faq.q.public": "Запечатанный разговор публичный? Кто может его видеть?",
+  "faq.a.public":
+    "Да. Запечатанный разговор предназначен для цитирования, поэтому любой, у кого есть код ссылки, может его прочитать, и он остаётся публичным навсегда. Запечатывайте только те разговоры, которые вам спокойно сделать публичными навсегда.",
+  "faq.q.sensitive": "А как насчёт личной или конфиденциальной информации в чате?",
+  "faq.a.sensitive":
+    "Поскольку запечатывание постоянно и публично, перед ним уберите всё личное или чувствительное — имена, контакты, неопубликованные данные, любую конфиденциальную информацию. После запечатывания разговор нельзя ни изменить, ни снять, поэтому сначала внимательно просмотрите текст.",
+  "faq.q.email": "Вы храните мою почту и зачем?",
+  "faq.a.email":
+    "Почта необязательна. Если вы её укажете, мы используем её только чтобы прислать вам вашу ссылку и дать вам снова найти ваши коды в «Моих квитанциях». Она не входит в публичную запись, и больше ни для чего мы её не используем.",
+
   "footer.note": "Навсегда · С отметкой времени · Проверяемо независимо",
   "common.user": "Пользователь",
   "common.assistant": "Ассистент",
@@ -1487,6 +2103,94 @@ const de: Dict = {
   "feedback.thanks.body": "Dein Feedback ist eingegangen. Es hilft wirklich, DeCite zu gestalten.",
   "feedback.thanks.again": "Mehr Feedback senden",
   "feedback.thanks.home": "Zurück zur Startseite",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "Häufige Fragen",
+  "faq.subtitle":
+    "Alles über das Versiegeln eines Gesprächs mit KI, das Zitieren und wie der Nachweis für immer lesbar bleibt. Ihre Frage nicht dabei? Senden Sie sie über Feedback — wir beantworten alles.",
+  "faq.group.about": "Über DeCite",
+  "faq.group.sealing": "Ein Gespräch versiegeln",
+  "faq.group.citation": "Ihr Zitat",
+  "faq.group.readers": "Für Leser und Gutachter",
+  "faq.group.trust": "Dauerhaftigkeit und Vertrauen",
+  "faq.group.privacy": "Datenschutz und Sicherheit",
+  "faq.stillTitle": "Noch eine Frage?",
+  "faq.stillBody":
+    "Wenn hier etwas unbeantwortet blieb, fragen Sie uns direkt — wir lesen jede Nachricht und antworten meist innerhalb eines Tages.",
+  "faq.stillCta": "Eine Frage stellen",
+  "faq.sealCta": "Einen Dialog versiegeln",
+
+  "faq.q.what": "Was ist DeCite?",
+  "faq.a.what":
+    "DeCite speichert ein Gespräch, das Sie mit einer KI geführt haben, in einem dauerhaften öffentlichen Eintrag und gibt Ihnen einen kurzen Zitatcode — etwa DC-20260619-01 —, den Sie in Ihre Arbeit, Ihr Buch oder Ihren Artikel setzen können. Wer den Code hat, kann ihn später nachschlagen und genau dieses Gespräch Wort für Wort lesen, samt Datum und Uhrzeit der Speicherung. So wird aus einem Chat, der verschwinden könnte, eine Quelle, die sich immer überprüfen lässt.",
+  "faq.q.who": "Für wen ist das gedacht?",
+  "faq.a.who":
+    "Für alle, deren Denken im Gespräch mit einer KI Gestalt angenommen hat und die das ehrlich kenntlich machen wollen — Forschende, Studierende, Autorinnen und Autoren, Journalisten und Lehrende. Autoren erstellen damit einen dauerhaften, zitierfähigen Eintrag; Leser, Gutachter und Redakteure prüfen damit, was genau die KI gefragt wurde und was sie geantwortet hat.",
+  "faq.q.free": "Ist es wirklich kostenlos? Gibt es einen Haken?",
+  "faq.a.free":
+    "Das Versiegeln ist während unseres Starts kostenlos — kein Konto, keine Karte, kein versteckter Schritt. Die Kosten für das Speichern und dauerhafte Registrieren jedes Gesprächs übernehmen wir für Sie. Sollte sich das je ändern, wird der Preis klar angezeigt, bevor Sie etwas versiegeln, und bereits versiegelte Gespräche bleiben für immer versiegelt.",
+
+  "faq.q.how": "Wie versiegle ich ein Gespräch?",
+  "faq.a.how":
+    "Fügen Sie entweder einen öffentlichen Freigabelink zu Ihrem KI-Chat oder den Gesprächstext selbst ein, ergänzen Sie einen kurzen Titel, wo Sie es verwenden, und klicken Sie auf Versiegeln. In wenigen Sekunden speichert DeCite das Gespräch in einem dauerhaften Archiv, reserviert Ihren Zitatcode und trägt es in ein öffentliches Register ein. Das Zitat sehen Sie sofort, und wir senden es Ihnen per E-Mail, wenn Sie Ihre Adresse angeben.",
+  "faq.q.linkVsPaste": "Was ist der Unterschied zwischen „Offizieller Freigabelink“ und „Text einfügen“?",
+  "faq.a.linkVsPaste":
+    "Nutzen Sie den Offiziellen Freigabelink, wenn Ihre KI einen öffentlichen Link bietet, den jeder öffnen kann — DeCite liest das Gespräch daraus aus und speichert eine dauerhafte Kopie. Nutzen Sie Text einfügen, wenn es keinen öffentlichen Link gibt: Sie fügen den Gesprächstext selbst ein, und DeCite speichert genau das, was Sie einfügen. Beide ergeben denselben dauerhaften, zitierfähigen Eintrag.",
+  "faq.q.platforms": "Welche KI-Plattformen werden unterstützt?",
+  "faq.a.platforms":
+    "Öffentliche Freigabelinks funktionieren von ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen und weiteren. Für jede KI, die keinen öffentlichen Link bietet — oder für einen privaten Chat, den Sie lieber einfügen — nutzen Sie Text einfügen; das funktioniert mit jedem Werkzeug, auch mit nicht aufgeführten.",
+  "faq.q.gemini": "Gemini oder DeepSeek geben mir keinen öffentlichen Link. Was tun?",
+  "faq.a.gemini":
+    "Manche Plattformen halten den Chat in Ihrem Browser, sodass ein Link von außen nicht lesbar ist. Öffnen Sie das Gespräch, markieren und kopieren Sie den Text, wechseln Sie dann zu Text einfügen und fügen Sie ihn ein. DeCite speichert genau das, was Sie einfügen. Sie können auch den Link zum Originalchat im optionalen Feld angeben, damit Ihr Zitat festhält, welche KI Sie verwendet haben.",
+  "faq.q.account": "Brauche ich ein Konto, eine Zahlung oder eine Krypto-Wallet?",
+  "faq.a.account":
+    "Nein. Keine Anmeldung, keine Karte, nichts zu installieren. Sie brauchen weder eine Wallet noch technisches Wissen — DeCite übernimmt das Speichern und Registrieren im Hintergrund für Sie. Eine E-Mail ist optional und dient nur dazu, Ihnen das Zitat zu senden und es Sie später wiederfinden zu lassen.",
+  "faq.q.time": "Wie lange dauert das Versiegeln?",
+  "faq.a.time":
+    "Meist nur ein paar Sekunden. Lassen Sie die Seite geöffnet, während es läuft — DeCite speichert das Gespräch in einem dauerhaften Archiv, reserviert Ihren Code und trägt es ins öffentliche Register ein. Sobald es fertig ist, sehen Sie Ihr Zitat sofort.",
+  "faq.q.language": "Kann ich ein Gespräch in jeder Sprache versiegeln?",
+  "faq.a.language":
+    "Ja. DeCite speichert den Gesprächstext genau so, wie er ist, in jeder Sprache und Schrift. Die Oberfläche selbst gibt es in mehreren Sprachen — wechseln Sie jederzeit über das Sprachmenü in der oberen Leiste.",
+
+  "faq.q.code": "Wie sieht der Zitatcode aus?",
+  "faq.a.code":
+    "Es ist ein kurzer, klarer Code der Form DC-JJJJMMTT-NN — zum Beispiel DC-20260619-01, also das erste am 19. Juni 2026 versiegelte Gespräch. Er lässt sich leicht in ein Literaturverzeichnis tippen und von Lesern leicht nachschlagen.",
+  "faq.q.cite": "Wie zitiere ich es in meiner Arbeit oder meinem Buch?",
+  "faq.a.cite":
+    "Beim Versiegeln eines Gesprächs gibt Ihnen DeCite eine fertige Quellenangabe im APA-7-Stil, die Sie direkt in Ihr Literaturverzeichnis kopieren können, samt Zitatcode und Link zum öffentlichen Eintrag. Sie können sie frei an den Stil anpassen, den Ihre Zeitschrift oder Ihr Verlag verlangt.",
+  "faq.q.edit": "Kann ich ein Gespräch nach dem Versiegeln bearbeiten oder aktualisieren?",
+  "faq.a.edit":
+    "Nein — und genau das ist der Sinn. Ein versiegeltes Gespräch kann niemand ändern, auch wir nicht, und gerade das macht es als Zitat vertrauenswürdig. Ging das Gespräch weiter oder möchten Sie eine neuere Fassung festhalten, versiegeln Sie es einfach erneut für ein eigenes Zitat.",
+  "faq.q.lost": "Ich habe meinen Zitatcode verloren. Wie finde ich ihn wieder?",
+  "faq.a.lost":
+    "Haben Sie beim Versiegeln Ihre E-Mail angegeben, gehen Sie zu Meine Belege und geben dieselbe E-Mail ein, um alle damit verknüpften Zitatcodes zu sehen. Ohne angegebene E-Mail brauchen Sie den Code selbst, um das Gespräch nachzuschlagen — bewahren Sie ihn also sicher auf.",
+
+  "faq.q.lookup": "Wie schlägt jemand mein Zitat nach?",
+  "faq.a.lookup":
+    "Er geht auf die Seite Suchen, gibt den Zitatcode ein, und genau das versiegelte Gespräch öffnet sich — der vollständige Text, Datum und Uhrzeit der Versiegelung und welche KI verwendet wurde. Zum Lesen sind weder Konto noch Zahlung nötig.",
+  "faq.q.readerAccount": "Brauchen Leser oder Gutachter ein Konto zum Überprüfen?",
+  "faq.a.readerAccount":
+    "Nein. Jeder mit dem Code kann das Gespräch kostenlos und ohne Anmeldung lesen. Da der Eintrag auch auf unabhängiger öffentlicher Infrastruktur liegt, kann ein gründlicher Gutachter ihn sogar ganz ohne die DeCite-Website überprüfen.",
+
+  "faq.q.where": "Wo wird das Gespräch eigentlich gespeichert?",
+  "faq.a.where":
+    "An zwei unabhängigen öffentlichen Orten, die kein einzelnes Unternehmen kontrolliert: einem dauerhaften öffentlichen Archiv mit dem vollständigen Gespräch und einem öffentlichen Register, das seinen Zitatcode und den Zeitpunkt der Versiegelung festhält. DeCite ist nur ein bequemes Fenster zu beiden — der Eintrag braucht uns nicht, um zu bestehen.",
+  "faq.q.ifGone": "Was passiert, wenn DeCite einmal verschwindet?",
+  "faq.a.ifGone":
+    "Ihre Zitate funktionieren weiter. Da jedes auf unabhängiger öffentlicher Infrastruktur liegt, kann jeder weiterhin das öffentliche Register und das dauerhafte Archiv direkt öffnen — ohne Website, ohne Konto und ohne Erlaubnis. Der Nachweis überdauert das Unternehmen.",
+  "faq.q.timestamp": "Woher weiß ich, dass Datum und Uhrzeit verlässlich sind?",
+  "faq.a.timestamp":
+    "Beim Versiegeln eines Gesprächs werden Datum und Uhrzeit exakt in ein öffentliches Register geschrieben, das sich danach nicht heimlich ändern lässt. Die Zeit ist also nicht nur unser Wort — jeder kann sie unabhängig prüfen, und das macht sie nachprüfungssicher.",
+
+  "faq.q.public": "Ist das versiegelte Gespräch öffentlich? Wer kann es sehen?",
+  "faq.a.public":
+    "Ja. Ein versiegeltes Gespräch ist zum Zitieren gedacht, daher kann jeder mit dem Zitatcode es lesen, und es bleibt dauerhaft öffentlich. Versiegeln Sie nur Gespräche, die Sie bedenkenlos für immer öffentlich machen.",
+  "faq.q.sensitive": "Was ist mit persönlichen oder vertraulichen Angaben im Chat?",
+  "faq.a.sensitive":
+    "Da das Versiegeln dauerhaft und öffentlich ist, entfernen Sie vor dem Versiegeln alles Private oder Sensible — Namen, Kontaktdaten, unveröffentlichte Daten, alles Vertrauliche. Ein versiegeltes Gespräch lässt sich weder bearbeiten noch zurückziehen, prüfen Sie den Text also vorher sorgfältig.",
+  "faq.q.email": "Speichern Sie meine E-Mail, und wofür?",
+  "faq.a.email":
+    "Die E-Mail ist optional. Geben Sie eine an, nutzen wir sie nur, um Ihnen Ihr Zitat zu senden und Sie Ihre Codes unter Meine Belege wiederfinden zu lassen. Sie ist nicht Teil des öffentlichen Eintrags, und für nichts anderes verwenden wir sie.",
+
   "footer.note": "Dauerhaft · Mit Zeitstempel · Unabhängig überprüfbar",
   "common.user": "Nutzer",
   "common.assistant": "Assistent",
@@ -1634,6 +2338,94 @@ const ja: Dict = {
   "feedback.thanks.body": "フィードバックを受け取りました。DeCite を形づくる本当の助けになります。",
   "feedback.thanks.again": "さらに送信",
   "feedback.thanks.home": "ホームに戻る",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "よくある質問",
+  "faq.subtitle":
+    "AI との会話を封印し、それを引用し、証拠が永久に読める状態を保つ方法のすべて。質問が見つかりませんか？「フィードバック」からお送りください——すべてにお答えします。",
+  "faq.group.about": "DeCite について",
+  "faq.group.sealing": "会話を封印する",
+  "faq.group.citation": "あなたの引用",
+  "faq.group.readers": "読者・査読者の方へ",
+  "faq.group.trust": "永続性と信頼性",
+  "faq.group.privacy": "プライバシーと安全",
+  "faq.stillTitle": "まだ質問がありますか？",
+  "faq.stillBody":
+    "ここで解決しなかった場合は、直接お尋ねください——すべてのメッセージを読み、通常は1日以内に返信します。",
+  "faq.stillCta": "質問する",
+  "faq.sealCta": "対話を封印する",
+
+  "faq.q.what": "DeCite とは何ですか？",
+  "faq.a.what":
+    "DeCite は、あなたが AI と交わした会話を永久的な公開記録に保存し、DC-20260619-01 のような短い引用コードを発行します。これを論文や書籍、記事に記載できます。コードを持つ人は誰でも後でそれを照会し、保存された日時とともに、その会話を一字一句そのまま読むことができます。消えてしまうかもしれない会話を、いつでも確認できる出典に変えるのです。",
+  "faq.q.who": "誰のためのものですか？",
+  "faq.a.who":
+    "AI との会話の中で考えがかたちになり、それを誠実に出典表示したいすべての人のためです——研究者、学生、著者、ジャーナリスト、教育者など。著者は引用可能で永久的な記録を作るために使い、読者・査読者・編集者は AI に何を尋ね、AI が何を答えたかを正確に検証するために使います。",
+  "faq.q.free": "本当に無料ですか？裏はありますか？",
+  "faq.a.free":
+    "ローンチ期間中、封印は無料です——アカウントもカードも不要で、隠れた手順もありません。各会話を保存し永久に登録する費用は当社が負担します。万一それが変わる場合は、何かを封印する前に料金を明確に表示し、すでに封印された会話は永久に封印されたままです。",
+
+  "faq.q.how": "会話はどうやって封印しますか？",
+  "faq.a.how":
+    "AI チャットの公開共有リンク、または会話のテキストそのものを貼り付け、どこで使うかを示す短いタイトルを加えて「封印」をクリックします。数秒で DeCite が会話を永久アーカイブに保存し、引用コードを確保し、公開レジストリに記録します。引用はすぐに表示され、メールアドレスを入力すればメールでもお送りします。",
+  "faq.q.linkVsPaste": "「公式共有リンク」と「テキストを貼り付け」の違いは何ですか？",
+  "faq.a.linkVsPaste":
+    "誰でも開ける公開リンクを AI が提供する場合は「公式共有リンク」を使います——DeCite がそこから会話を読み取り、永久的なコピーを保存します。公開リンクがない場合は「テキストを貼り付け」を使います。会話のテキストを自分で貼り付け、DeCite が貼り付けた内容をそのまま保存します。どちらも同じ永久的で引用可能な記録になります。",
+  "faq.q.platforms": "どの AI プラットフォームに対応していますか？",
+  "faq.a.platforms":
+    "公開共有リンクは ChatGPT、Claude、Grok、Copilot、Perplexity、Poe、Mistral、Meta AI、Qwen などで使えます。公開リンクを提供しない AI——または貼り付けたい非公開チャット——には「テキストを貼り付け」を使ってください。これは一覧にないものを含め、あらゆるツールで使えます。",
+  "faq.q.gemini": "Gemini や DeepSeek は公開リンクをくれません。どうすればよいですか？",
+  "faq.a.gemini":
+    "一部のプラットフォームは会話をブラウザ内に保持するため、リンクでは外部の読者が読めません。会話を開き、テキストを選択してコピーし、「テキストを貼り付け」に切り替えて貼り付けてください。DeCite は貼り付けた内容をそのまま保存します。任意の欄に元のチャットのリンクを追加すれば、どの AI を使ったかも引用に記録できます。",
+  "faq.q.account": "アカウントや支払い、暗号資産ウォレットは必要ですか？",
+  "faq.a.account":
+    "いいえ。登録もカードも不要で、インストールするものもありません。ウォレットも技術的な知識も不要で——DeCite が裏側で保存と登録を代行します。メールは任意で、引用をお送りし、後で再び見つけられるようにするためだけに使います。",
+  "faq.q.time": "封印にはどれくらいかかりますか？",
+  "faq.a.time":
+    "通常はほんの数秒です。処理中はページを開いたままにしてください——DeCite が会話を永久アーカイブに保存し、コードを確保し、公開レジストリに記録しています。完了すると、引用がすぐに表示されます。",
+  "faq.q.language": "どの言語の会話でも封印できますか？",
+  "faq.a.language":
+    "はい。DeCite はあらゆる言語・文字の会話テキストをそのまま保存します。インターフェース自体も複数の言語に対応しており——上部バーの言語メニューからいつでも切り替えられます。",
+
+  "faq.q.code": "引用コードはどのようなものですか？",
+  "faq.a.code":
+    "DC-YYYYMMDD-NN という形式の短く分かりやすいコードです——例えば DC-20260619-01 は、2026年6月19日に封印された最初の会話を表します。参考文献に入力しやすく、読者が照会するのも簡単です。",
+  "faq.q.cite": "論文や書籍ではどう引用すればよいですか？",
+  "faq.a.cite":
+    "会話を封印すると、DeCite が APA 7 形式のすぐ使える書誌情報を引用コードと公開記録リンクとともに提供します。これを参考文献にそのままコピーできます。投稿先の雑誌や出版社が求める形式に自由に合わせることもできます。",
+  "faq.q.edit": "封印した後で会話を編集・更新できますか？",
+  "faq.a.edit":
+    "いいえ——そしてそれこそが要点です。封印された会話は当社を含め誰も変更できず、まさにそれが引用として信頼できる理由です。会話が続いた場合や新しい版を残したい場合は、もう一度封印して別の引用を取得してください。",
+  "faq.q.lost": "引用コードをなくしました。もう一度見つけるには？",
+  "faq.a.lost":
+    "封印時にメールを追加していれば、「受領記録」に進み、同じメールを入力すると、それに紐づくすべての引用コードを確認できます。メールを追加していない場合、会話を照会するにはコードそのものが必要です——大切に保管してください。",
+
+  "faq.q.lookup": "他の人はどうやって私の引用を照会しますか？",
+  "faq.a.lookup":
+    "「照会」ページで引用コードを入力すると、まさにその封印された会話が開きます——全文、封印された日時、使用された AI が表示されます。読むのにアカウントも支払いも不要です。",
+  "faq.q.readerAccount": "読者や査読者が検証するのにアカウントは必要ですか？",
+  "faq.a.readerAccount":
+    "いいえ。コードがあれば誰でも無料で、登録なしに会話を読めます。記録は単一の企業に支配されない独立した公共インフラ上にもあるため、熱心な査読者は DeCite のサイトをまったく使わずに検証することさえできます。",
+
+  "faq.q.where": "会話は実際どこに保存されますか？",
+  "faq.a.where":
+    "いかなる単一の企業も支配しない、2つの独立した公共の場所です。会話全体を保持する永久的な公開アーカイブと、その引用コードと封印の瞬間を記録する公開レジストリです。DeCite はその両方への便利な窓口にすぎず——記録の存在は当社に依存しません。",
+  "faq.q.ifGone": "DeCite がいつか消えたらどうなりますか？",
+  "faq.a.ifGone":
+    "あなたの引用は機能し続けます。各引用は独立した公共インフラ上に保存されているため、誰でも公開レジストリと永久アーカイブを直接開けます——ウェブサイトもアカウントも許可も不要です。証拠は企業よりも長く残ります。",
+  "faq.q.timestamp": "日時が信頼できると、どうして分かりますか？",
+  "faq.a.timestamp":
+    "会話が封印されると、正確な日時が、後からひそかに改ざんできない公開レジストリに書き込まれます。ですから日時は当社の言い分にとどまらず——誰でも独立して確認でき、それが厳しい検証に耐える理由です。",
+
+  "faq.q.public": "封印された会話は公開されますか？誰が見られますか？",
+  "faq.a.public":
+    "はい。封印された会話は引用可能であることを目的としているため、引用コードを持つ人は誰でも読むことができ、永久に公開されたままです。永久に公開して差し支えない会話だけを封印してください。",
+  "faq.q.sensitive": "チャット内の個人情報や機密情報はどうなりますか？",
+  "faq.a.sensitive":
+    "封印は永久的かつ公開であるため、封印する前に私的・機微な情報——氏名、連絡先、未公開のデータ、あらゆる機密——を取り除いてください。いったん封印された会話は編集も取り下げもできませんので、まずテキストを慎重に確認してください。",
+  "faq.q.email": "私のメールアドレスを保存しますか？何のためですか？",
+  "faq.a.email":
+    "メールは任意です。ご提供いただいた場合、引用をお送りし、「受領記録」でコードを再び見つけられるようにするためだけに使います。これは公開記録には含まれず、それ以外の用途には一切使いません。",
+
   "footer.note": "永続 · 日時記録 · 独立して検証可能",
   "common.user": "ユーザー",
   "common.assistant": "アシスタント",
@@ -1781,6 +2573,94 @@ const tr: Dict = {
   "feedback.thanks.body": "Geri bildiriminiz alındı. DeCite'ı şekillendirmeye gerçekten yardımcı oluyor.",
   "feedback.thanks.again": "Daha fazla gönder",
   "feedback.thanks.home": "Ana sayfaya dön",
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  "faq.title": "Sıkça sorulan sorular",
+  "faq.subtitle":
+    "Bir AI sohbetini mühürlemek, ona atıf vermek ve kanıtın sonsuza dek okunabilir kalması hakkında her şey. Sorunuzu bulamadınız mı? Geri Bildirim üzerinden gönderin — her şeyi yanıtlıyoruz.",
+  "faq.group.about": "DeCite hakkında",
+  "faq.group.sealing": "Bir sohbeti mühürlemek",
+  "faq.group.citation": "Atfınız",
+  "faq.group.readers": "Okuyucular ve hakemler için",
+  "faq.group.trust": "Kalıcılık ve güven",
+  "faq.group.privacy": "Gizlilik ve güvenlik",
+  "faq.stillTitle": "Hâlâ bir sorunuz mu var?",
+  "faq.stillBody":
+    "Burada yanıtını bulamadıysanız doğrudan bize sorun — her mesajı okuyoruz ve genellikle bir gün içinde yanıtlıyoruz.",
+  "faq.stillCta": "Soru sor",
+  "faq.sealCta": "Bir diyaloğu mühürle",
+
+  "faq.q.what": "DeCite nedir?",
+  "faq.a.what":
+    "DeCite, bir AI ile yaptığınız sohbeti kalıcı bir kamuya açık kayda kaydeder ve size makalenize, kitabınıza veya yazınıza koyabileceğiniz DC-20260619-01 gibi kısa bir atıf kodu verir. Koda sahip olan herkes daha sonra onu sorgulayıp, kaydedildiği tarih ve saatle birlikte tam o sohbeti kelimesi kelimesine okuyabilir. Kaybolabilecek bir sohbeti, her zaman doğrulanabilen bir kaynağa dönüştürür.",
+  "faq.q.who": "Kimler için?",
+  "faq.a.who":
+    "Düşüncesi bir AI ile sohbette biçimlenen ve bunu dürüstçe kaynak göstermek isteyen herkes için — araştırmacılar, öğrenciler, yazarlar, gazeteciler ve eğitimciler. Yazarlar bunu atıf verilebilir, kalıcı bir kayıt oluşturmak için kullanır; okuyucular, hakemler ve editörler ise AI'ya tam olarak ne sorulduğunu ve onun ne yanıtladığını doğrulamak için kullanır.",
+  "faq.q.free": "Gerçekten ücretsiz mi? Bir bit yeniği var mı?",
+  "faq.a.free":
+    "Lansman süresince mühürleme ücretsizdir — hesap yok, kart yok, gizli adım yok. Her sohbeti kaydetme ve kalıcı olarak tescil etme maliyetini sizin için biz karşılıyoruz. Bu durum ileride değişirse, herhangi bir şeyi mühürlemeden önce fiyat açıkça gösterilir ve zaten mühürlenmiş sohbetler sonsuza dek mühürlü kalır.",
+
+  "faq.q.how": "Bir sohbeti nasıl mühürlerim?",
+  "faq.a.how":
+    "AI sohbetinizin herkese açık bir paylaşım linkini ya da sohbet metninin kendisini yapıştırın, nerede kullanacağınıza dair kısa bir başlık ekleyin ve Mühürle'ye tıklayın. Birkaç saniye içinde DeCite sohbeti kalıcı bir arşive kaydeder, atıf kodunuzu ayırır ve herkese açık bir kayda işler. Atfı hemen görürsünüz; adresinizi eklerseniz e-posta ile de göndeririz.",
+  "faq.q.linkVsPaste": "«Resmî Paylaşım Linki» ile «Doğrudan Metni Yapıştır» arasındaki fark nedir?",
+  "faq.a.linkVsPaste":
+    "AI'nız herkesin açabileceği herkese açık bir link verdiğinde Resmî Paylaşım Linki'ni kullanın — DeCite sohbeti oradan okur ve kalıcı bir kopya kaydeder. Herkese açık bir link yoksa Doğrudan Metni Yapıştır'ı kullanın: sohbet metnini kendiniz yapıştırırsınız ve DeCite tam olarak yapıştırdığınızı kaydeder. İkisi de aynı tür kalıcı, atıf verilebilir kaydı oluşturur.",
+  "faq.q.platforms": "Hangi AI platformları destekleniyor?",
+  "faq.a.platforms":
+    "Herkese açık paylaşım linkleri ChatGPT, Claude, Grok, Copilot, Perplexity, Poe, Mistral, Meta AI, Qwen ve daha fazlasında çalışır. Herkese açık link sunmayan herhangi bir AI için — ya da yapıştırmayı tercih ettiğiniz özel bir sohbet için — bu listede olmayanlar dahil her araçla çalışan Doğrudan Metni Yapıştır'ı kullanın.",
+  "faq.q.gemini": "Gemini veya DeepSeek bana herkese açık link vermiyor. Ne yapmalıyım?",
+  "faq.a.gemini":
+    "Bazı platformlar sohbeti tarayıcınızın içinde tutar, bu yüzden bir link dışarıdaki okuyucular tarafından okunamaz. Sohbeti açın, metni seçip kopyalayın, sonra Doğrudan Metni Yapıştır'a geçip yapıştırın. DeCite tam olarak yapıştırdığınızı kaydeder. Atfınızın hangi AI'yı kullandığınızı kaydetmesi için isteğe bağlı alana orijinal sohbet linkini de ekleyebilirsiniz.",
+  "faq.q.account": "Hesaba, ödemeye veya kripto cüzdana ihtiyacım var mı?",
+  "faq.a.account":
+    "Hayır. Kayıt yok, kart yok, kurulacak bir şey yok. Cüzdana ya da teknik bilgiye ihtiyacınız yok — DeCite kaydetme ve tescili perde arkasında sizin için halleder. E-posta isteğe bağlıdır ve yalnızca atfı size göndermek ve sonradan tekrar bulmanızı sağlamak için kullanılır.",
+  "faq.q.time": "Mühürleme ne kadar sürer?",
+  "faq.a.time":
+    "Genellikle yalnızca birkaç saniye. Çalışırken sayfayı açık tutun — DeCite sohbeti kalıcı bir arşive kaydediyor, kodunuzu ayırıyor ve herkese açık kayda işliyor. Bittiğinde atfınızı hemen görürsünüz.",
+  "faq.q.language": "Herhangi bir dildeki sohbeti mühürleyebilir miyim?",
+  "faq.a.language":
+    "Evet. DeCite sohbet metnini her dilde ve her yazıda olduğu gibi kaydeder. Arayüzün kendisi birkaç dilde mevcuttur — üst çubuktaki dil menüsünden istediğiniz zaman değiştirin.",
+
+  "faq.q.code": "Atıf kodu nasıl görünür?",
+  "faq.a.code":
+    "DC-YYYYAAGG-NN biçiminde kısa, temiz bir koddur — örneğin DC-20260619-01, yani 19 Haziran 2026'da mühürlenen ilk sohbet. Kaynakçaya yazması kolay, okuyucunun sorgulaması da kolaydır.",
+  "faq.q.cite": "Makalemde veya kitabımda buna nasıl atıf veririm?",
+  "faq.a.cite":
+    "Bir sohbeti mühürlediğinizde DeCite size atıf kodu ve herkese açık kayıt linkiyle birlikte, doğrudan kaynakçanıza kopyalayabileceğiniz APA 7 biçiminde hazır bir künye verir. Bunu derginizin veya yayıncınızın istediği herhangi bir biçime uyarlamakta özgürsünüz.",
+  "faq.q.edit": "Mühürledikten sonra sohbeti düzenleyebilir veya güncelleyebilir miyim?",
+  "faq.a.edit":
+    "Hayır — ve bütün mesele de bu. Mühürlenmiş bir sohbeti biz dahil hiç kimse değiştiremez ve onu atıf olarak güvenilir kılan tam olarak budur. Sohbet devam ettiyse veya daha yeni bir sürümü kaydetmek isterseniz, ayrı bir atıf almak için onu yeniden mühürlemeniz yeterlidir.",
+  "faq.q.lost": "Atıf kodumu kaybettim. Onu tekrar nasıl bulurum?",
+  "faq.a.lost":
+    "Mühürlerken e-postanızı eklediyseniz, Makbuzlarım'a gidip aynı e-postayı girerek ona bağlı tüm atıf kodlarını görebilirsiniz. E-posta eklemediyseniz, sohbeti sorgulamak için kodun kendisine ihtiyacınız olur — bu yüzden onu güvenli bir yerde saklayın.",
+
+  "faq.q.lookup": "Birisi atfımı nasıl sorgular?",
+  "faq.a.lookup":
+    "Sorgula sayfasına gider, atıf kodunu yazar ve tam o mühürlenmiş sohbet açılır — tam metin, mühürlendiği tarih ve saat ve hangi AI'nın kullanıldığı. Okumak için hesap veya ödeme gerekmez.",
+  "faq.q.readerAccount": "Okuyucuların veya hakemlerin doğrulamak için hesaba ihtiyacı var mı?",
+  "faq.a.readerAccount":
+    "Hayır. Koda sahip olan herkes sohbeti ücretsiz ve kayıt olmadan okuyabilir. Kayıt aynı zamanda tek bir şirketin denetlemediği bağımsız kamuya açık altyapıda da bulunduğundan, kararlı bir hakem onu DeCite sitesini hiç kullanmadan bile doğrulayabilir.",
+
+  "faq.q.where": "Sohbet aslında nerede saklanıyor?",
+  "faq.a.where":
+    "Tek bir şirketin denetlemediği iki bağımsız kamuya açık yerde: tüm sohbeti tutan kalıcı bir kamuya açık arşivde ve atıf kodunu ile mühürlendiği anı kaydeden herkese açık bir kayıtta. DeCite yalnızca ikisine açılan kullanışlı bir penceredir — kaydın var olması bize bağlı değildir.",
+  "faq.q.ifGone": "DeCite bir gün ortadan kalkarsa ne olur?",
+  "faq.a.ifGone":
+    "Atıflarınız çalışmaya devam eder. Her biri bağımsız kamuya açık altyapıda saklandığından, herkes herkese açık kaydı ve kalıcı arşivi yine doğrudan açabilir — web sitesi, hesap veya izin gerekmez. Kanıt şirketten daha uzun yaşar.",
+  "faq.q.timestamp": "Tarih ve saatin güvenilir olduğunu nasıl bilirim?",
+  "faq.a.timestamp":
+    "Bir sohbet mühürlendiğinde, tam tarih ve saat sonradan sessizce değiştirilemeyen herkese açık bir kayda yazılır. Yani zaman yalnızca bizim sözümüz değildir — herkes onu bağımsız olarak kontrol edebilir ve incelemeye dayanmasını sağlayan da budur.",
+
+  "faq.q.public": "Mühürlenmiş sohbet herkese açık mı? Onu kim görebilir?",
+  "faq.a.public":
+    "Evet. Mühürlenmiş bir sohbet atıf verilebilir olmak içindir, bu yüzden atıf koduna sahip olan herkes onu okuyabilir ve kalıcı olarak herkese açık kalır. Yalnızca sonsuza dek herkese açık yapmaktan rahat olduğunuz sohbetleri mühürleyin.",
+  "faq.q.sensitive": "Sohbetteki kişisel veya gizli bilgiler ne olacak?",
+  "faq.a.sensitive":
+    "Mühürleme kalıcı ve herkese açık olduğundan, mühürlemeden önce özel veya hassas her şeyi kaldırın — isimler, iletişim bilgileri, yayımlanmamış veriler, her türlü gizli bilgi. Bir sohbet mühürlendikten sonra ne düzenlenebilir ne de kaldırılabilir, bu yüzden metni önce dikkatle gözden geçirin.",
+  "faq.q.email": "E-postamı saklıyor musunuz, ne için?",
+  "faq.a.email":
+    "E-posta isteğe bağlıdır. Verirseniz, onu yalnızca atfınızı göndermek ve kodlarınızı Makbuzlarım'da tekrar bulmanızı sağlamak için kullanırız. Herkese açık kaydın parçası değildir ve başka hiçbir şey için kullanmayız.",
+
   "footer.note": "Kalıcı · Zaman damgalı · Bağımsız doğrulanabilir",
   "common.user": "Kullanıcı",
   "common.assistant": "Asistan",
