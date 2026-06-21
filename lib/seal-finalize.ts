@@ -19,6 +19,7 @@ function reconstruct(meta: Stripe.Metadata): SealRegisterResult {
   return {
     ok: true,
     code: meta[META.code] as string,
+    sourceRef: meta[META.sourceRef] || "",
     txHash: meta[META.txHash] as `0x${string}`,
     ipfsCID: meta[META.ipfsCID] as string,
     timestamp: Number(meta[META.timestamp] ?? "0"),
@@ -97,6 +98,7 @@ async function finalizePaymentIntent(
   return {
     ok: true,
     code: seal.code,
+    sourceRef,
     txHash: seal.txHash,
     ipfsCID,
     timestamp: seal.timestamp,

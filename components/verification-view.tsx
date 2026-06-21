@@ -36,7 +36,8 @@ import {
 } from "@/lib/citation";
 
 const PINATA_GATEWAY = process.env.NEXT_PUBLIC_PINATA_GATEWAY;
-import { cleanDialogueText, aiModelLabel } from "@/lib/dialogue-clean";
+import { aiModelLabel } from "@/lib/dialogue-clean";
+import { MarkdownMessage } from "@/components/markdown-message";
 import { siteBaseUrl } from "@/lib/site";
 import type { DialogueMessage, OnChainCitation, OriginInputType } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
@@ -356,9 +357,7 @@ function DialogueTurn({ message }: { message: DialogueMessage }) {
             : "border-seal/20 bg-seal-soft/40"
         }`}
       >
-        <p className="whitespace-pre-wrap text-foreground">
-          {cleanDialogueText(message.text)}
-        </p>
+        <MarkdownMessage text={message.text} />
       </div>
     </div>
   );

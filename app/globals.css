@@ -183,6 +183,81 @@
   .eyebrow {
     @apply text-xs font-medium uppercase tracking-[0.22em] text-bronze;
   }
+
+  /* ── Rendered Markdown (dialogue turns) ─────────────────────── */
+  .markdown-body {
+    @apply text-sm leading-relaxed text-foreground;
+  }
+  .markdown-body > :first-child {
+    @apply mt-0;
+  }
+  .markdown-body > :last-child {
+    @apply mb-0;
+  }
+  .markdown-body p {
+    @apply my-2;
+  }
+  .markdown-body h1 {
+    @apply mt-4 mb-2 font-serif text-lg font-semibold text-foreground;
+  }
+  .markdown-body h2 {
+    @apply mt-4 mb-2 font-serif text-base font-semibold text-foreground;
+  }
+  .markdown-body h3,
+  .markdown-body h4 {
+    @apply mt-3 mb-1.5 font-serif text-sm font-semibold text-foreground;
+  }
+  .markdown-body ul {
+    @apply my-2 list-disc space-y-1 pl-5;
+  }
+  .markdown-body ol {
+    @apply my-2 list-decimal space-y-1 pl-5;
+  }
+  .markdown-body li::marker {
+    color: var(--muted-foreground);
+  }
+  .markdown-body li > ul,
+  .markdown-body li > ol {
+    @apply my-1;
+  }
+  .markdown-body a {
+    @apply font-medium text-bronze underline underline-offset-2;
+  }
+  .markdown-body strong {
+    @apply font-semibold text-foreground;
+  }
+  .markdown-body em {
+    @apply italic;
+  }
+  .markdown-body hr {
+    @apply my-4 border-border;
+  }
+  .markdown-body blockquote {
+    @apply my-2 border-l-2 border-bronze/50 pl-3 italic text-muted-foreground;
+  }
+  .markdown-body :not(pre) > code {
+    @apply rounded bg-secondary px-1 py-0.5 font-mono text-[0.85em];
+  }
+  .markdown-body pre {
+    @apply my-2 overflow-x-auto rounded-md border border-border bg-secondary/60 p-3;
+  }
+  .markdown-body pre code {
+    @apply bg-transparent p-0 font-mono text-xs;
+  }
+  .markdown-body table {
+    @apply my-2 block w-full overflow-x-auto border-collapse text-xs;
+  }
+  .markdown-body th,
+  .markdown-body td {
+    @apply border border-border px-2 py-1 text-left align-top;
+  }
+  .markdown-body th {
+    @apply bg-secondary/60 font-semibold;
+  }
+  /* Display equations: scroll horizontally instead of overflowing the card. */
+  .markdown-body .katex-display {
+    @apply my-3 overflow-x-auto overflow-y-hidden py-0.5;
+  }
 }
 
 /* ── Verification "seal" micro-animation ──────────────────────── */

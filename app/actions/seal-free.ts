@@ -97,6 +97,7 @@ export async function sealFree(input: SealInput): Promise<SealRegisterResult> {
     return {
       ok: true,
       code: seal.code,
+      sourceRef,
       txHash: seal.txHash,
       ipfsCID: pin.ipfsCID,
       timestamp: seal.timestamp,

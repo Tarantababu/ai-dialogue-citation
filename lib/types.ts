@@ -103,6 +103,8 @@ export interface FeedbackEntry {
 export interface SealRegisterSuccess {
   ok: true;
   code: string;
+  /** The work title / bibliographic reference, for the citation. */
+  sourceRef: string;
   txHash: `0x${string}`;
   ipfsCID: string;
   /** Unix seconds of the sealing block. */

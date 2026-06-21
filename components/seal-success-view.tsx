@@ -47,7 +47,7 @@ export function SealSuccessView({ result }: { result: SealRegisterResult }) {
 
   const baseUrl = siteBaseUrl();
   const citation: OnChainCitation = {
-    sourceRef: "",
+    sourceRef: result.sourceRef,
     ipfsCID: result.ipfsCID,
     timestamp: BigInt(result.timestamp),
     author: result.custodian,
