@@ -9,6 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { localeFromLanguages } from "@/lib/locale-detect";
 
 /**
  * Minimal, dependency-free i18n covering the 10 most-used world languages
@@ -2876,12 +2877,44 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
 
   useEffect(() => {
+    let cancelled = false;
+    const apply = (l: Locale) => {
+      if (cancelled || !(l in DICTS)) return;
+      setLocaleState(l);
+      applyDir(l);
+    };
+
+    // An explicit choice always wins and is never overridden by detection.
     const saved = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (saved && saved in DICTS && saved !== "en") {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time post-mount external-store sync
-      setLocaleState(saved);
-      applyDir(saved);
+    if (saved && saved in DICTS) {
+      if (saved !== "en") apply(saved);
+      return;
     }
+
+    // No choice yet → pick a language from the visitor's location.
+    // 1) Instant, offline guess from the browser's languages (avoids a flash).
+    const guess = localeFromLanguages(
+      typeof navigator !== "undefined"
+        ? (navigator.languages ?? [navigator.language])
+        : null,
+    );
+    if (guess) apply(guess);
+
+    // 2) Authoritative, location-aware resolution (geo-IP country first), unless
+    //    the visitor has since made an explicit choice.
+    fetch("/api/locale")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { locale?: string } | null) => {
+        const l = data?.locale;
+        if (!l || !(l in DICTS)) return;
+        if (window.localStorage.getItem(STORAGE_KEY)) return;
+        apply(l as Locale);
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const setLocale = useCallback((l: Locale) => {
