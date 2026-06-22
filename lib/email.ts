@@ -15,6 +15,10 @@ import type { FeedbackType, OnChainCitation } from "@/lib/types";
  */
 
 const FROM = process.env.EMAIL_FROM ?? "DeCite <noreply@info.de-cite.com>";
+// A monitored reply-to address improves trust/deliverability vs. a bare
+// noreply@ sender. Set EMAIL_REPLY_TO to a mailbox you actually read; when
+// unset, Resend simply omits the header.
+const REPLY_TO = process.env.EMAIL_REPLY_TO || undefined;
 const SITE = SITE_URL || "https://de-cite.com";
 
 function getResend(): Resend | null {
@@ -55,8 +59,8 @@ function shell(previewText: string, inner: string): string {
     ${inner}
   </td></tr>
   <tr><td style="padding:20px 4px 0;font-family:${SANS};font-size:12px;color:${C.muted};line-height:1.6;">
-    Sealed on IPFS · Notarized on Polygon · <a href="${SITE}" style="color:${C.bronze};text-decoration:none;">de-cite.com</a><br>
-    Citations live on a public blockchain and IPFS — readable forever, even without this site.
+    Permanent · Time-stamped · Independently verifiable · <a href="${SITE}" style="color:${C.bronze};text-decoration:none;">de-cite.com</a><br>
+    Your citation is saved to a permanent public record — readable forever, even without this site.
   </td></tr>
 </table>
 </td></tr></table>
@@ -131,7 +135,7 @@ export async function sendSealReceipt(p: SealReceiptParams): Promise<boolean> {
   const inner = `
     <div style="font-family:${SANS};font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:${C.seal};">Sealed &amp; Verified</div>
     <h1 style="margin:10px 0 6px;font-family:${SERIF};font-size:26px;font-weight:600;color:${C.ink};line-height:1.2;">Your citation is permanently sealed</h1>
-    <p style="margin:0 0 20px;font-family:${SANS};font-size:15px;line-height:1.6;color:${C.muted};">Your human–AI collaboration is now notarized on Polygon and archived on IPFS. Here is everything you need to cite it.</p>
+    <p style="margin:0 0 20px;font-family:${SANS};font-size:15px;line-height:1.6;color:${C.muted};">Your conversation with AI is now permanently saved and time-stamped. Here is everything you need to cite it.</p>
 
     <div style="font-family:'SF Mono',Menlo,Consolas,monospace;font-size:16px;color:${C.bronze};letter-spacing:0.02em;margin-bottom:18px;">${esc(p.code)}</div>
 
@@ -145,11 +149,11 @@ export async function sendSealReceipt(p: SealReceiptParams): Promise<boolean> {
       ${infoRow("Work", esc(p.sourceRef))}
       ${infoRow("AI / Model", aiLabel)}
       ${infoRow("Sealed", esc(sealed))}
-      ${infoRow("Transaction", `<a href="${txUrl}" style="color:${C.bronze};text-decoration:none;">View on Polygonscan &rarr;</a>`)}
-      ${infoRow("IPFS archive", `<a href="${ipfsUrl}" style="color:${C.bronze};text-decoration:none;">Open the sealed file &rarr;</a>`)}
+      ${infoRow("Public record", `<a href="${txUrl}" style="color:${C.bronze};text-decoration:none;">View the public record &rarr;</a>`)}
+      ${infoRow("Permanent archive", `<a href="${ipfsUrl}" style="color:${C.bronze};text-decoration:none;">Open the saved file &rarr;</a>`)}
     </table>
 
-    <p style="margin:22px 0 0;font-family:${SANS};font-size:13px;line-height:1.6;color:${C.muted};">This record is permanent and app-independent: even if DeCite ever goes offline, your citation stays readable directly from the Polygon blockchain and IPFS.</p>
+    <p style="margin:22px 0 0;font-family:${SANS};font-size:13px;line-height:1.6;color:${C.muted};">This record is permanent and independent: even if DeCite ever goes offline, your citation stays readable from two independent public archives.</p>
   `;
 
   const text = [
@@ -173,6 +177,7 @@ export async function sendSealReceipt(p: SealReceiptParams): Promise<boolean> {
     const { error } = await resend.emails.send({
       from: FROM,
       to: p.to,
+      replyTo: REPLY_TO,
       subject: `Your citation is sealed — ${p.code}`,
       html: shell("Your DeCite citation is permanently sealed.", inner),
       text,
@@ -197,6 +202,7 @@ export async function sendFeedbackAck(to: string): Promise<boolean> {
     const { error } = await resend.emails.send({
       from: FROM,
       to,
+      replyTo: REPLY_TO,
       subject: "We received your DeCite feedback",
       html: shell("Thanks for your feedback — we read everything.", inner),
       text: "Thank you for your feedback. We received your message and read every one. If a reply is warranted, we'll be in touch.\n\n— DeCite · de-cite.com",
