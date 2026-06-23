@@ -105,6 +105,106 @@ export function formatApaCitation(params: {
   return `${author}. (${year}, ${month} ${day}). ${title} [Sealed human–AI dialogue${ai}, ${code}]. DeCite. ${url}`;
 }
 
+// Month abbreviations used by the various style guides.
+const MONTHS_MLA = [
+  "Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
+  "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec.",
+];
+const MONTHS_IEEE = [
+  "Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+  "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec.",
+];
+
+/** A ready-to-paste reference in one academic style. */
+export interface CitationFormat {
+  id: "apa" | "mla" | "chicago" | "harvard" | "ieee" | "bibtex";
+  label: string;
+  text: string;
+  /** Render in a monospace block with preserved whitespace (e.g. BibTeX). */
+  mono?: boolean;
+}
+
+/**
+ * Build the same sealed dialogue as a reference in every supported academic
+ * style. A sealed human–AI dialogue is an unusual source, so each entry keeps
+ * the human as author, the work title as the title, and records the AI used,
+ * the citation code, the DeCite repository, and the permanent URL.
+ */
+export function buildCitationFormats(params: {
+  code: string;
+  citation: OnChainCitation;
+  authorName?: string;
+  baseUrl: string;
+  platform?: string | null;
+  model?: string | null;
+}): CitationFormat[] {
+  const { code, citation, authorName, baseUrl, platform, model } = params;
+  const date = new Date(Number(citation.timestamp) * 1000);
+  const year = date.getUTCFullYear();
+  const monthIdx = date.getUTCMonth();
+  const monthFull = MONTHS[monthIdx];
+  const monthMla = MONTHS_MLA[monthIdx];
+  const monthIeee = MONTHS_IEEE[monthIdx];
+  const day = date.getUTCDate();
+
+  const author = authorName?.trim()
+    ? authorName.trim()
+    : shortenAddress(citation.author);
+  const title = citation.sourceRef?.trim() || "Untitled sealed dialogue";
+  const url = `${baseUrl.replace(/\/$/, "")}/dogrulama/${code}`;
+
+  // " with ChatGPT (gpt-5-5)" when an AI is recorded, else empty.
+  const ai =
+    platform && platform !== "Manual"
+      ? ` with ${platform}${model ? ` (${model})` : ""}`
+      : "";
+  const descriptor = `Sealed human–AI dialogue${ai}`;
+
+  return [
+    {
+      id: "apa",
+      label: "APA 7",
+      text: `${author}. (${year}, ${monthFull} ${day}). ${title} [${descriptor}, ${code}]. DeCite. ${url}`,
+    },
+    {
+      id: "mla",
+      label: "MLA 9",
+      text: `${author}. "${title}." ${descriptor}, ${code}. DeCite, ${day} ${monthMla} ${year}, ${url}.`,
+    },
+    {
+      id: "chicago",
+      label: "Chicago",
+      text: `${author}. "${title}." ${descriptor}. DeCite, ${monthFull} ${day}, ${year}. ${url}.`,
+    },
+    {
+      id: "harvard",
+      label: "Harvard",
+      text: `${author} (${year}) '${title}' [${descriptor}, ${code}], DeCite. Available at: ${url}.`,
+    },
+    {
+      id: "ieee",
+      label: "IEEE",
+      text: `${author}, "${title}," ${descriptor}, DeCite, ${code}, ${monthIeee} ${year}. [Online]. Available: ${url}`,
+    },
+    {
+      id: "bibtex",
+      label: "BibTeX",
+      mono: true,
+      text: [
+        `@misc{${code},`,
+        `  author       = {${author}},`,
+        `  title        = {${title}},`,
+        `  year         = {${year}},`,
+        `  month        = {${monthIdx + 1}},`,
+        `  howpublished = {DeCite},`,
+        `  note         = {Sealed human--AI dialogue${ai}, ${code}},`,
+        `  url          = {${url}}`,
+        `}`,
+      ].join("\n"),
+    },
+  ];
+}
+
 /** Block-explorer transaction URL for a given chain id. */
 export function explorerTxUrl(chainId: number, txHash: string): string {
   const base =

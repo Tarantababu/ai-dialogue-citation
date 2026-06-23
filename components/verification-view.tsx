@@ -32,7 +32,7 @@ import {
   explorerAddressUrl,
   explorerReadContractUrl,
   ipfsGatewayUrls,
-  formatApaCitation,
+  buildCitationFormats,
 } from "@/lib/citation";
 
 const PINATA_GATEWAY = process.env.NEXT_PUBLIC_PINATA_GATEWAY;
@@ -41,6 +41,7 @@ import { MarkdownMessage } from "@/components/markdown-message";
 import { siteBaseUrl } from "@/lib/site";
 import type { DialogueMessage, OnChainCitation, OriginInputType } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 export type VerificationViewModel =
   | {
@@ -380,7 +381,7 @@ function CitationCard({
     author: model.custodian,
     isRegistered: true,
   };
-  const apa = formatApaCitation({
+  const formats = buildCitationFormats({
     code: model.code,
     citation,
     authorName: model.authorName ?? undefined,
@@ -388,6 +389,8 @@ function CitationCard({
     platform: model.platform,
     model: model.aiModel,
   });
+  const [styleId, setStyleId] = useState(formats[0].id);
+  const current = formats.find((f) => f.id === styleId) ?? formats[0];
 
   return (
     <section className="mt-8 rounded-lg border border-bronze/30 bg-accent/40 p-6">
@@ -397,18 +400,52 @@ function CitationCard({
           {t("verify.cite.title")}
         </h2>
       </div>
+
+      {/* Academic style selector */}
+      <div className="mb-3 flex flex-wrap gap-1.5">
+        {formats.map((f) => {
+          const active = f.id === styleId;
+          return (
+            <button
+              key={f.id}
+              type="button"
+              onClick={() => {
+                setStyleId(f.id);
+                setCopied(false);
+              }}
+              aria-pressed={active}
+              className={cn(
+                "rounded-sm border px-2.5 py-1 text-xs font-medium transition-colors",
+                active
+                  ? "border-bronze bg-bronze text-primary-foreground"
+                  : "border-border bg-card text-muted-foreground hover:border-bronze/50 hover:text-foreground",
+              )}
+            >
+              {f.label}
+            </button>
+          );
+        })}
+      </div>
+
       <div className="relative rounded-md border border-border bg-card p-4">
-        <p className="pr-10 font-serif text-sm italic leading-relaxed text-foreground">
-          {apa}
+        <p
+          className={cn(
+            "pr-10 leading-relaxed text-foreground",
+            current.mono
+              ? "overflow-x-auto whitespace-pre font-mono text-xs"
+              : "break-words font-serif text-sm italic",
+          )}
+        >
+          {current.text}
         </p>
         <button
           type="button"
           onClick={() => {
-            navigator.clipboard.writeText(apa);
+            navigator.clipboard.writeText(current.text);
             setCopied(true);
             setTimeout(() => setCopied(false), 1600);
           }}
-          className="absolute right-2 top-2 rounded-sm p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"
+          className="absolute right-2 top-2 rounded-sm bg-card/90 p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"
           aria-label={t("mint.copy")}
         >
           {copied ? (
