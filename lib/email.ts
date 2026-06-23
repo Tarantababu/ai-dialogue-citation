@@ -27,7 +27,7 @@ function getResend(): Resend | null {
   return new Resend(key);
 }
 
-// ─── Brand palette (inline — email clients ignore <style>/CSS vars) ──────────
+// ─── Brand palette (inline - email clients ignore <style>/CSS vars) ──────────
 const C = {
   ivory: "#fbfbf9",
   ink: "#0f172a",
@@ -60,7 +60,7 @@ function shell(previewText: string, inner: string): string {
   </td></tr>
   <tr><td style="padding:20px 4px 0;font-family:${SANS};font-size:12px;color:${C.muted};line-height:1.6;">
     Permanent · Time-stamped · Independently verifiable · <a href="${SITE}" style="color:${C.bronze};text-decoration:none;">de-cite.com</a><br>
-    Your citation is saved to a permanent public record — readable forever, even without this site.
+    Your citation is saved to a permanent public record, readable forever, even without this site.
   </td></tr>
 </table>
 </td></tr></table>
@@ -130,7 +130,7 @@ export async function sendSealReceipt(p: SealReceiptParams): Promise<boolean> {
   const aiLabel =
     p.platform && p.platform !== "Manual"
       ? esc(p.platform) + (p.model ? ` (${esc(p.model)})` : "")
-      : "—";
+      : "Not recorded";
 
   const inner = `
     <div style="font-family:${SANS};font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:${C.seal};">Sealed &amp; Verified</div>
@@ -170,7 +170,7 @@ export async function sendSealReceipt(p: SealReceiptParams): Promise<boolean> {
     `Saved file: ${ipfsUrl}`,
     "",
     "This record is permanent and stays reachable even if DeCite ever goes offline.",
-    "— DeCite · de-cite.com",
+    "DeCite · de-cite.com",
   ].join("\n");
 
   try {
@@ -178,7 +178,7 @@ export async function sendSealReceipt(p: SealReceiptParams): Promise<boolean> {
       from: FROM,
       to: p.to,
       replyTo: REPLY_TO,
-      subject: `Your citation is sealed — ${p.code}`,
+      subject: `Your citation is sealed: ${p.code}`,
       html: shell("Your DeCite citation is permanently sealed.", inner),
       text,
     });
@@ -204,8 +204,8 @@ export async function sendFeedbackAck(to: string): Promise<boolean> {
       to,
       replyTo: REPLY_TO,
       subject: "We received your DeCite feedback",
-      html: shell("Thanks for your feedback — we read everything.", inner),
-      text: "Thank you for your feedback. We received your message and read every one. If a reply is warranted, we'll be in touch.\n\n— DeCite · de-cite.com",
+      html: shell("Thanks for your feedback, we read everything.", inner),
+      text: "Thank you for your feedback. We received your message and read every one. If a reply is warranted, we'll be in touch.\n\nDeCite · de-cite.com",
     });
     return !error;
   } catch {
@@ -229,7 +229,7 @@ export async function sendFeedbackNotification(p: {
     <div style="background:${C.ivory};border:1px solid ${C.border};border-radius:4px;padding:16px;font-family:${SANS};font-size:15px;line-height:1.6;color:${C.ink};white-space:pre-wrap;">${esc(p.message)}</div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:18px;">
       ${infoRow("Type", esc(p.type))}
-      ${infoRow("Reply-to", p.email ? esc(p.email) : "— (not provided)")}
+      ${infoRow("Reply-to", p.email ? esc(p.email) : "(not provided)")}
     </table>
   `;
   try {
@@ -239,7 +239,7 @@ export async function sendFeedbackNotification(p: {
       replyTo: p.email ?? undefined,
       subject: `DeCite feedback: ${p.type}`,
       html: shell(`New ${p.type} feedback on DeCite.`, inner),
-      text: `New ${p.type} feedback on DeCite:\n\n${p.message}\n\nReply-to: ${p.email ?? "— (not provided)"}`,
+      text: `New ${p.type} feedback on DeCite:\n\n${p.message}\n\nReply-to: ${p.email ?? "(not provided)"}`,
     });
     return !error;
   } catch {

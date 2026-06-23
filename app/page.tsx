@@ -42,7 +42,7 @@ export default function HomePage() {
         </p>
       </motion.section>
 
-      {/* ── Seal form — the primary action ───────────────────── */}
+      {/* ── Seal form - the primary action ───────────────────── */}
       <motion.section
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}

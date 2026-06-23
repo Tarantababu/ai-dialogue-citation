@@ -85,7 +85,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
-          {/* Desktop seal CTA — the primary action, so no duplicate nav link */}
+          {/* Desktop seal CTA - the primary action, so no duplicate nav link */}
           <Link
             href="/muhurle"
             className="group hidden items-center gap-1.5 rounded-sm bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-bronze md:inline-flex"

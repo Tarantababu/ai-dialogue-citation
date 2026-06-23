@@ -63,7 +63,7 @@ export async function createSealCheckout(
       };
     }
 
-    // Per-IP rate limit (no global cap — payment self-limits gas).
+    // Per-IP rate limit (no global cap - payment self-limits gas).
     const gate = await enforceSealLimit(false);
     if (!gate.ok) return { ok: false, error: gate.error };
 
@@ -117,7 +117,7 @@ export async function createSealCheckout(
             currency: SEAL_CURRENCY,
             unit_amount: SEAL_PRICE_CENTS,
             product_data: {
-              name: "DeCite — Citation Seal",
+              name: "DeCite Citation Seal",
               description: cap(sourceRef, 200),
             },
           },

@@ -4,7 +4,7 @@ import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import { finalizePaymentIntentById } from "@/lib/seal-finalize";
 
 /**
- * Stripe webhook — a backstop that finalizes the on-chain seal even if the user
+ * Stripe webhook - a backstop that finalizes the on-chain seal even if the user
  * closes the tab before the success page runs. Idempotent with the success-page
  * path via PaymentIntent metadata. Requires STRIPE_WEBHOOK_SECRET.
  *

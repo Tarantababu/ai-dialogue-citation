@@ -123,7 +123,7 @@ export function explorerAddressUrl(chainId: number, address: string): string {
 }
 
 /**
- * Block-explorer "Read Contract" page — lets anyone call getCitation(code)
+ * Block-explorer "Read Contract" page - lets anyone call getCitation(code)
  * straight from the browser, with no dependency on the DeCite app.
  */
 export function explorerReadContractUrl(
@@ -141,7 +141,7 @@ export function sourcifyUrl(chainId: number, address: string): string {
 /**
  * Independent IPFS gateways for a CID. The archive is content-addressed, so
  * any of these (or any other gateway) returns the identical, tamper-proof file
- * — DeCite's own gateway is just one of many.
+ * - DeCite's own gateway is just one of many.
  */
 export function ipfsGatewayUrls(
   cid: string,

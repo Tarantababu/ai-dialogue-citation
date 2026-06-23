@@ -33,5 +33,5 @@ export function aiModelLabel(
   if (p && model) return `${p} · ${model}`;
   if (p) return p;
   if (model) return model;
-  return "—";
+  return "Not recorded";
 }

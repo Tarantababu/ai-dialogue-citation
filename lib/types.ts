@@ -1,6 +1,6 @@
 /**
  * Shared, explicit type contracts for DeCite.
- * No `any` is permitted anywhere in the codebase — extend these instead.
+ * No `any` is permitted anywhere in the codebase - extend these instead.
  */
 
 /** A single turn in a human–AI dialogue. */

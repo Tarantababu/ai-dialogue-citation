@@ -30,11 +30,11 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: SITE_URL ? new URL(SITE_URL) : undefined,
   title: {
-    default: "DeCite — AI Dialogue Citation & Verification",
+    default: "DeCite: AI Dialogue Citation & Verification",
     template: "%s · DeCite",
   },
   description:
-    "Save a conversation you had with an AI permanently, and get a short citation code you can put in your paper or book. Anyone can look it up and read exactly what was said — no account, nothing technical.",
+    "Save a conversation you had with an AI permanently, and get a short citation code you can put in your paper or book. Anyone can look it up and read exactly what was said, no account, nothing technical.",
 };
 
 export default function RootLayout({

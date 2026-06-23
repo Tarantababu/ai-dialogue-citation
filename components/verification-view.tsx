@@ -169,7 +169,7 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
                 >
                   {model.origin
                     ? originLabel(model.origin)
-                    : model.platform ?? "—"}
+                    : model.platform ?? "Not recorded"}
                 </Badge>
               </MetaRow>
               <MetaRow label={t("verify.meta.cid")}>
@@ -281,7 +281,7 @@ function PermanenceCard({
       </p>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        {/* Path 1 — the blockchain registry */}
+        {/* Path 1 - the blockchain registry */}
         <div className="rounded-md border border-border bg-card p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-bronze">
             1 · {t("verify.perm.chain")}
@@ -303,7 +303,7 @@ function PermanenceCard({
           </a>
         </div>
 
-        {/* Path 2 — the IPFS archive via any gateway */}
+        {/* Path 2 - the IPFS archive via any gateway */}
         <div className="rounded-md border border-border bg-card p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-bronze">
             2 · {t("verify.perm.ipfs")}

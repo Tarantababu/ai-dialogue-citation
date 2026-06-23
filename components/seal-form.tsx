@@ -114,7 +114,7 @@ export function SealForm() {
           return;
         }
         setFreeResult(res);
-        toast.success(`${t("mint.success.title")} — ${res.code}`);
+        toast.success(`${t("mint.success.title")}: ${res.code}`);
       } else {
         const res = await createSealCheckout(buildInput());
         if (!res.ok) {
@@ -261,7 +261,7 @@ export function SealForm() {
         <p className="text-xs text-muted-foreground">{t("mint.email.help")}</p>
       </div>
 
-      {/* Share publicly toggle — on by default */}
+      {/* Share publicly toggle - on by default */}
       <div className="mt-4 flex items-start gap-3 rounded-md border border-border bg-secondary/40 p-3.5">
         <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-bronze" strokeWidth={1.5} />
         <div className="min-w-0 flex-1">

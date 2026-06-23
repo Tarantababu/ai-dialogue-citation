@@ -18,7 +18,7 @@ import type {
 
 /**
  * ────────────────────────────────────────────────────────────────────────
- *  PHASE 2 — Dual-input ingestion pipeline (Server Actions).
+ *  PHASE 2 - Dual-input ingestion pipeline (Server Actions).
  *
  *  Option A · Share Link  → fetch public HTML, extract dialogue, pin JSON.
  *  Option B · Direct Paste → parse raw text/Markdown, pin JSON.
@@ -97,7 +97,7 @@ function extractText(value: unknown, depth = 0): string {
 }
 
 /**
- * Deeply walk any parsed JSON tree for known conversation message shapes —
+ * Deeply walk any parsed JSON tree for known conversation message shapes -
  * generalized across ChatGPT, Claude, Gemini, Grok, Copilot, Perplexity,
  * DeepSeek, Poe and others: author.role+content, role/sender/type/from + text,
  * and question/answer pairs. Each node contributes at most one turn.
@@ -179,7 +179,7 @@ function* iterateScriptJson(html: string): Generator<unknown> {
     try {
       yield JSON.parse(decodeEntities(raw));
     } catch {
-      // Not valid standalone JSON (e.g. assignment expression) — skip.
+      // Not valid standalone JSON (e.g. assignment expression) - skip.
     }
   }
 }
@@ -277,14 +277,14 @@ async function extractDialogueFromHtml(
   const collected: RankedMessage[] = [];
   let model: string | null = null;
 
-  // Strategy 1 — legacy inline <script> JSON blobs.
+  // Strategy 1 - legacy inline <script> JSON blobs.
   for (const json of iterateScriptJson(html)) {
     collectMessages(json, collected);
     if (!model) model = scanForModel(json);
     if (collected.length > MAX_MESSAGES) break;
   }
 
-  // Strategy 2 — current React Router turbo-stream payload.
+  // Strategy 2 - current React Router turbo-stream payload.
   if (collected.length === 0) {
     const root = await decodeReactRouterStream(html);
     if (root) {
@@ -438,7 +438,7 @@ function buildPayload(
 // ─── Exported Server Actions ───────────────────────────────────────────────
 
 /**
- * Option A — seal an official AI share link.
+ * Option A - seal an official AI share link.
  * Validates the URL, fetches and parses the dialogue, then pins to IPFS.
  */
 export async function sealFromShareLink(
@@ -460,7 +460,7 @@ export async function sealFromShareLink(
       return {
         ok: false,
         error:
-          `${info.platform} renders the conversation in your browser and doesn't expose it to servers (it's loaded via a private request / bot-challenge), so it can't be read from a link. Please switch to the "Direct Text Capture" tab and paste the conversation — it produces a faithful, permanently sealed archive.`,
+          `${info.platform} renders the conversation in your browser and doesn't expose it to servers (it's loaded via a private request / bot-challenge), so it can't be read from a link. Please switch to the "Direct Text Capture" tab and paste the conversation. It produces a faithful, permanently sealed archive.`,
       };
     }
 
@@ -471,7 +471,7 @@ export async function sealFromShareLink(
       return {
         ok: false,
         error:
-          "Could not extract the dialogue from this share page. The platform may have changed its format — use Direct Text Capture instead.",
+          "Could not extract the dialogue from this share page. The platform may have changed its format. Use Direct Text Capture instead.",
       };
     }
 
@@ -511,7 +511,7 @@ export async function sealFromShareLink(
 }
 
 /**
- * Option B — seal directly pasted text / Markdown.
+ * Option B - seal directly pasted text / Markdown.
  * Bypasses scraping entirely and pins the normalized JSON payload.
  */
 export async function sealFromDirectText(

@@ -18,7 +18,7 @@ export async function lookupReceipts(
     return { ok: false, error: "Please enter a valid email address." };
   }
   if (!kvConfigured) {
-    // No store configured — be explicit so the operator knows why it's empty.
+    // No store configured - be explicit so the operator knows why it's empty.
     return { ok: true, entries: [], configured: false };
   }
   try {

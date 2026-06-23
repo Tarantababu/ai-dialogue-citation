@@ -5,9 +5,9 @@
  */
 
 /**
- * "scrape" — the conversation is present in the server-fetched HTML and can be
+ * "scrape" - the conversation is present in the server-fetched HTML and can be
  *            extracted.
- * "paste-only" — the product renders the conversation client-side and/or hides
+ * "paste-only" - the product renders the conversation client-side and/or hides
  *            it behind a bot challenge, so a server can't read it. The link is
  *            still recognized, but the user is routed to Direct Text Capture.
  */

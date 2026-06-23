@@ -115,7 +115,7 @@ export async function sealFree(input: SealInput): Promise<SealRegisterResult> {
     return {
       ok: false,
       error: message.includes("CitationAlreadyExists")
-        ? "That citation code was just taken — please try again."
+        ? "That citation code was just taken. Please try again."
         : message,
     };
   }

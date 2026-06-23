@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Seal complete",
 };
 
-// Always run fresh — this page finalizes an on-chain transaction.
+// Always run fresh - this page finalizes an on-chain transaction.
 export const dynamic = "force-dynamic";
 
 export default async function SealSuccessPage({

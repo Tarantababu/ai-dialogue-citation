@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Minimalist wax-seal mark. A concentric ring monogram ("SD") rendered in
- * bronze — evokes an academic press colophon without any crypto iconography.
+ * bronze - evokes an academic press colophon without any crypto iconography.
  */
 export function BrandSeal({ className }: { className?: string }) {
   return (

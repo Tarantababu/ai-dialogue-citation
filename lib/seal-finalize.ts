@@ -134,7 +134,7 @@ export async function finalizeCheckoutSession(
     return {
       ok: false,
       error: message.includes("CitationAlreadyExists")
-        ? "That citation code was just taken — please reload to retry."
+        ? "That citation code was just taken. Please reload to retry."
         : message,
     };
   }
