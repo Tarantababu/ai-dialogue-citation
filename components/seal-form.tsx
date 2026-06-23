@@ -133,12 +133,12 @@ export function SealForm() {
   // Segmented control: a clearly raised white pill with the app's bronze
   // "selected" accent for the active tab, on a defined track.
   const tabTriggerCls =
-    "gap-2 whitespace-normal rounded-md px-3 py-2.5 text-center text-xs font-medium text-muted-foreground transition-all hover:text-foreground data-active:bg-card data-active:font-semibold data-active:text-bronze data-active:shadow-sm data-active:ring-1 data-active:ring-bronze/30 sm:text-sm";
+    "h-auto! gap-2 whitespace-normal rounded-md px-3 py-2.5 text-center text-xs font-medium text-muted-foreground transition-all hover:text-foreground data-active:bg-card data-active:font-semibold data-active:text-bronze data-active:shadow-sm data-active:ring-1 data-active:ring-bronze/30 sm:text-sm";
 
   return (
     <div className="rounded-xl border border-border bg-card p-5 shadow-sm sm:p-7">
       <Tabs value={tab} onValueChange={(v) => setTab(v as "link" | "paste")}>
-        <TabsList className="grid h-auto w-full grid-cols-2 gap-1.5 rounded-lg border border-border bg-secondary/70 p-1.5">
+        <TabsList className="grid h-auto! w-full grid-cols-2 gap-1.5 rounded-lg border border-border bg-secondary/70 p-1.5">
           <TabsTrigger value="link" className={tabTriggerCls}>
             <Link2 className="h-4 w-4 shrink-0" /> {t("mint.tab.link")}
           </TabsTrigger>
