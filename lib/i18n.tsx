@@ -122,6 +122,8 @@ const en: Dict = {
   "mint.action.preparing": "Preparing secure checkout…",
   "mint.pay.note":
     "A one-time ${price} fee covers saving and permanently registering your conversation. Payment is handled securely by Stripe, we never see or store your card details.",
+  "mint.permanence.notice":
+    "Sealing is permanent and public. Once sealed, the conversation can't be edited or removed, by anyone, including us. Remove anything private before you seal.",
   "mint.canceled": "Checkout canceled. Your conversation was not saved.",
   "mint.success.title": "Saved & registered",
   "mint.success.desc": "Your conversation is now permanent. Copy the citation below for your bibliography.",
@@ -393,6 +395,8 @@ const zh: Dict = {
   "mint.action.pay": "支付 ${price} 并封存",
   "mint.action.preparing": "正在准备安全结账…",
   "mint.pay.note": "一次性 ${price} 费用涵盖保存与永久登记你的对话。结账由 Stripe 安全处理，我们绝不查看或存储你的卡片信息。",
+  "mint.permanence.notice":
+    "封存是永久且公开的。一经封存，对话便无法被任何人编辑或删除，包括我们在内。封存前请先移除任何私密内容。",
   "mint.canceled": "结账已取消。你的对话未被保存。",
   "mint.success.title": "已保存并登记",
   "mint.success.desc": "你的对话现已永久保存。复制下方引用，写入你的参考文献。",
@@ -645,6 +649,8 @@ const hi: Dict = {
   "mint.action.pay": "${price} भुगतान करें और सील करें",
   "mint.action.preparing": "सुरक्षित चेकआउट तैयार किया जा रहा है…",
   "mint.pay.note": "एक बार का ${price} शुल्क आपकी बातचीत सहेजने और स्थायी रूप से दर्ज करने को कवर करता है। भुगतान Stripe द्वारा सुरक्षित रूप से संभाला जाता है, हम आपके कार्ड विवरण कभी नहीं देखते या संग्रहीत नहीं करते।",
+  "mint.permanence.notice":
+    "सील करना स्थायी और सार्वजनिक है। एक बार सील हो जाने पर बातचीत को कोई भी संपादित या हटा नहीं सकता, हम भी नहीं। सील करने से पहले कोई भी निजी जानकारी हटा दें।",
   "mint.canceled": "चेकआउट रद्द कर दिया गया। आपकी बातचीत सहेजी नहीं गई।",
   "mint.success.title": "सहेजा और दर्ज किया गया",
   "mint.success.desc": "आपकी बातचीत अब स्थायी है। अपनी ग्रंथसूची के लिए नीचे दिया उद्धरण कॉपी करें।",
@@ -897,6 +903,8 @@ const es: Dict = {
   "mint.action.pay": "Pagar ${price} y sellar",
   "mint.action.preparing": "Preparando el pago seguro…",
   "mint.pay.note": "Una tarifa única de ${price} cubre guardar y registrar permanentemente tu conversación. El pago lo gestiona Stripe de forma segura: nunca vemos ni guardamos los datos de tu tarjeta.",
+  "mint.permanence.notice":
+    "El sellado es permanente y público. Una vez sellada, la conversación no puede ser editada ni eliminada por nadie, ni siquiera por nosotros. Elimina cualquier dato privado antes de sellar.",
   "mint.canceled": "Pago cancelado. Tu conversación no se guardó.",
   "mint.success.title": "Guardado y registrado",
   "mint.success.desc": "Tu conversación ahora es permanente. Copia la cita de abajo para tu bibliografía.",
@@ -1149,6 +1157,8 @@ const fr: Dict = {
   "mint.action.pay": "Payer ${price} et sceller",
   "mint.action.preparing": "Préparation du paiement sécurisé…",
   "mint.pay.note": "Des frais uniques de ${price} couvrent la sauvegarde et l'enregistrement permanent de votre conversation. Le paiement est géré en toute sécurité par Stripe, nous ne voyons ni ne stockons jamais vos données de carte.",
+  "mint.permanence.notice":
+    "Le scellement est permanent et public. Une fois scellée, la conversation ne peut être ni modifiée ni supprimée par qui que ce soit, y compris nous. Retirez toute information privée avant de sceller.",
   "mint.canceled": "Paiement annulé. Votre conversation n'a pas été sauvegardée.",
   "mint.success.title": "Sauvegardé et enregistré",
   "mint.success.desc": "Votre conversation est désormais permanente. Copiez la citation ci-dessous pour votre bibliographie.",
@@ -1401,6 +1411,8 @@ const ar: Dict = {
   "mint.action.pay": "ادفع ${price} واختم",
   "mint.action.preparing": "جارٍ تجهيز الدفع الآمن…",
   "mint.pay.note": "رسوم لمرة واحدة قدرها ${price} تغطي حفظ محادثتك وتسجيلها بشكل دائم. يُعالَج الدفع بأمان عبر Stripe، لا نرى بيانات بطاقتك ولا نخزّنها أبدًا.",
+  "mint.permanence.notice":
+    "الختم دائم وعلني. بمجرد الختم، لا يمكن لأحد تعديل المحادثة أو حذفها، بما في ذلك نحن. أزِل أي معلومات خاصة قبل الختم.",
   "mint.canceled": "أُلغي الدفع. لم تُحفظ محادثتك.",
   "mint.success.title": "مُحفوظ ومُسجَّل",
   "mint.success.desc": "أصبحت محادثتك دائمة الآن. انسخ الاستشهاد أدناه لقائمة مراجعك.",
@@ -1653,6 +1665,8 @@ const pt: Dict = {
   "mint.action.pay": "Pagar ${price} e selar",
   "mint.action.preparing": "Preparando o pagamento seguro…",
   "mint.pay.note": "Uma taxa única de ${price} cobre guardar e registrar sua conversa de forma permanente. O pagamento é tratado com segurança pela Stripe, nunca vemos nem armazenamos os dados do seu cartão.",
+  "mint.permanence.notice":
+    "O selamento é permanente e público. Depois de selada, a conversa não pode ser editada nem removida por ninguém, nem por nós. Remova qualquer informação privada antes de selar.",
   "mint.canceled": "Pagamento cancelado. Sua conversa não foi guardada.",
   "mint.success.title": "Guardado e registrado",
   "mint.success.desc": "Sua conversa agora é permanente. Copie a citação abaixo para sua bibliografia.",
@@ -1905,6 +1919,8 @@ const ru: Dict = {
   "mint.action.pay": "Оплатить ${price} и запечатать",
   "mint.action.preparing": "Подготовка безопасной оплаты…",
   "mint.pay.note": "Разовая плата ${price} покрывает сохранение и постоянную регистрацию вашего разговора. Оплату безопасно обрабатывает Stripe, мы никогда не видим и не храним данные вашей карты.",
+  "mint.permanence.notice":
+    "Запечатывание необратимо и публично. После запечатывания разговор нельзя изменить или удалить никому, включая нас. Удалите всё личное перед запечатыванием.",
   "mint.canceled": "Оплата отменена. Ваш разговор не сохранён.",
   "mint.success.title": "Сохранено и зарегистрировано",
   "mint.success.desc": "Ваш разговор теперь постоянный. Скопируйте ссылку ниже для библиографии.",
@@ -2157,6 +2173,8 @@ const de: Dict = {
   "mint.action.pay": "${price} zahlen & versiegeln",
   "mint.action.preparing": "Sichere Kasse wird vorbereitet…",
   "mint.pay.note": "Eine einmalige Gebühr von ${price} deckt das dauerhafte Sichern und Registrieren deines Gesprächs. Die Zahlung wickelt Stripe sicher ab, wir sehen oder speichern deine Kartendaten nie.",
+  "mint.permanence.notice":
+    "Das Versiegeln ist dauerhaft und öffentlich. Einmal versiegelt, kann das Gespräch von niemandem mehr bearbeitet oder entfernt werden, auch nicht von uns. Entferne alles Private, bevor du versiegelst.",
   "mint.canceled": "Bezahlung abgebrochen. Dein Gespräch wurde nicht gesichert.",
   "mint.success.title": "Gesichert & registriert",
   "mint.success.desc": "Dein Gespräch ist nun dauerhaft. Kopiere das Zitat unten für dein Literaturverzeichnis.",
@@ -2409,6 +2427,8 @@ const ja: Dict = {
   "mint.action.pay": "${price} を支払って封印",
   "mint.action.preparing": "安全な決済を準備中…",
   "mint.pay.note": "一回限りの ${price} の料金で、対話の保存と永久登録をまかないます。決済は Stripe が安全に処理し、カード情報を当社が見ることも保存することもありません。",
+  "mint.permanence.notice":
+    "封印は永久的かつ公開です。封印すると、対話は私たちを含め誰も編集・削除できません。封印する前に、非公開の情報はすべて削除してください。",
   "mint.canceled": "決済がキャンセルされました。対話は保存されていません。",
   "mint.success.title": "保存・登録完了",
   "mint.success.desc": "対話は永久になりました。参考文献用に下の引用をコピーしてください。",
@@ -2661,6 +2681,8 @@ const tr: Dict = {
   "mint.action.pay": "${price} Öde ve Mühürle",
   "mint.action.preparing": "Güvenli ödeme hazırlanıyor…",
   "mint.pay.note": "Tek seferlik ${price} ücret, konuşmanızın saklanmasını ve kalıcı olarak kaydedilmesini karşılar. Ödeme Stripe tarafından güvenle işlenir, kart bilgilerinizi asla görmez veya saklamayız.",
+  "mint.permanence.notice":
+    "Mühürleme kalıcı ve herkese açıktır. Bir kez mühürlendiğinde konuşma, biz dahil hiç kimse tarafından düzenlenemez veya kaldırılamaz. Mühürlemeden önce özel olan her şeyi çıkarın.",
   "mint.canceled": "Ödeme iptal edildi. Konuşmanız saklanmadı.",
   "mint.success.title": "Saklandı ve kaydedildi",
   "mint.success.desc": "Konuşmanız artık kalıcı. Kaynakçanız için aşağıdaki atfı kopyalayın.",

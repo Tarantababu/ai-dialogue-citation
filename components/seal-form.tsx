@@ -317,7 +317,15 @@ export function SealForm() {
         </button>
       </div>
 
-      <div className="mt-6">
+      {/* Permanence consent - a final, plain reminder that sealing is
+          irreversible and public, shown right at the point of action so a
+          user never seals without seeing it. */}
+      <p className="mt-5 flex items-start gap-2 rounded-md border border-bronze/30 bg-accent/50 p-3 text-xs leading-relaxed text-accent-foreground">
+        <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-bronze" />
+        {t("mint.permanence.notice")}
+      </p>
+
+      <div className="mt-4">
         <Button
           size="lg"
           onClick={handleSubmit}
