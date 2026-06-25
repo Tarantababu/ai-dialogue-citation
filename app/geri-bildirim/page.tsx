@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { submitFeedback } from "@/app/actions/feedback";
 import type { FeedbackType } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
+import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const TYPES: { value: FeedbackType; labelKey: string; icon: typeof Lightbulb }[] = [
@@ -44,6 +45,7 @@ export default function FeedbackPage() {
         toast.error(res.error);
         return;
       }
+      analytics.feedbackSubmitted({ type });
       setDone(true);
     } catch {
       toast.error(t("feedback.error.generic"));

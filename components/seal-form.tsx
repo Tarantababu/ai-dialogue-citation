@@ -29,6 +29,7 @@ import {
 } from "@/lib/share-providers";
 import type { SealInput, SealRegisterResult } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
+import { analytics } from "@/lib/analytics";
 
 /**
  * The full seal-a-dialogue form, self-contained and reusable. Embedded on the
@@ -51,7 +52,10 @@ export function SealForm() {
   const [freeResult, setFreeResult] = useState<SealRegisterResult | null>(null);
 
   useEffect(() => {
-    if (searchParams.get("canceled")) toast.info(t("mint.canceled"));
+    if (searchParams.get("canceled")) {
+      toast.info(t("mint.canceled"));
+      analytics.sealCanceled();
+    }
   }, [searchParams, t]);
 
   if (freeResult?.ok) return <SealSuccessView result={freeResult} />;
@@ -105,11 +109,19 @@ export function SealForm() {
   async function handleSubmit() {
     if (!validate()) return;
     setBusy(true);
+    analytics.sealStarted({
+      method: tab === "link" ? "share-link" : "direct-paste",
+      mode: FREE_MODE ? "free" : "paid",
+      listPublicly,
+      hasAuthor: !!authorName.trim(),
+      hasEmail: !!email.trim(),
+    });
     try {
       if (FREE_MODE) {
         const res = await sealFree(buildInput());
         if (!res.ok) {
           toast.error(res.error);
+          analytics.sealFailed({ stage: "free", reason: res.error });
           setBusy(false);
           return;
         }
@@ -119,9 +131,11 @@ export function SealForm() {
         const res = await createSealCheckout(buildInput());
         if (!res.ok) {
           toast.error(res.error);
+          analytics.sealFailed({ stage: "checkout", reason: res.error });
           setBusy(false);
           return;
         }
+        analytics.sealCheckoutRedirect();
         window.location.assign(res.url);
       }
     } catch {
@@ -137,7 +151,13 @@ export function SealForm() {
 
   return (
     <div className="rounded-xl border border-border bg-card p-5 shadow-sm sm:p-7">
-      <Tabs value={tab} onValueChange={(v) => setTab(v as "link" | "paste")}>
+      <Tabs
+        value={tab}
+        onValueChange={(v) => {
+          setTab(v as "link" | "paste");
+          analytics.sealTabSwitched(v as "link" | "paste");
+        }}
+      >
         <TabsList className="grid h-auto! w-full grid-cols-2 gap-1.5 rounded-lg border border-border bg-secondary/70 p-1.5">
           <TabsTrigger value="link" className={tabTriggerCls}>
             <Link2 className="h-4 w-4 shrink-0" /> {t("mint.tab.link")}

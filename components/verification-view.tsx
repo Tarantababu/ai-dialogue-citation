@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -41,6 +41,7 @@ import { MarkdownMessage } from "@/components/markdown-message";
 import { siteBaseUrl } from "@/lib/site";
 import type { DialogueMessage, OnChainCitation, OriginInputType } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
+import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export type VerificationViewModel =
@@ -67,6 +68,12 @@ export type VerificationViewModel =
 
 export function VerificationView({ model }: { model: VerificationViewModel }) {
   const { t } = useI18n();
+
+  // Reader landed on a verification page - track the outcome (a hit, a bad
+  // code, etc.). Runs before any early return so all statuses are captured.
+  useEffect(() => {
+    analytics.verifyResultViewed({ status: model.status, code: model.code });
+  }, [model.status, model.code]);
 
   if (model.status !== "ok") {
     return <StatusState model={model} />;
@@ -198,6 +205,7 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
                   href={model.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => analytics.externalOpened("origin")}
                   className="mt-3 inline-flex items-center gap-1.5 break-all text-sm text-bronze hover:underline"
                 >
                   {t("verify.origin.open")}
@@ -229,6 +237,7 @@ export function VerificationView({ model }: { model: VerificationViewModel }) {
                 href={model.ipfsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => analytics.externalOpened("ipfs")}
                 className="inline-flex items-center gap-1.5 text-xs font-medium text-bronze hover:underline"
               >
                 {t("verify.ipfs.open")}
@@ -297,6 +306,7 @@ function PermanenceCard({
             href={explorerReadContractUrl(model.chainId, model.registryAddress)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => analytics.externalOpened("registry")}
             className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-bronze hover:underline"
           >
             {t("verify.perm.readOn")}
@@ -412,6 +422,7 @@ function CitationCard({
               onClick={() => {
                 setStyleId(f.id);
                 setCopied(false);
+                analytics.citationStyleChanged({ style: f.id });
               }}
               aria-pressed={active}
               className={cn(
@@ -443,6 +454,7 @@ function CitationCard({
           onClick={() => {
             navigator.clipboard.writeText(current.text);
             setCopied(true);
+            analytics.citationCopied({ style: current.id });
             setTimeout(() => setCopied(false), 1600);
           }}
           className="absolute right-2 top-2 rounded-sm bg-card/90 p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"

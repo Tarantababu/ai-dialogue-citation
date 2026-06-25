@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link, { useLinkStatus } from "next/link";
 import { FileText, Inbox, Loader2 } from "lucide-react";
 import { getLatestCitations } from "@/app/actions/public-citations";
 import type { PublicCitationEntry } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
+import { analytics } from "@/lib/analytics";
 
 type State =
   | { status: "loading" }
@@ -93,9 +94,15 @@ function List({
         <Link
           key={`${entry.code}-${i}`}
           href={`/dogrulama/${entry.code}`}
+          onClick={() =>
+            analytics.latestCitationClicked({
+              code: entry.code,
+              platform: entry.platform ?? undefined,
+            })
+          }
           className="flex items-center gap-4 border-b border-border bg-card px-4 py-3.5 transition-colors last:border-b-0 hover:bg-secondary/50"
         >
-          <FileText className="h-4 w-4 shrink-0 text-bronze" />
+          <RowIcon />
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium text-foreground">
               {entry.sourceRef}
@@ -113,6 +120,21 @@ function List({
         </Link>
       ))}
     </div>
+  );
+}
+
+/**
+ * Leading row icon that flips to a spinner the instant its row is clicked.
+ * `useLinkStatus` reads the pending state of the enclosing <Link>, so a click
+ * gives immediate in-place feedback while the citation page loads - it never
+ * looks like nothing happened, even before the route-level loading screen.
+ */
+function RowIcon() {
+  const { pending } = useLinkStatus();
+  return pending ? (
+    <Loader2 className="h-4 w-4 shrink-0 animate-spin text-bronze" />
+  ) : (
+    <FileText className="h-4 w-4 shrink-0 text-bronze" />
   );
 }
 

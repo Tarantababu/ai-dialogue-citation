@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -21,10 +21,23 @@ import {
 import { siteBaseUrl } from "@/lib/site";
 import type { OnChainCitation, SealRegisterResult } from "@/lib/types";
 import { useI18n } from "@/lib/i18n";
+import { analytics } from "@/lib/analytics";
 
 /** Post-payment confirmation: shows the sealed code + copyable APA citation. */
 export function SealSuccessView({ result }: { result: SealRegisterResult }) {
   const { t } = useI18n();
+
+  // One completion event for both free and paid seals - the success screen is
+  // the single point both paths converge on.
+  useEffect(() => {
+    if (result.ok) {
+      analytics.sealFinalized({
+        code: result.code,
+        platform: result.platform,
+        hasAuthor: !!result.authorName,
+      });
+    }
+  }, [result]);
 
   if (!result.ok) {
     return (
@@ -102,6 +115,7 @@ export function SealSuccessView({ result }: { result: SealRegisterResult }) {
           </a>
           <Link
             href={`/dogrulama/${result.code}`}
+            onClick={() => analytics.successViewVerification()}
             className="inline-flex items-center gap-1.5 font-medium text-foreground hover:text-bronze"
           >
             {t("mint.viewVerify")} →
@@ -116,6 +130,7 @@ export function SealSuccessView({ result }: { result: SealRegisterResult }) {
         <div className="border-t border-border pt-5">
           <Link
             href="/muhurle"
+            onClick={() => analytics.successSealAnother()}
             className="text-sm font-medium text-bronze hover:underline"
           >
             {t("success.sealAnother")} →
@@ -181,6 +196,7 @@ function CopyBlock({ value }: { value: string }) {
           navigator.clipboard.writeText(value);
           setCopied(true);
           toast.success(t("mint.copied"));
+          analytics.successCitationCopied();
           setTimeout(() => setCopied(false), 1500);
         }}
         className="absolute right-2 top-2 rounded-sm p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"

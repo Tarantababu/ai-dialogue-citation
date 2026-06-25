@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { isValidCitationCode, normalizeCitationCode } from "@/lib/citation";
 import { useI18n } from "@/lib/i18n";
+import { analytics } from "@/lib/analytics";
 
 export default function VerifyLandingPage() {
   const { t } = useI18n();
@@ -21,6 +22,7 @@ export default function VerifyLandingPage() {
       toast.error(t("verify.error.format"));
       return;
     }
+    analytics.verifySearched();
     router.push(`/dogrulama/${normalized}`);
   }
 

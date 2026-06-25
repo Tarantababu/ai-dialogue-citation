@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import "katex/dist/katex.min.css";
@@ -54,6 +55,12 @@ export default function RootLayout({
           <SiteFooter />
           <Toaster position="bottom-right" richColors />
         </Providers>
+        {/* Umami analytics - loaded after hydration (recommended for analytics). */}
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="8f4eba32-6068-4a97-94c0-437539642503"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
